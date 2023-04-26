@@ -5,7 +5,3 @@ runtime-java/build/
 runtime-java/gradle/
 runtime-java/gradlew
 runtime-java/gradlew.bat
-
-electron/node_modules/**/*
-electron/build/**/*
-electron/out/**/*
