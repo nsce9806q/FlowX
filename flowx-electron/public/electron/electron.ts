@@ -1,6 +1,9 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import * as isDev from "electron-is-dev";
 import * as path from "path";
+import * as remoteMain from "@electron/remote/main";
+
+remoteMain.initialize();
 
 let mainWindow: BrowserWindow;
 
@@ -16,10 +19,15 @@ const createWindow = () => {
         webPreferences: {
             // node환경처럼 사용하기
             nodeIntegration: true,
+            contextIsolation: true,
+            preload: path.join(__dirname, "preload.js"),
+
             // 개발자도구
-            devTools: isDev,
+            // devTools: isDev,
         },
     });
+
+    ipcMain.handle("ping", () => "pong");
 
     // production에서는 패키지 내부 리소스에 접근.
     // 개발 중에는 개발 도구에서 호스팅하는 주소에서 로드.
@@ -37,6 +45,10 @@ const createWindow = () => {
     }
 
     mainWindow.setResizable(true);
+
+    ipcMain.handle("somd-name", async (event, someArgument) => {
+        return "hyunseo";
+    });
 
     // Emitted when the window is closed.
     mainWindow.on("closed", () => (mainWindow = undefined!));
