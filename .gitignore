@@ -5,3 +5,19 @@ runtime-java/build/
 runtime-java/gradle/
 runtime-java/gradlew
 runtime-java/gradlew.bat
+
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
