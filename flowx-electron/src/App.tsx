@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import FlowChart from "./components/FlowChart";
-import "./style/global.css";
+import "./style/index.css";
 import CounterContainer from "./containers/example/CounterContainer";
 
 function App() {
