@@ -35,7 +35,7 @@ const FlowChart = () => {
     );
 
     return (
-        <div style={{ width: "100%", height: "100%" }}>
+        <div className="w-screen h-full">
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
