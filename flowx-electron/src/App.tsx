@@ -1,25 +1,32 @@
-import React from "react";
-import { Preload } from "preload";
-
-var window: Preload.Window;
+import React, { useEffect, useRef } from "react";
+import FlowChart from "./components/FlowChart";
+import "./style/app.scss";
 
 function App() {
-    const sendMain = async () => {
-        const response = await window.versions.ping();
-        console.log(response);
+    const buttonRef = useRef(null);
+
+    const handleClick = async () => {
+        const isDarkMode = await window.darkMode.toggle();
+        document.getElementById("theme-source")!.innerHTML =
+            isDarkMode ? "Dark" : "Light";
     };
+
+    useEffect(() => {
+        if (buttonRef && buttonRef.current) {
+            const ref: HTMLElement = buttonRef.current;
+            ref.addEventListener("click", handleClick);
+        }
+    }, [buttonRef]);
+
     return (
-        <>
-            <div>
-                <button
-                    onClick={() => {
-                        sendMain();
-                    }}
-                >
-                    Click to ping
-                </button>
-            </div>
-        </>
+        <div className="OuterDiv">
+            <h2 id="theme-source">System</h2>
+            <button id="toggle-dark-mode" ref={buttonRef}>
+                Toggle Dark Mode
+            </button>
+
+            <FlowChart />
+        </div>
     );
 }
 
