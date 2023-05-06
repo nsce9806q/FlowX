@@ -78,7 +78,7 @@
     "react-build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "typescript": "tsc ./public/**/*.ts",
-    "start": "npm run typescript && concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://127.0.0.1:3000 && electron .\"",
+    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://127.0.0.1:3000 && electron .\"",
     "build": "npm run react-build && electron-builder",
     "release": "npm run react-build && electron-builder --publish=always",
     "lint": "eslint './src**/*.{ts,tsx}'"
