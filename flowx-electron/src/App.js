@@ -1,19 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
+import GetFileButton from './components/GetFileButton';
+import NewFileButton from './components/NewFileButton';
+import Editor from './components/Editor';
 
 function App() {
-
-  useEffect(() => {
-  const canvas = document.getElementById('canvas');
-  canvas.requestPointerLock();
-  canvas.addEventListener('click', (e) => {
-    canvas.requestPointerLock();
-  });
-  },[]);
+  const [file,setFile] = useState(null);
 
   return (
     <div className="App">
-      test
-      <canvas id="canvas" width="500" height="500" style={{border:"solid 1px black"}}></canvas>
+      <GetFileButton setFile={setFile}/>
+      <NewFileButton setFile={setFile}/>
+      {!file && <div>파일을 선택해주세요.</div>}
+      {file && <Editor file={file} setFile={setFile}/>}
     </div>
   );
 }
