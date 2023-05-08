@@ -1,93 +1,241 @@
 {
     "functions": {
         "main": [
-            [
-                {
-                    "input": [
-                        {"type":"csv","arg_name":"input"}
-                    ],
-                    "output": [
-                        {"type":"i32","uid":1},
-                        {"type":"i32","uid":2},
-                        {"type":"f32","uid":3}
-                    ],
-                    "function": {
-                        "name": "split_csv",
-                        "args": ["input","i32","i32","f32"]
+            {
+                "level": 1,
+                "nodes": [
+                    {
+                        "function_info": {
+                            "primitive": true,
+                            "name": "split_csv"
+                        },
+                        "input": [
+                            {
+                                "type": "csv",
+                                "inbound": {
+                                    "level": 0,
+                                    "uid": 1
+                                }
+                            },
+                            {
+                                "type": "primitive",
+                                "value": "i32"
+                            },
+                            {
+                                "type": "primitive",
+                                "value": "i32"
+                            },
+                            {
+                                "type": "primitive",
+                                "value": "f32"
+                            }
+                        ],
+                        "output": [
+                            {
+                                "type": "i32",
+                                "outbound": {
+                                    "uid": 1
+                                }
+                            },
+                            {
+                                "type": "i32",
+                                "outbound": {
+                                    "uid": 2
+                                }
+                            },
+                            {
+                                "type": "i32",
+                                "outbound": {
+                                    "uid": 3
+                                }
+                            }
+                        ],
+                        "description": "split_csv(input, i32, i32, f32)즉 input의 데이터를 i32, i32, f32컬럼 벡터로 분해함"
                     }
-                }
-            ],
-            [
-                {
-                    "input": [
-                        {"type":"i32","arg_name":"input", "uid":[1,1]},
-                        {"type":"i32","arg_name":"input", "uid":[1,2]}
-                    ],
-                    "output": [
-                        {"type":"i32", "uid":1}
-                    ],
-                    "function": {
-                        "name": "add",
-                        "args": ["input","input2"]
+                ]
+            },
+            {
+                "level": 2,
+                "nodes": [
+                    {
+                        "function_info": {
+                            "primitive": true,
+                            "name": "add"
+                        },
+                        "input": [
+                            {
+                                "type": "i32",
+                                "inbound": {
+                                    "level": 1,
+                                    "uid": 1
+                                }
+                            },
+                            {
+                                "type": "i32",
+                                "inbound": {
+                                    "level": 1,
+                                    "uid": 2
+                                }
+                            }
+                        ],
+                        "output": [
+                            {
+                                "type": "i32",
+                                "outbound": {
+                                    "uid": 1
+                                }
+                            }
+                        ],
+                        "description": "add: 사용자가 입력받은 데이터 스트림을 모두 더해서 하나의 스트림으로 반환한다."
+                    },
+                    {
+                        "function_info": {
+                            "primitive": false,
+                            "name": "mult2"
+                        },
+                        "input": [
+                            {
+                                "type": "f32",
+                                "inbound": {
+                                    "level": 1,
+                                    "uid": 3
+                                }
+                            }
+                        ],
+                        "output": [
+                            {
+                                "type": "f32",
+                                "outbound": {
+                                    "uid": 2
+                                }
+                            }
+                        ],
+                        "description": "mult2는 사용자가 입력받은 데이터 스트림에 모두 2를 곱해서 입력으로 받은 스트림 개수 그대로 반환한다."
                     }
+                ]
+            },
+            {
+                "level": 3,
+                "nodes": [
+                    {
+                        "function_info": {
+                            "primitive": false,
+                            "name": "max"
+                        },
+                        "input": [
+                            {
+                                "type": "i32",
+                                "inbound": {
+                                    "level": 1,
+                                    "uid": 1
+                                }
+                            },
+                            {
+                                "type": "i32",
+                                "inbound": {
+                                    "level": 2,
+                                    "uid": 1
+                                }
+                            }
+                        ],
+                        "output": [
+                            {
+                                "type": "i32",
+                                "outbound": {
+                                    "uid": 1
+                                }
+                            }
+                        ],
+                        "description": "max는 둘 개의 데이터 스트림을 인자로 받아서 더 큰 스트림을 반환한다."
+                    }
+                ]
+            },
+            {
+                "level": 4,
+                "nodes": [
+                    {
+                        "function": "assemble_csv",
+                        "input": [
+                            {
+                                "type": "i32",
+                                "inbound": {
+                                    "level": 3,
+                                    "uid": 1
+                                }
+                            },
+                            {
+                                "type": "i32",
+                                "inbound": {
+                                    "level": 2,
+                                    "uid": 1
+                                }
+                            },
+                            {
+                                "type": "f32",
+                                "inbound": {
+                                    "level": 2,
+                                    "uid": 2
+                                }
+                            },
+                            {
+                                "type": "POLICY",
+                                "value": "KEEP"
+                            },
+                            {
+                                "type": "POLICY",
+                                "value": "KEEP"
+                            },
+                            {
+                                "type": "POLICY",
+                                "value": "DELETE"
+                            }
+                        ],
+                        "output": [
+                            {
+                                "type": "csv",
+                                "outbound": {
+                                    "uid": 1
+                                }
+                            }
+                        ],
+                        "description": "assemble_csv: 모든 스트림을 입력으로 받아서 각 인자의 정책에 따라 csv파일로 다시 반환한다."
+                    }
+                ]
+            }
+        ],
+        "mult2": {
+            "template": "T",
+            "function_info": {
+                "primitive": true,
+                "name": "mult"
+            },
+            "input": [
+                {
+                    "type": "T"
                 },
                 {
-                    "input": [
-                        {"type":"f32","arg_name":"input","uid":[1,3]}
-                    ],
-                    "output": [
-                        {"type":"f32","uid":2}
-                    ],
-                    "function": {
-                        "name": "mult",
-                        "args": ["input",2.0]
-                    }
+                    "type": "i32",
+                    "value": 2
                 }
             ],
-            [
+            "output": [
                 {
-                    "input": [
-                        {"type":"i32","arg_name":"input1","uid":[1,1]},
-                        {"type":"i32","arg_name":"input2","uid":[2,1]},
-                        {"type":"f32","arg_name":"input3","uid":[2,2]}
-                    ],
-                    "output": [
-                        {"type":"csv"}
-                    ],
-                    "function": {
-                        "name": "assemble_csv",
-                        "args": ["input1","KEEP","input2","KEEP","input3","DELETE"]
-                    }
+                    "type": "T"
                 }
-            ]
-        ],
-        "upper5":{
-            "input": [
-                {"type":"i32","arg_name":"input"}
             ],
-            "output": [
-                {"type":"boolean"}
-            ],
-            "function": {
-                "name": "gt",
-                "args": ["input",5]
-            },
-            "next": null
-        },
-        "lower":{
-            "input": [
-                {"type":"i32","arg_name":"input"},
-                {"type":"i32","arg_name":"input2"}
-            ],
-            "output": [
-                {"type":"boolean"}
-            ],
-            "function": {
-                "name": "lt",
-                "args": ["input","input2"]
-            },
-            "next": null
+            "description": "mult를 wrapping한 mult2 각 원소에 2를 곱한다."
         }
     },
-    "types": {}
+    "types": {
+        "POLICY": {
+            "KEEP": {
+                "type": "bool",
+                "value": true
+            },
+            "DELETE": {
+                "type": "bool",
+                "value": false
+            }
+        }
+    }
 }

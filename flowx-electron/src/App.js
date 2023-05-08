@@ -1,19 +1,32 @@
-import { useEffect,useState } from 'react';
-import GetFileButton from './components/GetFileButton';
-import NewFileButton from './components/NewFileButton';
-import Editor from './components/Editor';
+import { useState } from "react";
+import {
+    ClearComp,
+    DroDownComp,
+    FileExplorer,
+} from "./components/Explorer";
+import Editor from "./components/Editor";
 
 function App() {
-  const [file,setFile] = useState(null);
+    // selected file from GetFileButton Comp
+    // and clear file with NewFileButton Comp
+    const [file, setFile] = useState(null);
 
-  return (
-    <div className="App">
-      <GetFileButton setFile={setFile}/>
-      <NewFileButton setFile={setFile}/>
-      {!file && <div>파일을 선택해주세요.</div>}
-      {file && <Editor file={file} setFile={setFile}/>}
-    </div>
-  );
+    return (
+        <div className="App flex h-screen">
+            {/* flex-1 for hidden explorer when not choose file */}
+            <div className="w-1/4 flex-1 bg-gray-100">
+                <FileExplorer file={file} />
+            </div>
+
+            <div className="flex w-full flex-col justify-center">
+                {!file && <DroDownComp setFile={setFile} />}
+                {file && (
+                    <Editor file={file} setFile={setFile} />
+                )}
+                <ClearComp setFile={setFile} />
+            </div>
+        </div>
+    );
 }
 
 export default App;

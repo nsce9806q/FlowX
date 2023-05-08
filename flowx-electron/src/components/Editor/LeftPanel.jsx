@@ -3,9 +3,20 @@ function LeftPanel({ file, selected, setSelected }) {
         <div>
             <h2>functions</h2>
             <ul>
-                {Object.keys(file.functions).map((item, index) => (
-                    <li key={index} onClick={e=>{setSelected({item:file.functions[item]})}}>{item}</li>
-                ))}
+                {Object.keys(file.functions).map(
+                    (item, index) => (
+                        <li
+                            key={index}
+                            onClick={(e) => {
+                                setSelected({
+                                    item: file.functions[item],
+                                });
+                            }}
+                        >
+                            {item}
+                        </li>
+                    )
+                )}
             </ul>
             <h2>types</h2>
             <ul>
@@ -14,7 +25,7 @@ function LeftPanel({ file, selected, setSelected }) {
                 ))}
             </ul>
         </div>
-    )
+    );
 }
 
 export default LeftPanel;
