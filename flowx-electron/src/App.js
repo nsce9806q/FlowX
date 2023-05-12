@@ -10,22 +10,24 @@ function App() {
     // selected file from GetFileButton Comp
     // and clear file with NewFileButton Comp
     const [file, setFile] = useState(null);
+    const [selected, setSelected] = useState(null);
 
-    return (
-        <div className="App flex h-screen">
-            {/* flex-1 for hidden explorer when not choose file */}
-            <div className="w-1/4 flex-1 bg-gray-100">
-                <FileExplorer file={file} />
+    if(!file)
+        return (
+            <div className="flex h-full w-full flex-col justify-center">
+                <DroDownComp setFile={setFile} />
             </div>
-
-            <div className="flex w-full flex-col justify-center">
-                {!file && <DroDownComp setFile={setFile} />}
-                {file && (
-                    <Editor file={file} setFile={setFile} />
-                )}
-                <ClearComp setFile={setFile} />
+        );
+    return(
+        <>
+            <div className="flex" style={{minHeight:"calc(100% - 57px)"}}>
+                <div className="bg-gray-100" style={{width:"200px"}}>
+                    <FileExplorer file={file} setSelected={setSelected}/>
+                </div>
+                <Editor selected={selected} setSelected={setSelected}/>
             </div>
-        </div>
+            <ClearComp setFile={setFile} />
+        </>
     );
 }
 

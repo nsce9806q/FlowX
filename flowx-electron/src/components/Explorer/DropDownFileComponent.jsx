@@ -48,7 +48,7 @@ const DropDownFileComponent = ({ setFile }) => {
                                         ...JSON.parse(
                                             reader.result
                                         ),
-                                        file_name: file.name,
+                                        fileName: file.name,
                                     });
                                 };
                             } else {

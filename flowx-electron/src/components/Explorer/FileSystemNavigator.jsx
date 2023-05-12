@@ -87,20 +87,11 @@ const StyledTreeItem = styled((props) => (
     },
 }));
 
-const FileSystemNavigator = ({ file }) => {
-    const [fileArr, setFileArr] = useState(null);
-    let nodeIdCounter = 1;
-
-    useEffect(() => {
-        // Parsing file structure
-        if (file) {
-            const { file_name, ...target } = file;
-            setFileArr(target);
-        }
-    }, [file]);
-
+const FileSystemNavigator = ({ file, setSelected }) => {
+    let nodeId = 1;
+    const {fileName, ...files }= file;
     return (
-        <div className="pr-2 pt-2">
+        <div className="pr-2 pt-2 h-full">
             <TreeView
                 aria-label="customized"
                 defaultExpanded={["1"]}
@@ -108,54 +99,49 @@ const FileSystemNavigator = ({ file }) => {
                 defaultExpandIcon={<PlusSquare />}
                 defaultEndIcon={<CloseSquare />}
                 sx={{
-                    height: 264,
+                    height: "100%",
                     flexGrow: 1,
                     maxWidth: 400,
                     overflowY: "auto",
                 }}
                 className="flex-1"
             >
-                {file ? (
-                    <StyledTreeItem
-                        nodeId={nodeIdCounter.toString()}
-                        label={file?.file_name}
-                    >
-                        {fileArr
-                            ? Object.keys(fileArr)?.map(
-                                  (type) => {
-                                      console.log(
-                                          "" + nodeIdCounter
-                                      );
-                                      return (
-                                          <StyledTreeItem
-                                              key={type}
-                                              nodeId={(++nodeIdCounter).toString()}
-                                              label={type}
-                                          >
-                                              {Object.keys(
-                                                  fileArr[type]
-                                              )?.map(
-                                                  (funcName) => {
-                                                      return (
-                                                          <StyledTreeItem
-                                                              key={
-                                                                  funcName
-                                                              }
-                                                              nodeId={(++nodeIdCounter).toString()}
-                                                              label={
-                                                                  funcName
-                                                              }
-                                                          />
-                                                      );
-                                                  }
-                                              )}
-                                          </StyledTreeItem>
-                                      );
-                                  }
-                              )
-                            : null}
-                    </StyledTreeItem>
-                ) : null}
+                <StyledTreeItem
+                    nodeId={(nodeId++).toString()}
+                    label={fileName}
+                >
+                    {Object.keys(files).map(
+                        (type) => {
+                        return (
+                            <StyledTreeItem
+                                key={type}
+                                nodeId={(nodeId++).toString()}
+                                label={type}
+                            >
+                                {Object.keys(
+                                    files[type]
+                                ).map(
+                                    (funcName,index) => {
+                                        return (
+                                            <div
+                                                key={index}
+                                                onClick={() => {
+                                                    setSelected({
+                                                        type,
+                                                        funcName,
+                                                        nodes: files[type][funcName]
+                                                    });
+                                                }}
+                                                style={{cursor:"pointer"}}
+                                            >{funcName}</div>
+                                        );
+                                    }
+                                )}
+                            </StyledTreeItem>
+                            );
+                        }
+                    )}
+                </StyledTreeItem>
             </TreeView>
         </div>
     );
