@@ -1,6 +1,7 @@
-const ClearButton = ({ setFile }) => {
+const ClearButton = ({ setFile, setSelected }) => {
     const resetFile = () => {
         setFile(null);
+        setSelected(null);
     };
     return (
         <div

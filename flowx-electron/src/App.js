@@ -26,7 +26,7 @@ function App() {
                 </div>
                 <Editor selected={selected} setSelected={setSelected}/>
             </div>
-            <ClearComp setFile={setFile} />
+            <ClearComp setFile={setFile} setSelected={setSelected}/>
         </>
     );
 }

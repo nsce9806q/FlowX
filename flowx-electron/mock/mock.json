@@ -1,14 +1,14 @@
 {
     "functions": {
         "main":{
-            "0":{"name":"split_csv","output":["i4","i4","f4"],"coordination":[1,1]},
-            "1":{"name":"add","input":[["0",0],["0",1]],"output":["i4"],"coordination":[2,1]},
-            "2":{"name":"mult","input":[["0",2],2],"output":["f4"],"coordination":[2,4]},
-            "3":{"name":"max","input":[["0",0],["1",0]],"output":["i4"],"coordination":[3,1]},
-            "4":{"name":"assemble","input":[["1",0],["3",0],["2",0]],"output":["csv"],"coordination":[4,2]}
+            "0":{"name":"split_csv","output":["i4","i4","f4"],"coordination":[0,0]},
+            "1":{"name":"add","input":[["0",0],["0",1]],"output":["i4"],"coordination":[1,0]},
+            "2":{"name":"mult","input":[["0",2],2],"output":["f4"],"coordination":[1,3]},
+            "3":{"name":"max","input":[["0",0],["1",0]],"output":["i4"],"coordination":[2,0]},
+            "4":{"name":"assemble","input":[["1",0],["3",0],["2",0]],"output":["csv"],"coordination":[3,1]}
         },
         "isGreater5":{
-            "args":["i4"],
+            "args":{"output":["i4"],"coordination":[0,0]},
             "0":{"name":"greater","input":[["args",0],4],"output":["boolean"],"coordination":[1,1]}
         },
         "isLower":{
