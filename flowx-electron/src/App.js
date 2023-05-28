@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     ClearComp,
     DroDownComp,
@@ -11,6 +11,15 @@ function App() {
     // and clear file with NewFileButton Comp
     const [file, setFile] = useState(null);
     const [selected, setSelected] = useState(null);
+
+    useEffect(() => {
+        if(!selected) return;
+        const newFile = {
+            ...file
+        };
+        newFile[selected.type][selected.funcName] = selected.nodes;
+        setFile(newFile);
+    }, [selected]);
 
     if(!file)
         return (
