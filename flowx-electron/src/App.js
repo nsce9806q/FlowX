@@ -15,9 +15,16 @@ function App() {
     useEffect(() => {
         if(!selected) return;
         const newFile = {
-            ...file
+            ...file,
+            [selected.type]:{
+                ...file[selected.type],
+                [selected.funcName]: {
+                    ...file[selected.type][selected.funcName],
+                    nodes: selected.nodes,
+                    edges: selected.edges
+                }
+            }
         };
-        newFile[selected.type][selected.funcName] = selected.nodes;
         setFile(newFile);
     }, [selected]);
 

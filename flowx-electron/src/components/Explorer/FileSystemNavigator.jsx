@@ -91,7 +91,7 @@ const FileSystemNavigator = ({ file, setSelected }) => {
     let nodeId = 1;
     const {fileName, ...files }= file;
     return (
-        <div className="pr-2 pt-2 h-full">
+        <div className="pr-2 pt-2 h-full" style={{width:"200px"}}>
             <TreeView
                 aria-label="customized"
                 defaultExpanded={["1"]}
@@ -125,13 +125,14 @@ const FileSystemNavigator = ({ file, setSelected }) => {
                                         return (
                                             <div
                                                 key={index}
-                                                onClick={() => {
+                                                onClick={() => 
                                                     setSelected({
                                                         type,
                                                         funcName,
-                                                        nodes: files[type][funcName]
-                                                    });
-                                                }}
+                                                        nodes: files[type][funcName].nodes,
+                                                        edges: files[type][funcName].edges,
+                                                    })
+                                                }
                                                 style={{cursor:"pointer"}}
                                             >{funcName}</div>
                                         );
