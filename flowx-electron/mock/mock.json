@@ -2,14 +2,14 @@
     "functions": {
         "main":{
             "nodes":[
-                {"id":"0","data":{"label":"split_csv","output":["i4","i4","f4"]},"position":{"x":20,"y":50},"type":"function"},
-                {"id":"1","data":{"label":"add","output":["i4"]},"position":{"x":20,"y":160},"type":"function"},
-                {"id":"2","data":{"label":"mult","output":["f4"]},"position":{"x":320,"y":160},"type":"function"},
-                {"id":"3","data":{"label":"max","output":["i4"]},"position":{"x":20,"y":300},"type":"function"},
-                {"id":"4","data":{"label":"assemble","output":["csv"]},"position":{"x":120,"y":440},"type":"function"}
+                {"id":"0","data":{"name":"split_csv","output":["i4","i4","f4"]},"position":{"x":20,"y":50},"type":"split"},
+                {"id":"1","data":{"name":"add","output":["i4"]},"position":{"x":20,"y":160},"type":"calculation"},
+                {"id":"2","data":{"name":"mult","output":["f4"]},"position":{"x":320,"y":160},"type":"calculation"},
+                {"id":"3","data":{"name":"max","output":["i4"]},"position":{"x":20,"y":300},"type":"calculation"},
+                {"id":"4","data":{"name":"assemble_csv","output":["csv"]},"position":{"x":120,"y":440},"type":"assemble"}
             ],
             "edges":[
-                {"id":"edge1","source":"0","target":"1","type":"step"},
+                {"id":"edge1","source":"0","target":"1"},
                 {"id":"edge2","source":"1","target":"3"}
             ]
         },

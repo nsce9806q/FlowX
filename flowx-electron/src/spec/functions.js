@@ -1,8 +1,8 @@
 export default {
     split_csv: {
         input: [["csv"]],
-        output: [["i4","f4","str","bool"]],
-        type: "input"
+        output: ["i4","f4","str","bool"],
+        type: "split"
     },
     add: {
         input: [["i4","i4"],["f4","f4"]],
@@ -39,9 +39,9 @@ export default {
         output: ["i4","f4"],
         type: "calculation"
     },
-    assemble: {
-        input: [["i4","f4","str","bool"]],
+    assemble_csv: {
+        input: ["i4","f4","str","bool"],
         output: [["csv"]],
-        type: "output"
+        type: "assemble"
     }
 }

@@ -1,11 +1,19 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
-import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges } from 'reactflow';
-import FunctionNode from './FunctionNode';
+import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, getIncomers,
+    getOutgoers,
+    getConnectedEdges } from 'reactflow';
+import CalculationNode from './CalculationNode';
+import SplitNode from './SplitNode';
+import AssembleNode from './AssembleNode';
+import CustomEdge from './CustomEdge';
+import SelectFunction from './SelectFunction';
 import 'reactflow/dist/style.css';
 
-const nodeTypes = { function: FunctionNode };
+const nodeTypes = { split: SplitNode, calculation: CalculationNode, assemble: AssembleNode };
+const edgeTypes = { custom: CustomEdge };
 
 function Editor({ selected, setSelected }) {
+    const contextMenuRef = useRef(null);
     const onNodesChange = useCallback(
         (changes) => {
             if(changes.length === 1 && changes[0].type === "position" && changes[0].dragging){
@@ -25,21 +33,57 @@ function Editor({ selected, setSelected }) {
         [selected]
     );
 
+    useEffect(() => {
+        console.log(selected);
+    }, [selected]);
+
     if(!selected) return (<div style={{flexGrow:1}}>왼쪽에서 편집할 함수나 타입을 선택해주세요</div>);
 
+    const onContextMenu = (e) => {
+        e.preventDefault();
+        contextMenuRef.current.style.display = "flex";
+        contextMenuRef.current.style.left = e.clientX + "px";
+        contextMenuRef.current.style.top = e.clientY + "px";
+    }
+
+    const nodes = selected.nodes.map((node) => ({
+        ...node,
+        data: {
+            ...node.data,
+            setSelected: setSelected,
+            selected: selected,
+        }
+    }));
+
+    const edges = selected.edges.map((edge) => ({
+        ...edge,
+        data:{
+            ...edge.data,
+            setSelected: setSelected,
+            selected: selected,
+        }
+    }));
+
     return (
-        <div style={{flexGrow:1}}>
+        <div style={{flexGrow:1}} id="main">
             <ReactFlow
-                nodes={selected.nodes}
-                edges={selected.edges}
+                nodes={nodes}
+                edges={edges}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
                 nodeTypes={nodeTypes}
+                edgeTypes={edgeTypes}
                 defaultEdgeOptions={{
-                    type: "smoothstep"
+                    type: "custom",
+                    style: { 
+                        "&:hover": { stroke: "#ff0000" },
+                    },
                 }}
+                onContextMenu={onContextMenu}
+                onClick={(e)=>{contextMenuRef.current.style.display = "none";}}
             />
+            <SelectFunction setSelected={setSelected} contextMenuRef={contextMenuRef}/>
         </div>
     );
 }
