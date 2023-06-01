@@ -1,6 +1,7 @@
 {
   "name": "flow-electron",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "main": "public/electron.js",
   "dependencies": {
