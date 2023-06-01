@@ -1,4 +1,4 @@
-import { Position } from 'reactflow';
+import { Position, useUpdateNodeInternals  } from 'reactflow';
 import { NodeWrapper,IOWrapper, IOHandle } from './FunctionNode';
 import defaultFunctions from '../../spec/functions';
 import styled from 'styled-components';
@@ -34,7 +34,7 @@ function PlusSquare(props) {
     return (
         <svg
             fontSize="inherit"
-            style={{ width: "14px", height: "14px",fill: "#039BE5" }}
+            style={{ width: "14px", height: "14px",fill: "#039BE5", cursor: "pointer" }}
             viewBox="0 0 24 24"
             {...props}
         >
@@ -47,14 +47,29 @@ function PlusSquare(props) {
 function InputNode({ id, data, isConnectable }) {
     const {input, output} = defaultFunctions[data.name];
     const selectRef = useRef(null);
-    const [selectedOutputIndex, setSelectedOutputIndex] = useState(null);
+    const updateNodeInternals = useUpdateNodeInternals();
 
-    const changeType = (index,type) => (e) => {
+    const changeType = (type) => (e) => {
         data.setSelected((prev) => {
             const newSelected = {...prev};
-            newSelected.nodes.find((item) => item.id === id).data.output[index] = type;
+            newSelected.edges = newSelected.edges.map((item) =>{
+                if(item.source === id && item.sourceHandle === "o"+selectRef.current.value) {
+                    return {...item, data:{...item.data, type}};
+                }
+                return item;
+            });
+            newSelected.nodes.find((item) => item.id === id).data.output[selectRef.current.value] = type;
             return newSelected;
         });
+        updateNodeInternals(id);
+        selectRef.current.style.display = "none";
+    }
+
+    const deleteType = () => (e) => {
+        const newSelected = {...data.selected};
+        newSelected.edges = newSelected.edges.filter((item) => item.source !== id || item.sourceHandle !== "o"+selectRef.current.value);
+        newSelected.nodes.find((item) => item.id === id).data.output.splice(selectRef.current.value,1);
+        data.setSelected(newSelected);
         selectRef.current.style.display = "none";
     }
 
@@ -75,7 +90,7 @@ function InputNode({ id, data, isConnectable }) {
                         text={item}
                         events={{
                             onClick : (e) => {
-                                setSelectedOutputIndex(index);
+                                selectRef.current.value = index;
                                 selectRef.current.style.display = "flex";
                                 selectRef.current.style.left = (e.target.offsetLeft+e.target.offsetWidth+5)+"px";
                             }
@@ -92,15 +107,15 @@ function InputNode({ id, data, isConnectable }) {
                 )}
                 <PlusSquare 
                     onClick={(e) => {
-                        setSelectedOutputIndex(data.output?.length??0);
+                        e.stopPropagation();
+                        selectRef.current.value = data.output?.length??0;
                         selectRef.current.style.display = "flex";
                         selectRef.current.style.left = "100%";
                     }}
                 />
                 <SelectTypes ref={selectRef}>
-                    {output.map((item, index) => {
-                        return <div onClick={changeType(selectedOutputIndex,item)} key={index}>{item}</div>
-                    })}
+                    {output.map((item, index) =><div onClick={changeType(item)} key={index}>{item}</div>)}
+                    <div onClick={deleteType()} style={{color:"#da0000", fontWeight:"600"}}>Delete</div>
                 </SelectTypes>
             </IOWrapper>
         </NodeWrapper>
