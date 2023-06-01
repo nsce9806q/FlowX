@@ -89,7 +89,7 @@ const StyledTreeItem = styled((props) => (
 
 const FileSystemNavigator = ({ file, setSelected }) => {
     let nodeId = 1;
-    const {fileName, ...files }= file;
+    const {fileName,path, ...files }= file;
     return (
         <div className="pr-2 pt-2 h-full" style={{width:"200px"}}>
             <TreeView
@@ -108,7 +108,7 @@ const FileSystemNavigator = ({ file, setSelected }) => {
             >
                 <StyledTreeItem
                     nodeId={(nodeId++).toString()}
-                    label={fileName}
+                    label={fileName?? "New file"}
                 >
                     {Object.keys(files).map(
                         (type) => {

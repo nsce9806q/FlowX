@@ -38,8 +38,7 @@ export const NodeWrapper = ({ children, id, setSelected }) => {
         <NW>
             <CloseSquare onClick={(e) => 
                 setSelected((slt) => {
-                    const connectedEdges = getConnectedEdges([slt.nodes.find(e=>e.id=id)], slt.edges);
-                    console.log(slt.nodes.filter((node) =>{console.log( node.id, id); return node.id !== id}),slt.edges.filter((edge) => !connectedEdges.includes(edge)));
+                    const connectedEdges = getConnectedEdges([slt.nodes.find(e=>e.id==id)], slt.edges);
                     return { 
                         ...slt,
                         nodes: slt.nodes.filter((node) => node.id !== id),
@@ -56,16 +55,17 @@ export const IOWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     gap: 10px;
-    align-items: center;
+    align-items: stretch;
     position: relative;
     font-size: 0.8rem;
     color: #888;
 `;
 
-export const IOHandle = ({ type, position, id, isConnectable, text, events }) => {
+export const IOHandle = ({ type, position, id, isConnectable, text, events, style }) => {
+
     return (
-        <div {...events}>
-            {type === "source" && <div>
+        <div {...events} style={isConnectable?{}:{cursor:"not-allowed",color:"#da0000"}}>
+            {type === "source" && <div style={style}>
                 {text}
             </div>}
             <Handle
@@ -73,9 +73,9 @@ export const IOHandle = ({ type, position, id, isConnectable, text, events }) =>
                 position={position}
                 id={id}
                 isConnectable={isConnectable}
-                style={{ position: 'relative', zIndex: 10}}
+                style={{ position: 'relative', zIndex: 10, width: "10px", height: "10px", backgroundColor:!isConnectable?"#da0000":"#000"}}
             />
-            {type === "target" && <div>
+            {type === "target" && <div style={style}>
                 {text}
             </div>}
         </div>

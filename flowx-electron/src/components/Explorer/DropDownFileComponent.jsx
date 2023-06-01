@@ -24,9 +24,8 @@ const DropDownFileComponent = ({ setFile }) => {
                         </svg>
                         <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                             <span className="font-semibold">
-                                Click to upload
+                                Click to load
                             </span>{" "}
-                            or drag and drop ( will implement )
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">
                             json file / (FlowX Model)
@@ -38,6 +37,7 @@ const DropDownFileComponent = ({ setFile }) => {
                         className="hidden"
                         onChange={async (e) => {
                             const file = e.target.files[0];
+                            console.log(file);
                             const reader = new FileReader();
                             if (
                                 file.type === "application/json"
@@ -49,6 +49,7 @@ const DropDownFileComponent = ({ setFile }) => {
                                             reader.result
                                         ),
                                         fileName: file.name,
+                                        path: file.path,
                                     });
                                 };
                             } else {

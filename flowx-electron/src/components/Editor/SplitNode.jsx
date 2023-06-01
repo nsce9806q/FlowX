@@ -34,7 +34,7 @@ function PlusSquare(props) {
     return (
         <svg
             fontSize="inherit"
-            style={{ width: "14px", height: "14px",fill: "#00C853" }}
+            style={{ width: "14px", height: "14px",fill: "#039BE5" }}
             viewBox="0 0 24 24"
             {...props}
         >
@@ -79,6 +79,13 @@ function InputNode({ id, data, isConnectable }) {
                                 selectRef.current.style.display = "flex";
                                 selectRef.current.style.left = (e.target.offsetLeft+e.target.offsetWidth+5)+"px";
                             }
+                        }}
+                        style={{
+                            border: "1px solid #039BE5",
+                            fontSize: "12px",
+                            padding: "2px 4px",
+                            borderRadius: "5px",
+                            cursor: "pointer"
                         }}
                         key={index}
                     />

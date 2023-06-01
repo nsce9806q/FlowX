@@ -7,7 +7,7 @@ const SelectFunctionWrapper = styled.div`
     align-items: stretch;
     position: absolute;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     background-color: white;
     > div {
@@ -22,7 +22,7 @@ const SelectFunctionWrapper = styled.div`
             left:100%;
             top:0;
             border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+            box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
             border-radius: 5px;
             background-color: white;
             align-items: stretch;
@@ -84,11 +84,11 @@ const SelectFunction = ({ setSelected, contextMenuRef }) => {
     return (
         <SelectFunctionWrapper ref={contextMenuRef}>
             {Object.keys(functionsGroupByType).map((key) => (
-                <div>
+                <div key={key}>
                     <div>{key}</div>
                     <div className="functionGroup">
                         {functionsGroupByType[key].map((node) => (
-                            <div onClick={onClick(node,key)}>{node}</div>
+                            <div onClick={onClick(node,key)} key={node}>{node}</div>
                         ))}
                     </div>
                 </div>

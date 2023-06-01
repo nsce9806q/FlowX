@@ -44,19 +44,19 @@ export default function CustomEdge({ id, data, sourceX, sourceY, targetX, target
                 <div
                     style={{
                         position: 'absolute',
-                        transform: `translate(-50%, -50%) translate(${targetX}px,${targetY}px)`,
+                        transform: `translate(-50%, -50%) translate(${targetX}px,${targetY+5}px)`,
                         fontSize: 12,
                         pointerEvents: 'all',
                         zIndex: 10000,
                         background: 'white',
                         borderRadius: '100%',
-                        border: '1px solid #da0000',
+                        border: `1px solid ${isHovered ? "#da0000" : "#b1b1b7"}`,
                         width: '20px',
                         height: '20px',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        color: '#da0000',
+                        color: `${isHovered ? "#da0000" : "#b1b1b7"}`,
                         fontWeight: 'bold',
                     }}
                     className="nodrag nopan"

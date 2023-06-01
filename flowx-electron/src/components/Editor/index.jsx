@@ -1,7 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
-import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, getIncomers,
-    getOutgoers,
-    getConnectedEdges } from 'reactflow';
+import ReactFlow, { useReactFlow, applyEdgeChanges, applyNodeChanges } from 'reactflow';
 import CalculationNode from './CalculationNode';
 import SplitNode from './SplitNode';
 import AssembleNode from './AssembleNode';
@@ -29,15 +27,21 @@ function Editor({ selected, setSelected }) {
         [selected]
     );
     const onConnect = useCallback(
-        (connection) => setSelected((slt) => ({...slt,edges:addEdge(connection, slt.edges)})),
+        (connection) => setSelected((slt) => ({
+            ...slt,
+            edges:[
+                ... slt.edges,
+                {
+                    ...connection,
+                    id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
+                    data: {type: slt.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+                }
+            ]
+        })),
         [selected]
     );
 
-    useEffect(() => {
-        console.log(selected);
-    }, [selected]);
-
-    if(!selected) return (<div style={{flexGrow:1}}>왼쪽에서 편집할 함수나 타입을 선택해주세요</div>);
+    if(!selected) return (<div style={{flexGrow:1,padding:"30px"}}>왼쪽에서 편집할 함수나 타입을 선택해주세요</div>);
 
     const onContextMenu = (e) => {
         e.preventDefault();
@@ -65,7 +69,7 @@ function Editor({ selected, setSelected }) {
     }));
 
     return (
-        <div style={{flexGrow:1}} id="main">
+        <div style={{flexGrow:1}}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -75,10 +79,7 @@ function Editor({ selected, setSelected }) {
                 nodeTypes={nodeTypes}
                 edgeTypes={edgeTypes}
                 defaultEdgeOptions={{
-                    type: "custom",
-                    style: { 
-                        "&:hover": { stroke: "#ff0000" },
-                    },
+                    type: "custom"
                 }}
                 onContextMenu={onContextMenu}
                 onClick={(e)=>{contextMenuRef.current.style.display = "none";}}

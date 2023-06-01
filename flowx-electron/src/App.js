@@ -3,6 +3,8 @@ import {
     ClearComp,
     DroDownComp,
     FileExplorer,
+    NewFile,
+    SaveButton
 } from "./components/Explorer";
 import Editor from "./components/Editor";
 
@@ -11,6 +13,10 @@ function App() {
     // and clear file with NewFileButton Comp
     const [file, setFile] = useState(null);
     const [selected, setSelected] = useState(null);
+
+    useEffect(() => {
+        console.log(file);
+    }, [file]);
 
     useEffect(() => {
         if(!selected) return;
@@ -30,7 +36,8 @@ function App() {
 
     if(!file)
         return (
-            <div className="flex h-full w-full flex-col justify-center">
+            <div className="flex h-full w-full justify-center">
+                <NewFile setFile={setFile} />
                 <DroDownComp setFile={setFile} />
             </div>
         );
@@ -43,6 +50,7 @@ function App() {
                 <Editor selected={selected} setSelected={setSelected}/>
             </div>
             <ClearComp setFile={setFile} setSelected={setSelected}/>
+            <SaveButton file={file}/>
         </>
     );
 }
