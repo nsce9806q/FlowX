@@ -37,9 +37,7 @@ public class CustomFunction extends Function {
         }
 
         // append inputs
-        for (int i = 0; i < inputs.length; i++) {
-            runtimeNodes.put("i" + i, new RuntimeNode(inputs[i], "i" + i));
-        }
+        runtimeNodes.put("i", new RuntimeNode(inputs, "i"));
 
         // calc inDegree of nodes, outputCnt
         for (Edge edge : edges) {

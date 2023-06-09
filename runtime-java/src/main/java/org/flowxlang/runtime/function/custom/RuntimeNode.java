@@ -23,8 +23,8 @@ public class RuntimeNode {
         this.key = key;
     }
 
-    public RuntimeNode(Column value, String key) {
-        this.value = new Column[] { value };
+    public RuntimeNode(Column[] value, String key) {
+        this.value = value;
         this.key = key;
     }
 

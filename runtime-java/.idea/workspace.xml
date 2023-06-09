@@ -5,55 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc432626-75c0-4aad-be05-dd8190e3bd69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/ConstInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/ConstBool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/ConstFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/ConstString.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/Function.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/CustomFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/CustomFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/RuntimeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/RuntimeNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/Call.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/Call.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/EqualBool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/EqualBool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/NEqualBool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/NEqualBool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/NotBool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/NotBool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/OrBool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/OrBool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/FloatToInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/FloatToInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/FloatToString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/FloatToString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/IntToFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/IntToFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/IntToString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/IntToString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/StringToFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/StringToFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/StringToInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/conversion/StringToInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/AddFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/AddFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/DivFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/DivFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/EqualFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/EqualFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/GreaterEqFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/GreaterEqFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/GreaterFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/GreaterFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/LessEqFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/LessEqFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/LessFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/LessFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/MultFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/MultFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/NEqualFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/NEqualFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/NegateFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/NegateFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/SubFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/SubFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/AddInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/AddInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/DivInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/DivInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/EqualInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/EqualInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/GreaterEqInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/GreaterEqInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/GreaterInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/GreaterInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/LessEqInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/LessEqInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/LessInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/LessInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/ModInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/ModInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/MultInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/MultInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/NEqualInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/NEqualInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/NegateInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/NegateInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/SubInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/SubInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/select/SelectBool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/select/SelectBool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/select/SelectFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/select/SelectFloat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/select/SelectInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/select/SelectInt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/select/SelectString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/select/SelectString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/ConcatString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/ConcatString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/EqualString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/EqualString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/NEqualString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/NEqualString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/type/column/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/type/column/Column.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +101,9 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\DELL\Desktop\FlowX\runtime-java\src\main\java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.flowxlang.runtime.function.defaults" />
     </key>
   </component>
   <component name="RunManager" selected="JAR Application.runtime-java-1.0-SNAPSHOT.jar">
