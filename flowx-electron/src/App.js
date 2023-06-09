@@ -50,7 +50,7 @@ function App() {
                 <Editor selected={selected} setSelected={setSelected}/>
             </div>
             <ClearComp setFile={setFile} setSelected={setSelected}/>
-            <SaveButton file={file}/>
+            <SaveButton file={file} setFile={setFile}/>
         </>
     );
 }

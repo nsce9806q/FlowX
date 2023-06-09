@@ -1,1 +1,191 @@
-{"functions":{"main":{"nodes":[{"id":"0","data":{"name":"split_csv","output":["i4","i4","f4"]},"position":{"x":20,"y":50},"type":"split","width":125,"height":77},{"id":"1","data":{"name":"add","output":["i4"]},"position":{"x":50,"y":180},"type":"calculation","width":100,"height":82,"selected":true,"positionAbsolute":{"x":68,"y":185},"dragging":false},{"id":"2","data":{"name":"mult","output":["f4"]},"position":{"x":320,"y":160},"type":"calculation","width":100,"height":44},{"id":"3","data":{"name":"max","output":["i4"]},"position":{"x":20,"y":300},"type":"calculation","width":100,"height":44},{"id":"4","data":{"name":"assemble_csv","output":["csv"]},"position":{"x":120,"y":440},"type":"assemble","width":124,"height":53}],"edges":[{"type":"custom","source":"0","sourceHandle":"o0","target":"1","targetHandle":"i0","id":"edge-0o0-1i0","data":{"type":"i4"}},{"type":"custom","source":"0","sourceHandle":"o1","target":"1","targetHandle":"i1","id":"edge-0o1-1i1","data":{"type":"i4"}}]},"isGreater5":{"nodes":[],"edges":[]}},"types":{}}
+{
+    "functions": {
+        "main": {
+            "nodes": [
+                {
+                    "id": "0",
+                    "data": {
+                        "name": "split_csv",
+                        "output": [
+                            "i4",
+                            "i4",
+                            "f4"
+                        ]
+                    },
+                    "position": {
+                        "x": 20,
+                        "y": 50
+                    },
+                    "type": "split",
+                    "width": 125,
+                    "height": 77
+                },
+                {
+                    "id": "1",
+                    "data": {
+                        "name": "add",
+                        "output": [
+                            "i4"
+                        ]
+                    },
+                    "position": {
+                        "x": 150,
+                        "y": 180
+                    },
+                    "type": "calculation",
+                    "width": 100,
+                    "height": 82,
+                    "selected": true,
+                    "positionAbsolute": {
+                        "x": 142,
+                        "y": 186
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "2",
+                    "data": {
+                        "name": "mult",
+                        "output": [
+                            "f4"
+                        ]
+                    },
+                    "position": {
+                        "x": 320,
+                        "y": 160
+                    },
+                    "type": "calculation",
+                    "width": 100,
+                    "height": 82
+                },
+                {
+                    "id": "3",
+                    "data": {
+                        "name": "max",
+                        "output": [
+                            "i4"
+                        ]
+                    },
+                    "position": {
+                        "x": 20,
+                        "y": 300
+                    },
+                    "type": "calculation",
+                    "width": 100,
+                    "height": 82
+                },
+                {
+                    "id": "4",
+                    "data": {
+                        "name": "assemble_csv",
+                        "output": [
+                            "csv"
+                        ]
+                    },
+                    "position": {
+                        "x": 120,
+                        "y": 440
+                    },
+                    "type": "assemble",
+                    "width": 124,
+                    "height": 53
+                }
+            ],
+            "edges": [
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o0",
+                    "target": "1",
+                    "targetHandle": "i0",
+                    "id": "edge-0o0-1i0",
+                    "data": {
+                        "type": "i4"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o1",
+                    "target": "1",
+                    "targetHandle": "i1",
+                    "id": "edge-0o1-1i1",
+                    "data": {
+                        "type": "i4"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "1",
+                    "sourceHandle": null,
+                    "target": "3",
+                    "targetHandle": "i1",
+                    "id": "edge-1-3i1",
+                    "data": {
+                        "type": "i4"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o2",
+                    "target": "2",
+                    "targetHandle": "i0",
+                    "id": "edge-0o2-2i0",
+                    "data": {
+                        "type": "f4"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o2",
+                    "target": "2",
+                    "targetHandle": "i1",
+                    "id": "edge-0o2-2i1",
+                    "data": {
+                        "type": "f4"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "2",
+                    "sourceHandle": null,
+                    "target": "4",
+                    "targetHandle": "i1",
+                    "id": "edge-2-4i1",
+                    "data": {
+                        "type": "f4"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o0",
+                    "target": "3",
+                    "targetHandle": "i0",
+                    "id": "edge-0o0-3i0",
+                    "data": {
+                        "type": "i4"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "3",
+                    "sourceHandle": null,
+                    "target": "4",
+                    "targetHandle": "i0",
+                    "id": "edge-3-4i0",
+                    "data": {
+                        "type": "i4"
+                    }
+                }
+            ]
+        },
+        "isGreater5": {
+            "nodes": [],
+            "edges": []
+        }
+    },
+    "types": {}
+}

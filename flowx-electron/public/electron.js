@@ -1,7 +1,8 @@
-const { app, BrowserWindow, dialog } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const { saveDialog } = require("./ipcFunctions");
 
-app.whenReady().then(() => {
+const createWindow = () => {
     const win = new BrowserWindow({
         width: 1000,
         height: 763,
@@ -20,6 +21,12 @@ app.whenReady().then(() => {
             `${path.join(__dirname, "../build/index.html")}`
         );
     }
+};
+
+app.whenReady().then(() => {
+    createWindow();
+    ipcMain.on("save-dialog", saveDialog);
+
 });
 
 app.on("window-all-closed", () => {
