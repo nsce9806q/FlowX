@@ -20,7 +20,7 @@ const TostMessage = styled.div`
     left: 50%;
     transform: translateX(-50%);
     z-index: 10001;
-    background-color: #0091EA;
+    background-color: RGBA(0, 0, 0, 0.4);
     color: #fff;
     border-radius: 4px;
     padding: 0.5rem 1rem;

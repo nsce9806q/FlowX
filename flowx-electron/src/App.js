@@ -4,7 +4,8 @@ import {
     DroDownComp,
     FileExplorer,
     NewFile,
-    SaveButton
+    SaveButton,
+    Runner
 } from "./components/Explorer";
 import Editor from "./components/Editor";
 
@@ -51,6 +52,7 @@ function App() {
             </div>
             <ClearComp setFile={setFile} setSelected={setSelected}/>
             <SaveButton file={file} setFile={setFile}/>
+            <Runner file={file}/>
         </>
     );
 }

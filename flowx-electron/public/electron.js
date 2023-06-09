@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-const { saveDialog } = require("./ipcFunctions");
+const { saveDialog,runFlow } = require("./ipcFunctions");
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -26,7 +26,7 @@ const createWindow = () => {
 app.whenReady().then(() => {
     createWindow();
     ipcMain.on("save-dialog", saveDialog);
-
+    ipcMain.on("run",runFlow);
 });
 
 app.on("window-all-closed", () => {
