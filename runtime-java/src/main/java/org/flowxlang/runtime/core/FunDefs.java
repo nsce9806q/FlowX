@@ -1,6 +1,9 @@
 package org.flowxlang.runtime.core;
 
 import org.flowxlang.runtime.function.Function;
+import org.flowxlang.runtime.function.custom.AnnotatedFunction;
+import org.flowxlang.runtime.function.custom.CustomFunction;
+import org.flowxlang.runtime.function.custom.Edge;
 import org.flowxlang.runtime.function.defaults.*;
 import org.flowxlang.runtime.function.defaults.conversion.*;
 import org.flowxlang.runtime.function.defaults.intfunc.*;
@@ -10,6 +13,8 @@ import org.flowxlang.runtime.function.defaults.stringfunc.*;
 import org.flowxlang.runtime.function.defaults.boolfunc.*;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FunDefs {
     private static FunDefs instance = null;
@@ -76,6 +81,10 @@ public class FunDefs {
 
         // etc
         regist("Call", new Call());
+        regist("ConstInt", new ConstInt());
+        regist("ConstFloat", new ConstFloat());
+        regist("ConstString", new ConstString());
+        regist("ConstBool", new ConstBool());
     }
 
     private HashMap<String, Function> functions = new HashMap<>();
@@ -84,7 +93,23 @@ public class FunDefs {
         functions.put(name, function);
     }
 
+    public void registCustom(String name, Map<Integer, AnnotatedFunction> nodes, List<Edge> edges) {
+        if (!functions.containsKey(name))
+            functions.put(name, new CustomFunction(nodes, edges));
+        else {
+            if (functions.get(name) instanceof CustomFunction) {
+                ((CustomFunction)functions.get(name)).regist(nodes, edges);
+            }
+        }
+    }
+
+    public void regist(String name) {
+        if (!functions.containsKey(name))
+            functions.put(name, new CustomFunction());
+    }
+
     public Function find(String name) {
         return functions.get(name);
     }
+
 }

@@ -17,7 +17,6 @@ public class Column<T extends Type> {
     }
 
     public Column(int row) {
-
         this.row = row;
         values = new Object[row];
     }
@@ -27,10 +26,13 @@ public class Column<T extends Type> {
     }
 
     public T getValue(int i) {
-        return (T) values[i];
+        if (i < values.length)
+            return (T) values[i];
+        return (T) values[values.length - 1];
     }
 
     public void setValue(int i, T v) {
-        values[i] = v;
+        if (i < values.length)
+            values[i] = v;
     }
 }

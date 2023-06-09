@@ -8,7 +8,7 @@ import org.flowxlang.runtime.type.notation.Errorable;
 public class ModInt extends Function {
     @Override
     public Column[] calc(Column[] inputs) {
-        int row = inputs[0].getRow();
+        int row = getRow(inputs);
         Column<Errorable<IntType>> out = new Column<>(row);
 
         for (int i = 0; i < row; i++) {
