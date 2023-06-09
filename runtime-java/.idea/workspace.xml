@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc432626-75c0-4aad-be05-dd8190e3bd69" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/AnnotatedFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/Call.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/Call.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/CFNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/CustomFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/CustomFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/IOIndex.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

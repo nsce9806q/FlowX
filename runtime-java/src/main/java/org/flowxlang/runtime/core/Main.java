@@ -1,9 +1,8 @@
 package org.flowxlang.runtime.core;
 
-import org.flowxlang.runtime.function.custom.CFNode;
+import org.flowxlang.runtime.function.custom.AnnotatedFunction;
 import org.flowxlang.runtime.function.custom.CustomFunction;
 import org.flowxlang.runtime.function.custom.Edge;
-import org.flowxlang.runtime.function.custom.IOIndex;
 import org.flowxlang.runtime.type.*;
 import org.flowxlang.runtime.type.column.Column;
 
@@ -22,10 +21,11 @@ public class Main {
                 System.out.println(args[i]);
         }
 
-        FunDefs.getInstance().regist("Main", new CustomFunction(
+        FunDefs.getInstance().regist("Main");
+        FunDefs.getInstance().registCustom("Main",
                 Map.ofEntries(
-                        new AbstractMap.SimpleEntry<>(0, "AddInt"),
-                        new AbstractMap.SimpleEntry<>(1, "SubInt")
+                        new AbstractMap.SimpleEntry<>(0, new AnnotatedFunction("AddInt")),
+                        new AbstractMap.SimpleEntry<>(1, new AnnotatedFunction("SubInt"))
                 ),
                 List.of(new Edge("i0", 0, "v0", 0),
                         new Edge("i1", 0, "v0", 1),
@@ -33,7 +33,7 @@ public class Main {
                         new Edge("i1", 0, "v1", 1),
                         new Edge("v0", 0, "o", 0),
                         new Edge("v1", 0, "o", 1))
-        ));
+        );
 
         Column<StringType>[] output = FunDefs.getInstance().find("Main").calc(new Column[] {
                 new Column<IntType>(new IntType[] {
