@@ -8,7 +8,7 @@ version '1.0-SNAPSHOT'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'org.flowxlang.runtime.Main'
+        attributes 'Main-Class': 'org.flowxlang.runtime.core.Main'
     }
 }
 
