@@ -20,4 +20,8 @@ public class AnnotatedFunction {
     public Object getData() {
         return data;
     }
+
+    public Function getFunction() {
+        return function;
+    }
 }

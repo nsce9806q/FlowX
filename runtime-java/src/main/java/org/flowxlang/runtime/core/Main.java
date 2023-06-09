@@ -12,15 +12,6 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args){
-        if(args.length != 3){
-            System.out.println("Usage: java -jar runtime-java.jar <function> <input> <output>");
-            return;
-        }
-
-        for(int i = 0; i < args.length; i++){
-                System.out.println(args[i]);
-        }
-
         FunDefs.getInstance().regist("Main");
         FunDefs.getInstance().registCustom("Main",
                 Map.ofEntries(
@@ -35,7 +26,7 @@ public class Main {
                         new Edge("v1", 0, "o", 1))
         );
 
-        Column<StringType>[] output = FunDefs.getInstance().find("Main").calc(new Column[] {
+        Column<IntType>[] output = FunDefs.getInstance().find("Main").calc(new Column[] {
                 new Column<IntType>(new IntType[] {
                         new IntType(0),
                         new IntType(1),
@@ -56,7 +47,7 @@ public class Main {
 
         for (int i = 0; i < 1; i++) {
             for (int j = 0; j < output[i].getRow(); j++) {
-                System.out.printf("%s\n", output[i].getValue(j).getValue());
+                System.out.printf("%d\n", output[i].getValue(j).getValue());
             }
             System.out.println();
         }

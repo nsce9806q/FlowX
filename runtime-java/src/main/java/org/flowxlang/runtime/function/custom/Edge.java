@@ -12,4 +12,20 @@ public class Edge {
         this.outNode = outNode;
         this.outIdx = outIdx;
     }
+
+    public String getInNode() {
+        return inNode;
+    }
+
+    public int getInIdx() {
+        return inIdx;
+    }
+
+    public String getOutNode() {
+        return outNode;
+    }
+
+    public int getOutIdx() {
+        return outIdx;
+    }
 }
