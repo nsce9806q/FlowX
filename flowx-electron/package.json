@@ -34,7 +34,7 @@
     "build": "npm run react:build && npm run electron:build",
     "electron:start": "wait-on http://localhost:3000 && nodemon --watch public/electron.js --exec \"electron .\"",
     "electron:build": "electron-builder",
-    "electron:dev": "nodemon --watch public/electron.js --exec \"electron .\""
+    "electron:dev": "cross-env NODE_ENV=development nodemon --watch public/electron.js --exec \"electron .\""
   },
   "eslintConfig": {
     "extends": [

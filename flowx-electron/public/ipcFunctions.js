@@ -1,7 +1,5 @@
 const { dialog } = require("electron");
-const java = require("java");
-java.classpath.push("../../runtime-java/build/libs/runtime-java-1.0-SNAPSHOT.jar");
-const fs = require("fs");
+const childProcess = require("child_process");
 
 module.exports = { 
     saveDialog: (event,contents) => {
@@ -18,9 +16,19 @@ module.exports = {
             event.sender.send("saved-file", file);
         });
     },
-    runFlow: (event,{functions,types,csvPath}) => {
-        const runtime = java.import("org.flowxlang.runtime.Main");
-        console.log(runtime.runtimeSync());
-        //fs.writeFile(path.filePath, JSON.stringify(file), (err) => {});
+    runFlow: (event,{programPath,csvPath}) => {
+        const resultPath = dialog.showSaveDialogSync({
+            title: "Save Result",
+            filters: [
+                {
+                    name: "csv",
+                    extensions: ["csv"],
+                },
+            ],
+        });
+        if(resultPath.canceled) return;
+        childProcess.execSync("java -jar ../runtime-java/build/libs/runtime-java-1.0-SNAPSHOT.jar "+programPath+" "+csvPath+" "+resultPath.filePath, { stdio: 'inherit' });
+        event.sender.send("run-result","");
+        console.log("run result");
     }
 };

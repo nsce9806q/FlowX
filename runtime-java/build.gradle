@@ -25,4 +25,4 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'org.flowxlang.runtime.Main'
+mainClassName = 'org.flowxlang.runtime.core.Main'

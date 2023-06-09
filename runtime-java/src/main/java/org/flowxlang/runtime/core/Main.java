@@ -11,6 +11,15 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args){
+        if(args.length != 3){
+            System.out.println("Usage: java -jar runtime-java.jar <function> <input> <output>");
+            return;
+        }
+
+        for(int i = 0; i < args.length; i++){
+                System.out.println(args[i]);
+        }
+
         FunDefs.getInstance().regist("Main", new CustomFunction(
                 Map.ofEntries(
                         new AbstractMap.SimpleEntry<>(0, 0),
