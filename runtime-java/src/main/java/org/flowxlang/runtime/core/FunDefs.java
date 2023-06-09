@@ -81,6 +81,7 @@ public class FunDefs {
 
         // etc
         regist("Call", new Call());
+        regist("ConstInt", new ConstInt());
     }
 
     private HashMap<String, Function> functions = new HashMap<>();

@@ -67,9 +67,18 @@ public class CustomFunction extends Function {
         while (!stack.empty()) {
             RuntimeNode rnode = stack.pop();
             Column[] rnodeInput = new Column[rnode.getInputCnt()];
+
             for (Edge edge : edges) {
                 if (edge.getOutNode().compareTo(rnode.getKey()) == 0) {
                     rnodeInput[edge.getOutIdx()] = runtimeNodes.get(edge.getInNode()).getValue()[edge.getInIdx()];
+                }
+                if (edge.getInNode().compareTo(rnode.getKey()) == 0) {
+                    RuntimeNode rnode2 = runtimeNodes.get(edge.getOutNode());
+                    if (rnode2 != null) {
+                        rnode2.setInDegree(rnode2.getInDegree() - 1);
+                        if (rnode2.getInDegree() == 0)
+                            stack.push(rnode2);
+                    }
                 }
             }
             rnode.calc(rnodeInput);

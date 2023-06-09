@@ -4,9 +4,19 @@ import org.flowxlang.runtime.core.FunDefs;
 import org.flowxlang.runtime.type.column.Column;
 
 public abstract class Function {
-    public abstract Column[] calc(Column[] inputs);
+    public Column[] calc(Column[] inputs) {
+        return null;
+    }
 
-    protected Column[] call(String name, Column[] inputs) {
-        return FunDefs.getInstance().find(name).calc(inputs);
+    public Column[] calc(Column[] inputs, Object data) {
+        return null;
+    }
+
+    protected int getRow(Column[] inputs) {
+        int row = 0;
+        for (Column col : inputs)
+            if (row < col.getRow())
+                row = col.getRow();
+        return row;
     }
 }

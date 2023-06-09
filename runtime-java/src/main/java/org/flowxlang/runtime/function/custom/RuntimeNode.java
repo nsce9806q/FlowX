@@ -12,6 +12,8 @@ public class RuntimeNode {
     private String key;
 
     public Column[] calc(Column[] inputs) {
+        if (data != null)
+            return value = function.calc(inputs, data);
         return value = function.calc(inputs);
     }
 

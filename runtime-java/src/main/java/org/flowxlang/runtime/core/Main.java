@@ -16,25 +16,14 @@ public class Main {
         FunDefs.getInstance().registCustom("Main",
                 Map.ofEntries(
                         new AbstractMap.SimpleEntry<>(0, new AnnotatedFunction("AddInt")),
-                        new AbstractMap.SimpleEntry<>(1, new AnnotatedFunction("SubInt"))
+                        new AbstractMap.SimpleEntry<>(1, new AnnotatedFunction("ConstInt", 10))
                 ),
-                List.of(new Edge("i0", 0, "v0", 0),
-                        new Edge("i1", 0, "v0", 1),
-                        new Edge("i0", 0, "v1", 0),
-                        new Edge("i1", 0, "v1", 1),
-                        new Edge("v0", 0, "o", 0),
-                        new Edge("v1", 0, "o", 1))
+                List.of(new Edge("i0", 0, "v0", 1),
+                        new Edge("v1", 0, "v0", 0),
+                        new Edge("v0", 0, "o", 0))
         );
 
         Column<IntType>[] output = FunDefs.getInstance().find("Main").calc(new Column[] {
-                new Column<IntType>(new IntType[] {
-                        new IntType(0),
-                        new IntType(1),
-                        new IntType(2),
-                        new IntType(3),
-                        new IntType(4),
-                        new IntType(5)
-                }),
                 new Column<IntType>(new IntType[] {
                         new IntType(0),
                         new IntType(1),

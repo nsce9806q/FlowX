@@ -8,7 +8,7 @@ import org.flowxlang.runtime.type.column.Column;
 public class IntToString extends Function {
     @Override
     public Column[] calc(Column[] inputs) {
-        int row = inputs[0].getRow();
+        int row = getRow(inputs);
         Column<StringType> out = new Column<>(row);
 
         for (int i = 0; i < row; i++) {
