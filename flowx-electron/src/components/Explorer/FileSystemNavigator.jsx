@@ -111,36 +111,30 @@ const FileSystemNavigator = ({ file, setSelected }) => {
                     label={fileName?? "New file"}
                 >
                     {Object.keys(files).map(
-                        (type) => {
-                        return (
+                        (type) => (
                             <StyledTreeItem
                                 key={type}
                                 nodeId={(nodeId++).toString()}
                                 label={type}
                             >
-                                {Object.keys(
-                                    files[type]
-                                ).map(
-                                    (funcName,index) => {
+                                {files[type].map(
+                                    (e,index) => {
                                         return (
                                             <div
                                                 key={index}
                                                 onClick={() => 
                                                     setSelected({
                                                         type,
-                                                        funcName,
-                                                        nodes: files[type][funcName].nodes,
-                                                        edges: files[type][funcName].edges,
+                                                        ...e
                                                     })
                                                 }
                                                 style={{cursor:"pointer"}}
-                                            >{funcName}</div>
+                                            >{e.name}</div>
                                         );
                                     }
                                 )}
                             </StyledTreeItem>
-                            );
-                        }
+                        )
                     )}
                 </StyledTreeItem>
             </TreeView>

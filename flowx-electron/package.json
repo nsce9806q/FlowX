@@ -16,7 +16,6 @@
     "@testing-library/user-event": "^13.5.0",
     "concurrently": "^7.6.0",
     "install": "^0.13.0",
-    "java": "^0.13.0",
     "konva": "^9.0.1",
     "npm": "^9.6.6",
     "react": "^18.2.0",
@@ -32,9 +31,9 @@
     "react:start": "react-scripts start",
     "react:build": "react-scripts build",
     "build": "npm run react:build && npm run electron:build",
-    "electron:start": "wait-on http://localhost:3000 && nodemon --watch public/electron.js --exec \"electron .\"",
+    "electron:start": "wait-on http://localhost:3000 && nodemon --watch public/* --exec \"electron .\"",
     "electron:build": "electron-builder",
-    "electron:dev": "cross-env NODE_ENV=development nodemon --watch public/electron.js --exec \"electron .\""
+    "electron:dev": "cross-env NODE_ENV=development nodemon --watch public/* --exec \"electron .\""
   },
   "eslintConfig": {
     "extends": [

@@ -1,14 +1,14 @@
 const NewFile = ({ setFile }) => {
     const initFile = () => {
         setFile({
-                functions: {
-                    main:{
+                functions: [
+                    {
+                        name: "main",
                         nodes: [],
                         edges: []
                     }
-                },
-                "types": {
-                }
+                ],
+                types: []
             });
     }
     return (

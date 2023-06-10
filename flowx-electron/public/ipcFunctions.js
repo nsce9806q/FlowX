@@ -26,9 +26,9 @@ module.exports = {
                 },
             ],
         });
-        if(resultPath.canceled) return;
-        childProcess.execSync("java -jar ../runtime-java/build/libs/runtime-java-1.0-SNAPSHOT.jar "+programPath+" "+csvPath+" "+resultPath.filePath, { stdio: 'inherit' });
+        if(resultPath === undefined)
+            return;
+        childProcess.execSync("java -jar ../runtime-java/build/libs/runtime-java-1.0-SNAPSHOT.jar "+programPath+" "+csvPath+" "+resultPath, { stdio: 'inherit' });
         event.sender.send("run-result","");
-        console.log("run result");
     }
 };

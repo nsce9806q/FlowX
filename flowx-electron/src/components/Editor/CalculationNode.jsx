@@ -10,6 +10,11 @@ function CalculationNode({ id, data }) {
         .reduce((acc,cur)=>({...acc,[cur.targetHandle]:cur.data.type}),{});
     const output = funcOutput[funcInput.findIndex(e=>e[0]===incommerEdges["i0"] && e[1]===incommerEdges["i1"])]
         ?? (incommerEdges["i0"]===undefined || incommerEdges["i1"]===undefined ? "" : "Error");
+    if(output!=="Error" && output!=="" && data.output[0]!==output)
+        data.setSelected((slt)=>({
+            ...slt,
+            nodes: slt.nodes.map((n)=>n.id===id ? {...n,data:{...n.data,output:[output]}} : n)
+        }));
     return (
         <NodeWrapper id={id} setSelected={data.setSelected}>
             <IOWrapper>

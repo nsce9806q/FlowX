@@ -39,9 +39,7 @@ const DropDownFileComponent = ({ setFile }) => {
                             const file = e.target.files[0];
                             console.log(file);
                             const reader = new FileReader();
-                            if (
-                                file.type === "application/json"
-                            ) {
+                            if (file.type === "application/json") {
                                 reader.readAsText(file);
                                 reader.onload = () => {
                                     setFile({

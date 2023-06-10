@@ -23,14 +23,15 @@ function App() {
         if(!selected) return;
         const newFile = {
             ...file,
-            [selected.type]:{
-                ...file[selected.type],
-                [selected.funcName]: {
-                    ...file[selected.type][selected.funcName],
-                    nodes: selected.nodes,
-                    edges: selected.edges
-                }
-            }
+            [selected.type]:file[selected.type].map((item) => {
+                if(item.name === selected.name)
+                    return {
+                        ...item,
+                        nodes: selected.nodes,
+                        edges: selected.edges
+                    };
+                return {...item};
+            })
         };
         setFile(newFile);
     }, [selected]);
