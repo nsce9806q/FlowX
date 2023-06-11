@@ -45,13 +45,12 @@ function App() {
         );
     return(
         <>
-            <div className="flex" style={{minHeight:"calc(100% - 57px)"}}>
+            <div className="flex" style={{minHeight:"calc(100% - 5rem)"}}>
                 <div className="bg-gray-100" style={{width:"200px"}}>
                     <FileExplorer file={file} setSelected={setSelected}/>
                 </div>
                 <Editor selected={selected} setSelected={setSelected}/>
             </div>
-            <ClearComp setFile={setFile} setSelected={setSelected}/>
             <SaveButton file={file} setFile={setFile}/>
             <Runner file={file}/>
         </>

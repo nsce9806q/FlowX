@@ -1,6 +1,6 @@
 import { Position, useReactFlow, getConnectedEdges  } from 'reactflow';
 import { NodeWrapper, IOWrapper, IOHandle } from './FunctionNode';
-import defaultFunctions from '../../spec/functions';
+import defaultFunctions from '../../../spec/functions';
 
 function CalculationNode({ id, data }) {
     const {input:funcInput, output:funcOutput} = defaultFunctions[data.name];

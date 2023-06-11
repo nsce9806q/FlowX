@@ -1,13 +1,18 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import ReactFlow, { useReactFlow, applyEdgeChanges, applyNodeChanges } from 'reactflow';
-import CalculationNode from './CalculationNode';
-import SplitNode from './SplitNode';
-import AssembleNode from './AssembleNode';
+import CalculationNode from './Nodes/CalculationNode';
+import SplitNode from './Nodes/SplitNode';
+import AssembleNode from './Nodes/AssembleNode';
 import CustomEdge from './CustomEdge';
 import SelectFunction from './SelectFunction';
+import defaultFunctions from '../../spec/functions';
 import 'reactflow/dist/style.css';
 
-const nodeTypes = { split: SplitNode, calculation: CalculationNode, assemble: AssembleNode };
+const nodeTypes = {
+    split: SplitNode,
+    calculation: CalculationNode,
+    assemble: AssembleNode,
+};
 const edgeTypes = { custom: CustomEdge };
 
 function Editor({ selected, setSelected }) {
@@ -24,6 +29,18 @@ function Editor({ selected, setSelected }) {
     );
     const onEdgesChange = useCallback(
         (changes) => setSelected((slt) => ({...slt,edges:applyEdgeChanges(changes, slt.edges)})),
+        [selected]
+    );
+    const isValidConnection = useCallback(
+        (edge) => {
+            if(selected.edges.find(e=>(e.target == edge.target && e.targetHandle == edge.targetHandle)))
+                return false;
+            const source = selected.nodes.find(e=>e.id==edge.source);
+            const inputType = source.data.output[Number(edge.sourceHandle?.slice(1)??0)];
+            const target = selected.nodes.find(e=>e.id==edge.target);
+            const {input:funcInput, output:funcOutput} = defaultFunctions[target.data.name];
+            return true;
+        },
         [selected]
     );
     const onConnect = useCallback(
@@ -75,6 +92,7 @@ function Editor({ selected, setSelected }) {
                 edges={edges}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
+                isValidConnection={isValidConnection}
                 onConnect={onConnect}
                 nodeTypes={nodeTypes}
                 edgeTypes={edgeTypes}

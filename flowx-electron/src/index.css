@@ -14,3 +14,11 @@ html, body, #root {
   width: 100%;
   margin: 0;
 }
+
+.react-flow__handle-connecting{
+  background: #ff6060 !important;
+}
+
+.react-flow__handle-valid {
+  background: #55dd99 !important;
+}
