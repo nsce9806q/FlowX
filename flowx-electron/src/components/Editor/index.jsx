@@ -3,6 +3,7 @@ import ReactFlow, { useReactFlow, applyEdgeChanges, applyNodeChanges } from 'rea
 import CalculationNode from './Nodes/CalculationNode';
 import SplitNode from './Nodes/SplitNode';
 import AssembleNode from './Nodes/AssembleNode';
+import BranchNode from './Nodes/BranchNode';
 import CustomEdge from './CustomEdge';
 import SelectFunction from './SelectFunction';
 import defaultFunctions from '../../spec/functions';
@@ -15,7 +16,7 @@ const nodeTypes = {
     bitOperation: CalculationNode,
     stringOperation: CalculationNode,
     typeConversion: CalculationNode,
-    branch: CalculationNode,
+    branch: BranchNode,
     errorHandling: CalculationNode,
     assemble: AssembleNode,
 };
@@ -89,7 +90,8 @@ function Editor({ selected, setSelected }) {
             const newOutput = [...target.data.output];
             const outputIndex = possibleInputs.findIndex(e=>e.every((v,i)=>v===newInput[i]));
             if(outputIndex>=0)
-                newOutput[outputIndex] = possibleOutputs[outputIndex];
+                newOutput = [possibleOutputs[outputIndex]];
+            console.log(newInput,newOutput);
             return {
                 ...slt,
                 edges:[

@@ -45,6 +45,7 @@ export default function CustomEdge({ id,target, data, sourceX, sourceY, targetX,
                         data: {
                             ...node.data,
                             input: newInput,
+                            output: [null]
                         },
                     };
                 }

@@ -8,6 +8,7 @@ function CalculationNode({ id, data }) {
             <IOWrapper>
                 <IOHandle type="target" position={Position.Top} id="i0" isConnectable={true} text={data.input[0]}/>
                 <IOHandle type="target" position={Position.Top} id="i1" isConnectable={true} text={data.input[1]}/>
+                <IOHandle type="target" position={Position.Top} id="i1" isConnectable={true} text={data.input[2]}/>
             </IOWrapper>
             <div>
                 {data.name}
