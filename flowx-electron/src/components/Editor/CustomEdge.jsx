@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BaseEdge, EdgeLabelRenderer, getBezierPath } from 'reactflow';
+import { BaseEdge, EdgeLabelRenderer, getBezierPath,useReactFlow } from 'reactflow';
 import styled from 'styled-components';
 
 const EdgeWrapper = styled.g`
@@ -18,9 +18,11 @@ const EdgeWrapper = styled.g`
     }
 `;
 
-export default function CustomEdge({ id, data, sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, markerEnd }) {
+export default function CustomEdge({ id,target, data, sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, markerEnd }) {
     const [edgePath, labelX, labelY] = getBezierPath({ sourceX, sourceY, sourcePosition, targetX, targetY, targetPosition });
     const [isHovered, setIsHovered] = useState(false);
+    const reactFlowInstance = useReactFlow();
+    const targetHandle = reactFlowInstance.getEdge(id).targetHandle;
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -30,10 +32,24 @@ export default function CustomEdge({ id, data, sourceX, sourceY, targetX, target
         setIsHovered(false);
     };
 
-    const onEdgeClick = (e) => {
+    const removeEdge = (e) => {
         data.setSelected((prev) => ({
             ...prev,
-            edges: prev.edges.filter((edge) => edge.id !== id)
+            edges: prev.edges.filter((edge) => edge.id !== id),
+            nodes: prev.nodes.map((node) => {
+                if (node.id === target) {
+                    const newInput = [...node.data.input];
+                    newInput[Number(targetHandle?.slice(1)??0)] = null;
+                    return {
+                        ...node,
+                        data: {
+                            ...node.data,
+                            input: newInput,
+                        },
+                    };
+                }
+                return node;
+            })
         }));
     };
 
@@ -63,7 +79,7 @@ export default function CustomEdge({ id, data, sourceX, sourceY, targetX, target
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    <button className="edgebutton" onClick={onEdgeClick}>
+                    <button className="edgebutton" onClick={removeEdge}>
                         ×
                     </button>
                 </div>

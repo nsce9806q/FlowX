@@ -11,6 +11,12 @@ import 'reactflow/dist/style.css';
 const nodeTypes = {
     split: SplitNode,
     calculation: CalculationNode,
+    compare: CalculationNode,
+    bitOperation: CalculationNode,
+    stringOperation: CalculationNode,
+    typeConversion: CalculationNode,
+    branch: CalculationNode,
+    errorHandling: CalculationNode,
     assemble: AssembleNode,
 };
 const edgeTypes = { custom: CustomEdge };
@@ -35,26 +41,73 @@ function Editor({ selected, setSelected }) {
         (edge) => {
             if(selected.edges.find(e=>(e.target == edge.target && e.targetHandle == edge.targetHandle)))
                 return false;
+            const target = selected.nodes.find(e=>e.id==edge.target);
+            if(target.type==="assemble")
+                return true;
+
             const source = selected.nodes.find(e=>e.id==edge.source);
             const inputType = source.data.output[Number(edge.sourceHandle?.slice(1)??0)];
-            const target = selected.nodes.find(e=>e.id==edge.target);
-            const {input:funcInput, output:funcOutput} = defaultFunctions[target.data.name];
-            return true;
+            const possibleInputs = defaultFunctions[target.data.name].input;
+            const inputIndex = Number(edge.targetHandle?.slice(1)??0);
+            const currentInput = target.data.input;
+            const newInput = [...currentInput];
+            newInput[inputIndex] = inputType;
+            if(possibleInputs.find(e=>e.every((v,i)=>v===newInput[i]||newInput[i]===null)))
+                return true;
+            return false;
         },
         [selected]
     );
     const onConnect = useCallback(
-        (connection) => setSelected((slt) => ({
-            ...slt,
-            edges:[
-                ... slt.edges,
-                {
-                    ...connection,
-                    id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
-                    data: {type: slt.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+        (connection) => setSelected((slt) => {
+            const target = selected.nodes.find(e=>e.id==connection.target);
+            const source = selected.nodes.find(e=>e.id==connection.source);
+            const inputType = source.data.output[Number(connection.sourceHandle?.slice(1)??0)];
+            const {input : possibleInputs ,output : possibleOutputs} = defaultFunctions[target.data.name];
+            const inputIndex = Number(connection.targetHandle?.slice(1)??0);
+            const currentInput = target.data.input;
+            const newInput = [...currentInput];
+            newInput[inputIndex] = inputType;
+            if(target.type==="assemble")
+                return {
+                    ...slt,
+                    edges:[
+                        ... slt.edges,
+                        {
+                            ...connection,
+                            id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
+                            data: {type: slt.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+                        }
+                    ],
+                    nodes: slt.nodes.map((node) => {
+                        if(node.id === connection.target){
+                            return {...node,data:{...node.data,input:newInput}};
+                        }
+                        return node;
+                    })
                 }
-            ]
-        })),
+            const newOutput = [...target.data.output];
+            const outputIndex = possibleInputs.findIndex(e=>e.every((v,i)=>v===newInput[i]));
+            if(outputIndex>=0)
+                newOutput[outputIndex] = possibleOutputs[outputIndex];
+            return {
+                ...slt,
+                edges:[
+                    ... slt.edges,
+                    {
+                        ...connection,
+                        id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
+                        data: {type: slt.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+                    }
+                ],
+                nodes: slt.nodes.map((node) => {
+                    if(node.id === connection.target){
+                        return {...node,data:{...node.data,input:newInput,output:newOutput}};
+                    }
+                    return node;
+                })
+            }
+        }),
         [selected]
     );
 
