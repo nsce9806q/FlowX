@@ -1,6 +1,6 @@
 import { Position, useUpdateNodeInternals  } from 'reactflow';
 import { NodeWrapper,IOWrapper, IOHandle } from './FunctionNode';
-import defaultFunctions from '../../spec/functions';
+import defaultFunctions from '../../../spec/functions';
 import styled from 'styled-components';
 import {useRef,useState} from 'react';
 
@@ -45,7 +45,6 @@ function PlusSquare(props) {
 
 
 function InputNode({ id, data, isConnectable }) {
-    const {input, output} = defaultFunctions[data.name];
     const selectRef = useRef(null);
     const updateNodeInternals = useUpdateNodeInternals();
 
@@ -75,9 +74,6 @@ function InputNode({ id, data, isConnectable }) {
 
     return (
         <NodeWrapper id={id} setSelected={data.setSelected}>
-            <IOWrapper>
-                <div>{input[0]}</div>
-            </IOWrapper>
             <div>
                 {data.name}
             </div>
@@ -114,7 +110,7 @@ function InputNode({ id, data, isConnectable }) {
                     }}
                 />
                 <SelectTypes ref={selectRef}>
-                    {output.map((item, index) =><div onClick={changeType(item)} key={index}>{item}</div>)}
+                    {["int","float","str","bool"].map((item, index) =><div onClick={changeType(item)} key={index}>{item}</div>)}
                     <div onClick={deleteType()} style={{color:"#da0000", fontWeight:"600"}}>Delete</div>
                 </SelectTypes>
             </IOWrapper>

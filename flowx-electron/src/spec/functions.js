@@ -1,47 +1,138 @@
-export default {
-    split_csv: {
-        input: [["csv"]],
-        output: ["i4","f4","str","bool"],
-        type: "split"
+const functions = {
+    calculation: {
+        add: {
+            input: [["int","int"],["float","float"]],
+            output: ["int","float"]
+        },
+        sub: {
+            input: [["int","int"],["float","float"]],
+            output: ["int","float"]
+        },
+        mult: {
+            input: [["int","int"],["float","float"]],
+            output: ["int","float"]
+        },
+        div: {
+            input: [["int","int"],["float","float"]],
+            output: ["int!","float!"]
+        },
+        mod: {
+            input: [["int","int"]],
+            output: ["int","float"]
+        },
+        max: {
+            input: [["int","int"],["float","float"]],
+            output: ["int","float"]
+        },
+        min: {
+            input: [["int","int"],["float","float"]],
+            output: ["int","float"]
+        }
     },
-    add: {
-        input: [["i4","i4"],["f4","f4"]],
-        output: ["i4","f4"],
-        type: "calculation"
+    compare: {
+        equal: {
+            input: [["int","int"],["float","float"],["string","string"],["bool","bool"]],
+            output: ["bool","bool","bool","bool"]
+        },
+        notEqual: {
+            input: [["int","int"],["float","float"],["string","string"],["bool","bool"]],
+            output: ["bool","bool","bool","bool"]
+        },
+        greaterThan: {
+            input: [["int","int"],["float","float"]],
+            output: ["bool","bool"]
+        },
+        greaterThanOrEqual: {
+            input: [["int","int"],["float","float"]],
+            output: ["bool","bool"]
+        },
+        lessThan: {
+            input: [["int","int"],["float","float"]],
+            output: ["bool","bool"]
+        },
+        lessThanOrEqual: {
+            input: [["int","int"],["float","float"]],
+            output: ["bool","bool"]
+        }
     },
-    sub: {
-        input: [["i4","i4"],["f4","f4"]],
-        output: ["i4","f4"],
-        type: "calculation"
+    bitOperation: {
+        and: {
+            input: [["int","int"],["bool","bool"]],
+            output: ["int","bool"]
+        },
+        or: {
+            input: [["int","int"],["bool","bool"]],
+            output: ["int","bool"]
+        },
+        xor: {
+            input: [["int","int"],["bool","bool"]],
+            output: ["int","bool"]
+        },
+        not: {
+            input: [["int","int"],["bool","bool"]],
+            output: ["int","bool"]
+        }
     },
-    mult: {
-        input: [["i4","i4"],["f4","f4"]],
-        output: ["i4","f4"],
-        type: "calculation"
+    stringOperation: {
+        concat: {
+            input: [["string","string"]],
+            output: ["string"]
+        },
+        length: {
+            input: [["string"]],
+            output: ["int"]
+        },
+        includes: {
+            input: [["string","string"],["string","string"]],
+            output: ["bool"]
+        }
     },
-    div: {
-        input: [["i4","i4"],["f4","f4"]],
-        output: ["i4","f4"],
-        type: "calculation"
+    typeConversion: {
+        toInt: {
+            input: [["float"],["string"]],
+            output: ["int","int!"]
+        },
+        toFloat: {
+            input: [["int"],["string"]],
+            output: ["float","float!"]
+        },
+        toString: {
+            input: [["int"],["float"]],
+            output: ["string","string"]
+        },
     },
-    mod: {
-        input: [["i4","i4"],["f4","f4"]],
-        output: ["i4","f4"],
-        type: "calculation"
+    branch: {
+        select: {
+            input: [["bool","int","int"],["bool","float","float"],["bool","string","string"],["bool","bool","bool"]],
+            output: ["int","float","string","bool"]
+        },
+        falseToNull: {
+            input: [["bool","int"],["bool","float"],["bool","string"],["bool","bool"]],
+            output: ["int?","float?","string?","bool?"]
+        },
+        falseToError: {
+            input: [["bool","int"],["bool","float"],["bool","string"],["bool","bool"]],
+            output: ["int!","float!","string!","bool!"]
+        },
     },
-    max: {
-        input: [["i4","i4"],["f4","f4"]],
-        output: ["i4","f4"],
-        type: "calculation"
-    },
-    min: {
-        input: [["i4","i4"],["f4","f4"]],
-        output: ["i4","f4"],
-        type: "calculation"
-    },
-    assemble_csv: {
-        input: ["i4","f4","str","bool"],
-        output: [["csv"]],
-        type: "assemble"
+    errorHandling: {
+        errorToValue: {
+            input: [["int!","int"],["float!","float"],["string!","string"],["bool!","bool"]],
+            output: ["int","float","string","bool"]
+        },
+        errorToNull: {
+            input: [["int!"],["float!"],["string!"],["bool!"]],
+            output: ["int?","float?","string?","bool?"]
+        },
+        panic: {
+            input: [["int!"],["float!"],["string!"],["bool!"]],
+            output: ["int","float","string","bool"]
+        },
     }
 }
+
+//export {funcs:{input:[type],output:[type],category}}
+export default Object.entries(functions).reduce((acc, [category, funcs]) => {
+    Object.entries(funcs).forEach(([funcName, e]) => {acc[funcName] = {...e, type:category}});
+    return acc
+}, {});

@@ -68,7 +68,7 @@ const SelectFunction = ({ setSelected, contextMenuRef }) => {
                     id: (Number(slt.nodes[slt.nodes.length-1]?.id) + 1 || 0)+"",
                     type: type,
                     position: { x:Math.round((contextMenuRef.current.getBoundingClientRect().x-200)/50)*50, y: Math.round((contextMenuRef.current.getBoundingClientRect().y)/20)*20 },
-                    data: { name: node, output: [] },
+                    data: { name: node, input: new Array(defaultFunctions[node].input[0].length).fill(null), output: [] },
                 },
             ],
         }));

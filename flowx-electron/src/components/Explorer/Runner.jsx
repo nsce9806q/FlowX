@@ -14,6 +14,7 @@ const RunnerWrapper = styled.div`
     padding: 1rem;
     background-color: #ccc;
     z-index: 50;
+    height: 5rem;
 `;
 
 const Run = styled.button`
