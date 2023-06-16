@@ -13,28 +13,11 @@ function App() {
     // selected file from GetFileButton Comp
     // and clear file with NewFileButton Comp
     const [file, setFile] = useState(null);
-    const [selected, setSelected] = useState(null);
+    const [selectedFunction, setSelectedFunction] = useState(null);
 
     useEffect(() => {
         console.log(file);
     }, [file]);
-
-    useEffect(() => {
-        if(!selected) return;
-        const newFile = {
-            ...file,
-            [selected.type]:file[selected.type].map((item) => {
-                if(item.name === selected.name)
-                    return {
-                        ...item,
-                        nodes: selected.nodes,
-                        edges: selected.edges
-                    };
-                return {...item};
-            })
-        };
-        setFile(newFile);
-    }, [selected]);
 
     if(!file)
         return (
@@ -47,9 +30,9 @@ function App() {
         <>
             <div className="flex" style={{minHeight:"calc(100% - 5rem)"}}>
                 <div className="bg-gray-100" style={{width:"200px"}}>
-                    <FileExplorer file={file} setSelected={setSelected}/>
+                    <FileExplorer file={file} setSelectedFunction={setSelectedFunction}/>
                 </div>
-                <Editor selected={selected} setSelected={setSelected}/>
+                <Editor file={file} setFile={setFile} selectedFunction={selectedFunction}/>
             </div>
             <SaveButton file={file} setFile={setFile}/>
             <Runner file={file}/>

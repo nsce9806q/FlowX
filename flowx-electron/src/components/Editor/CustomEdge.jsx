@@ -33,23 +33,31 @@ export default function CustomEdge({ id,target, data, sourceX, sourceY, targetX,
     };
 
     const removeEdge = (e) => {
-        data.setSelected((prev) => ({
-            ...prev,
-            edges: prev.edges.filter((edge) => edge.id !== id),
-            nodes: prev.nodes.map((node) => {
-                if (node.id === target) {
-                    const newInput = [...node.data.input];
-                    newInput[Number(targetHandle?.slice(1)??0)] = null;
+        data.setFile((file) => ({
+            ...file,
+            functions: file.functions.map((func) => {
+                if (func.name === data.selectedFunction) {
                     return {
-                        ...node,
-                        data: {
-                            ...node.data,
-                            input: newInput,
-                            output: [null]
-                        },
+                        ...func,
+                        edges: func.edges.filter((edge) => edge.id !== id),
+                        nodes: func.nodes.map((node) => {
+                            if (node.id === target) {
+                                const newInput = [...node.data.input];
+                                newInput[Number(targetHandle?.slice(1)??0)] = null;
+                                return {
+                                    ...node,
+                                    data: {
+                                        ...node.data,
+                                        input: newInput,
+                                        output: [null]
+                                    },
+                                };
+                            }
+                            return node;
+                        })
                     };
                 }
-                return node;
+                return func;
             })
         }));
     };

@@ -33,19 +33,26 @@ function CloseSquare(props) {
     );
 }
 
-export const NodeWrapper = ({ children, id, setSelected }) => {
+export const NodeWrapper = ({ children, id, file, setFile, selectedFunction }) => {
     return (
         <NW>
-            <CloseSquare onClick={(e) => 
-                setSelected((slt) => {
-                    const connectedEdges = getConnectedEdges([slt.nodes.find(e=>e.id==id)], slt.edges);
-                    return { 
-                        ...slt,
-                        nodes: slt.nodes.filter((node) => node.id !== id),
-                        edges: slt.edges.filter((edge) => !connectedEdges.includes(edge))
-                    }
-                })
-            } />
+            <CloseSquare onClick={(e) => {
+                e.stopPropagation();
+                const connectedEdges = getConnectedEdges([file.functions.find(e=>e.name===selectedFunction).nodes.find(e=>e.id==id)], file.functions.find(e=>e.name===selectedFunction).edges);
+                setFile((file) => ({
+                    ...file,
+                    functions: file.functions.map((func) => {
+                        if (func.name === selectedFunction) {
+                            return {
+                                ...func,
+                                nodes: func.nodes.filter((node) => node.id !== id),
+                                edges: func.edges.filter((edge) => !connectedEdges.includes(edge))
+                            }
+                        }
+                        return func;
+                    })
+                }))
+            }} />
             {children}
         </NW>
     );

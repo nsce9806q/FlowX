@@ -4,7 +4,7 @@ import defaultFunctions from '../../../spec/functions';
 
 function CalculationNode({ id, data }) {
     return (
-        <NodeWrapper id={id} setSelected={data.setSelected}>
+        <NodeWrapper id={id} selectedFunction={data.selectedFunction} file={data.file} setFile={data.setFile}>
             <IOWrapper>
                 <IOHandle type="target" position={Position.Top} id="i0" isConnectable={true} text={data.input[0]}/>
                 <IOHandle type="target" position={Position.Top} id="i1" isConnectable={true} text={data.input[1]}/>
