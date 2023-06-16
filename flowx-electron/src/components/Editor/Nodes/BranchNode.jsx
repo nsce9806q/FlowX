@@ -1,12 +1,7 @@
 /** @format */
 
-import React, { memo } from "react";
-import {
-  Position,
-  Handle,
-  useReactFlow,
-  getConnectedEdges,
-} from "reactflow";
+import React from "react";
+import { Position } from "reactflow";
 import {
   NodeWrapper,
   IOWrapper,
@@ -28,7 +23,7 @@ function TurnSquare({ locRight, ...restProps }) {
           cursor: "pointer",
           position: "absolute",
           right: locRight && "-5px",
-          bottom: "-5px",
+          bottom: "-7px",
           left: !locRight && "-5px",
         }}
       >
@@ -51,12 +46,11 @@ function TurnSquare({ locRight, ...restProps }) {
 }
 
 /**
- *
  * 옆구리에다가 data.locRight를 기준으로 간선들을 만들것이다.
  */
 const BranchNode = ({ id, data }) => {
   return (
-    <NodeWrapper id={id} setSelected={data.setSelected}>
+    <NodeWrapper id={id} setSelected={data.setSelected} bigBox>
       <IOWrapper>
         <IOHandle
           type="target"
@@ -67,25 +61,65 @@ const BranchNode = ({ id, data }) => {
         />
       </IOWrapper>
 
-      {/* 세로축으로 정렬되어야 한다. */}
-      <IOWrapper direction="column">
-        <IOHandle
-          type="target"
-          position={Position.Left}
-          id="i1"
-          isConnectable={true}
-          // text="int"
-        />
-        <IOHandle
-          type="target"
-          position={Position.Left}
-          id="i2"
-          isConnectable={true}
-          // text="int"
-        />
-      </IOWrapper>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexGrow: "1",
+        }}
+      >
+        {!data?.locRight && (
+          <IOWrapper direction="column">
+            <IOHandle
+              type="target"
+              position={Position.Left}
+              id="i1"
+              isConnectable={true}
+              text={data.input[1]}
+            />
+            <IOHandle
+              type="target"
+              position={Position.Left}
+              id="i2"
+              isConnectable={true}
+              text={data.input[2]}
+            />
+          </IOWrapper>
+        )}
 
-      <div>{data.name}</div>
+        <div
+          style={{
+            flexGrow: "1",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          {data.name}
+        </div>
+
+        {data?.locRight && (
+          <IOWrapper direction="column">
+            <IOHandle
+              type="target"
+              position={Position.Right}
+              id="i1"
+              isConnectable={true}
+              text={data.input[1]}
+              loc={data?.locRight}
+            />
+            <IOHandle
+              type="target"
+              position={Position.Right}
+              id="i2"
+              isConnectable={true}
+              text={data.input[2]}
+              loc={data?.locRight}
+            />
+          </IOWrapper>
+        )}
+      </div>
 
       {/* 가로축으로 정렬되어야 한다. */}
       <IOWrapper>

@@ -73,7 +73,8 @@ function InputNode({ id, data, isConnectable }) {
     }
 
     return (
-        <NodeWrapper id={id} setSelected={data.setSelected}>
+        /* pa for padding split node */
+        <NodeWrapper id={id} setSelected={data.setSelected} pa>
             <div>
                 {data.name}
             </div>

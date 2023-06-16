@@ -3,15 +3,24 @@
 import { Handle, getConnectedEdges, Position } from "reactflow";
 import styled, { css } from "styled-components";
 
-
 const NW = styled.div`
-  /* padding: 0 10px; */
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
   min-width: 100px;
   text-align: center;
-  
+  display: flex;
+  flex-direction: column;
+  ${(props) =>
+    props.padding &&
+    css`
+      padding: 0px 6px;
+    `}/* ${(props) =>
+    props.bigBox &&
+    css`
+      min-width: 160px;
+      min-height: 100px;
+    `} */
 `;
 
 function CloseSquare(props) {
@@ -36,16 +45,20 @@ function CloseSquare(props) {
   );
 }
 
-
-
-export const NodeWrapper = ({ children, id, setSelected }) => {
+export const NodeWrapper = ({
+  children,
+  id,
+  setSelected,
+  pa,
+  bigBox,
+}) => {
   return (
-    <NW>
+    <NW padding={pa} bigBox={bigBox}>
       <CloseSquare
         onClick={(e) =>
           setSelected((slt) => {
             const connectedEdges = getConnectedEdges(
-              [slt.nodes.find((e) => e.id == id)],
+              [slt.nodes.find((e) => e.id === id)],
               slt.edges
             );
             return {
@@ -58,31 +71,37 @@ export const NodeWrapper = ({ children, id, setSelected }) => {
           })
         }
       />
-  
+
       {children}
     </NW>
   );
 };
 
-
 export const IOWrapper = styled.div`
   display: flex;
-  flex-direction: ${props => props.direction || 'row'};  // Add this line
+  flex-direction: ${(props) => props.direction || "row"};
   justify-content: space-around;
-  align-items: center;
   font-size: 0.8rem;
   color: #888;
   gap: 8px;
 `;
 
 /**
- * foex: row가 되면, 
+ * foex: row가 되면,
  */
 const IOHandleStyle = styled.div`
-  flex-direction: ${({ position }) =>
-    position === Position.Left || position === Position.Right ? 'row' : 'column'};
-  align-items: flex-start
+  display: flex;
+  flex-direction: ${(props) =>
+    props.position === Position.Left ||
+    props.position === Position.Right
+      ? props.loc
+        ? "row-reverse"
+        : "row"
+      : "column"};
+  /* align-items: flex-start */
   justify-content: center
+  flex-grow: 1
+  gap: 8px
 `;
 
 export const IOHandle = ({
@@ -93,10 +112,12 @@ export const IOHandle = ({
   text,
   events,
   style,
+  loc,
 }) => {
   return (
     <IOHandleStyle
       position={position}
+      loc={loc}
       {...events}
       style={
         isConnectable
@@ -113,8 +134,8 @@ export const IOHandle = ({
         style={{
           position: "relative",
           zIndex: 10,
-          width: "7px",
-          height: "7px",
+          width: "9px",
+          height: "9px",
           backgroundColor: !isConnectable ? "#da0000" : "#000",
         }}
       />
