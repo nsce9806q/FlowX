@@ -1,1 +1,298 @@
-{"functions":[{"name":"main","input":"csv","output":"csv","nodes":[{"id":"0","type":"split","position":{"x":150,"y":80},"data":{"name":"split_csv","input":["csv"],"output":["int","int","float","float","int"]},"width":231,"height":58,"selected":false,"dragging":false},{"id":"1","type":"calculation","position":{"x":250,"y":240},"data":{"name":"add","input":["int","int"],"output":["int"]},"width":100,"height":82,"selected":false,"positionAbsolute":{"x":272,"y":249},"dragging":false},{"id":"2","type":"calculation","position":{"x":450,"y":240},"data":{"name":"mult","input":["float","float"],"output":["float"]},"width":100,"height":82,"selected":false,"positionAbsolute":{"x":428.6452481678074,"y":249.70343720833117},"dragging":false},{"id":"4","type":"assemble","position":{"x":300,"y":680},"data":{"name":"assemble_csv","input":["int","float"],"output":["csv"]},"width":124,"height":34,"selected":false,"positionAbsolute":{"x":280,"y":689},"dragging":false},{"id":"5","type":"calculation","position":{"x":200,"y":540},"data":{"name":"add","input":["int","int"],"output":["int"]},"width":100,"height":82,"selected":true,"positionAbsolute":{"x":188,"y":545},"dragging":false},{"id":"6","type":"calculation","position":{"x":100,"y":400},"data":{"name":"add","input":["int","int"],"output":["int"]},"width":100,"height":82,"selected":false,"positionAbsolute":{"x":87,"y":391},"dragging":false}],"edges":[{"type":"custom","source":"0","sourceHandle":"o0","target":"1","targetHandle":"i0","id":"edge-0o0-1i0","data":{"type":"int"}},{"type":"custom","source":"0","sourceHandle":"o1","target":"1","targetHandle":"i1","id":"edge-0o1-1i1","data":{"type":"int"}},{"type":"custom","source":"0","sourceHandle":"o2","target":"2","targetHandle":"i0","id":"edge-0o2-2i0","data":{"type":"float"}},{"type":"custom","source":"0","sourceHandle":"o3","target":"2","targetHandle":"i1","id":"edge-0o3-2i1","data":{"type":"float"}},{"type":"custom","source":"2","sourceHandle":null,"target":"4","targetHandle":"i1","id":"edge-2-4i1","data":{"type":"float"}},{"type":"custom","source":"5","sourceHandle":null,"target":"4","targetHandle":"i0","id":"edge-5-4i0","data":{"type":"float"}},{"type":"custom","source":"1","sourceHandle":null,"target":"6","targetHandle":"i1","id":"edge-1-6i1","data":{"type":"int"}},{"type":"custom","source":"0","sourceHandle":"o0","target":"6","targetHandle":"i0","id":"edge-0o0-6i0","data":{"type":"int"}},{"type":"custom","source":"6","sourceHandle":null,"target":"5","targetHandle":"i0","id":"edge-6-5i0","data":{"type":"int"}},{"type":"custom","source":"1","sourceHandle":null,"target":"5","targetHandle":"i1","id":"edge-1-5i1","data":{"type":"int"}}]}],"types":[]}
+{
+    "functions": [
+        {
+            "name": "main",
+            "input": "csv",
+            "output": "csv",
+            "nodes": [
+                {
+                    "id": "0",
+                    "type": "split",
+                    "position": {
+                        "x": 150,
+                        "y": 80
+                    },
+                    "data": {
+                        "name": "split_csv",
+                        "input": [
+                            "csv"
+                        ],
+                        "output": [
+                            "int",
+                            "int",
+                            "float",
+                            "float",
+                            "int"
+                        ]
+                    },
+                    "width": 231,
+                    "height": 58,
+                    "selected": false,
+                    "dragging": false
+                },
+                {
+                    "id": "1",
+                    "type": "calculation",
+                    "position": {
+                        "x": 250,
+                        "y": 240
+                    },
+                    "data": {
+                        "name": "add",
+                        "input": [
+                            "int",
+                            "int"
+                        ],
+                        "output": [
+                            "int"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 82,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 272,
+                        "y": 249
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "2",
+                    "type": "calculation",
+                    "position": {
+                        "x": 450,
+                        "y": 240
+                    },
+                    "data": {
+                        "name": "mult",
+                        "input": [
+                            "float",
+                            "float"
+                        ],
+                        "output": [
+                            "float"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 82,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 428.6452481678074,
+                        "y": 249.70343720833117
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "4",
+                    "type": "assemble",
+                    "position": {
+                        "x": 300,
+                        "y": 680
+                    },
+                    "data": {
+                        "name": "assemble_csv",
+                        "input": [
+                            "int",
+                            "float"
+                        ],
+                        "output": [
+                            "csv"
+                        ]
+                    },
+                    "width": 124,
+                    "height": 34,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 280,
+                        "y": 689
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "5",
+                    "type": "calculation",
+                    "position": {
+                        "x": 200,
+                        "y": 540
+                    },
+                    "data": {
+                        "name": "add",
+                        "input": [
+                            "int",
+                            "int"
+                        ],
+                        "output": [
+                            "int"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 82,
+                    "selected": true,
+                    "positionAbsolute": {
+                        "x": 188,
+                        "y": 545
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "6",
+                    "type": "calculation",
+                    "position": {
+                        "x": 100,
+                        "y": 400
+                    },
+                    "data": {
+                        "name": "add",
+                        "input": [
+                            "int",
+                            "int"
+                        ],
+                        "output": [
+                            "int"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 82,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 87,
+                        "y": 391
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "7",
+                    "type": "constant",
+                    "position": {
+                        "x": 500,
+                        "y": 600
+                    },
+                    "data": {
+                        "name": "constant"
+                    },
+                    "width": 100,
+                    "height": 82,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 87,
+                        "y": 391
+                    },
+                    "dragging": false
+                }
+            ],
+            "edges": [
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o0",
+                    "target": "1",
+                    "targetHandle": "i0",
+                    "id": "edge-0o0-1i0",
+                    "data": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o1",
+                    "target": "1",
+                    "targetHandle": "i1",
+                    "id": "edge-0o1-1i1",
+                    "data": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o2",
+                    "target": "2",
+                    "targetHandle": "i0",
+                    "id": "edge-0o2-2i0",
+                    "data": {
+                        "type": "float"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o3",
+                    "target": "2",
+                    "targetHandle": "i1",
+                    "id": "edge-0o3-2i1",
+                    "data": {
+                        "type": "float"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "2",
+                    "sourceHandle": null,
+                    "target": "4",
+                    "targetHandle": "i1",
+                    "id": "edge-2-4i1",
+                    "data": {
+                        "type": "float"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "5",
+                    "sourceHandle": null,
+                    "target": "4",
+                    "targetHandle": "i0",
+                    "id": "edge-5-4i0",
+                    "data": {
+                        "type": "float"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "1",
+                    "sourceHandle": null,
+                    "target": "6",
+                    "targetHandle": "i1",
+                    "id": "edge-1-6i1",
+                    "data": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o0",
+                    "target": "6",
+                    "targetHandle": "i0",
+                    "id": "edge-0o0-6i0",
+                    "data": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "6",
+                    "sourceHandle": null,
+                    "target": "5",
+                    "targetHandle": "i0",
+                    "id": "edge-6-5i0",
+                    "data": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "1",
+                    "sourceHandle": null,
+                    "target": "5",
+                    "targetHandle": "i1",
+                    "id": "edge-1-5i1",
+                    "data": {
+                        "type": "int"
+                    }
+                }
+            ]
+        }
+    ],
+    "types": []
+}
