@@ -15,26 +15,11 @@ function App() {
   // selected file from GetFileButton Comp
   // and clear file with NewFileButton Comp
   const [file, setFile] = useState(null);
-  const [selected, setSelected] = useState(null);
+  const [selectedFunction, setSelectedFunction] = useState(null);
 
   useEffect(() => {
-    console.log("file", file);
-    console.log("selected", selected);
-    if (!selected) return;
-    const newFile = {
-      ...file,
-      [selected.type]: file[selected.type].map((item) => {
-        if (item.name === selected.name)
-          return {
-            ...item,
-            nodes: selected.nodes,
-            edges: selected.edges,
-          };
-        return { ...item };
-      }),
-    };
-    setFile(newFile);
-  }, [selected]);
+      console.log(file);
+  }, [file]);
 
   if (!file)
     return (

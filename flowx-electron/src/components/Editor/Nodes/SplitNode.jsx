@@ -49,32 +49,47 @@ function InputNode({ id, data, isConnectable }) {
     const updateNodeInternals = useUpdateNodeInternals();
 
     const changeType = (type) => (e) => {
-        data.setSelected((prev) => {
-            const newSelected = {...prev};
-            newSelected.edges = newSelected.edges.map((item) =>{
-                if(item.source === id && item.sourceHandle === "o"+selectRef.current.value) {
-                    return {...item, data:{...item.data, type}};
+        data.setFile((file) => ({
+            ...file,
+            functions: file.functions.map((func) => {
+                if (func.name === data.selectedFunction) {
+                    const newSelected = {...func};
+                    newSelected.edges = newSelected.edges.map((item) =>{
+                        if(item.source === id && item.sourceHandle === "o"+selectRef.current.value) {
+                            return {...item, data:{...item.data, type}};
+                        }
+                        return item;
+                    });
+                    newSelected.nodes.find((item) => item.id === id).data.output[selectRef.current.value] = type;
+
+                    return newSelected;
                 }
-                return item;
-            });
-            newSelected.nodes.find((item) => item.id === id).data.output[selectRef.current.value] = type;
-            return newSelected;
-        });
+                return func;
+            })
+        }));
         updateNodeInternals(id);
         selectRef.current.style.display = "none";
     }
 
     const deleteType = () => (e) => {
-        const newSelected = {...data.selected};
+        const newSelected = {...data.file.functions.find((item) => item.name === data.selectedFunction)};
         newSelected.edges = newSelected.edges.filter((item) => item.source !== id || item.sourceHandle !== "o"+selectRef.current.value);
         newSelected.nodes.find((item) => item.id === id).data.output.splice(selectRef.current.value,1);
-        data.setSelected(newSelected);
+        data.setFile((prev) => {
+            const newFile = {...prev};
+            newFile.functions = newFile.functions.map((item) => {
+                if(item.name === data.selectedFunction) {
+                    return newSelected;
+                }
+                return item;
+            });
+            return newFile;
+        });
         selectRef.current.style.display = "none";
     }
 
     return (
-        /* pa for padding split node */
-        <NodeWrapper id={id} setSelected={data.setSelected} pa>
+        <NodeWrapper id={id} selectedFunction={data.selectedFunction} file={data.file} setFile={data.setFile}>
             <div>
                 {data.name}
             </div>

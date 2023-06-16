@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { Position } from "reactflow";
+import { Position, useUpdateNodeInternals } from "reactflow";
 import {
   NodeWrapper,
   IOWrapper,
@@ -49,6 +49,7 @@ function TurnSquare({ locRight, ...restProps }) {
  * 옆구리에다가 data.locRight를 기준으로 간선들을 만들것이다.
  */
 const BranchNode = ({ id, data }) => {
+  const updateNodeInternals = useUpdateNodeInternals();
   return (
     <NodeWrapper id={id} setSelected={data.setSelected} bigBox>
       <IOWrapper>
@@ -133,7 +134,7 @@ const BranchNode = ({ id, data }) => {
 
       <TurnSquare
         locRight={!!data?.locRight}
-        onClick={(e) =>
+        onClick={(e) =>{
           data.setSelected((slt) => {
             const connectedNode = slt.nodes.find(
               (e) => e.id === id
@@ -153,7 +154,8 @@ const BranchNode = ({ id, data }) => {
               ],
             };
           })
-        }
+          updateNodeInternals(id);
+        }}
       />
     </NodeWrapper>
   );

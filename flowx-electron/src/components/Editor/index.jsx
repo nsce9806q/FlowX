@@ -1,5 +1,5 @@
-import { useRef, useCallback, useMemo } from 'react';
-import ReactFlow, { applyEdgeChanges, applyNodeChanges } from 'reactflow';
+import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
+import ReactFlow, { Panel, applyEdgeChanges, applyNodeChanges } from 'reactflow';
 import CalculationNode from './Nodes/CalculationNode';
 import SplitNode from './Nodes/SplitNode';
 import AssembleNode from './Nodes/AssembleNode';
@@ -18,7 +18,7 @@ import 'reactflow/dist/style.css';
  *  output: string, type: string}} props.selected - Selected node information.
  * @param {Function} props.setSelected - Function to set the selected node.
  */
-function Editor({ selected, setSelected }) {
+function Editor({ selectedFunction, file, setFile }) {
     const nodeTypes = useMemo(() => ({
         split: SplitNode,
         calculation: CalculationNode,
@@ -33,7 +33,6 @@ function Editor({ selected, setSelected }) {
     }), []);
 
     const edgeTypes = { custom: CustomEdge, additional: AditionalEdge };
-
     const contextMenuRef = useRef(null);
     const onNodesChange = useCallback(
         (changes) => {
@@ -41,14 +40,36 @@ function Editor({ selected, setSelected }) {
                 const {x, y} = changes[0].position;
                 changes[0].position = {x:Math.round(x/50)*50,y:Math.round(y/20)*20};
             }
-            setSelected((slt) => ({...slt, nodes: applyNodeChanges(changes, slt.nodes)}))
+            setFile((pre) => ({
+                ...pre,
+                functions: pre.functions.map((func) => {
+                    if(func.name === selectedFunction){
+                        return {
+                            ...func,
+                            nodes: applyNodeChanges(changes, func.nodes)
+                        }
+                    }
+                    return func;
+                })
+            }));
         },
-        [setSelected]
+        [file]
     );
 
     const onEdgesChange = useCallback(
-        (changes) => setSelected((slt) => ({...slt,edges:applyEdgeChanges(changes, slt.edges)})),
-        [setSelected]
+        (changes) => setFile((pre) => ({
+            ...pre,
+            functions: pre.functions.map((func) => {
+                if(func.name === selectedFunction){
+                    return {
+                        ...func,
+                        edges: applyEdgeChanges(changes, func.edges)
+                    }
+                }
+                return func;
+            })
+        })),
+        [file]
     );
 
     // valid한 연결인지 확인하는 함수
@@ -58,6 +79,7 @@ function Editor({ selected, setSelected }) {
     const isValidConnection = useCallback(
         (edge) => {
             // 같은 에지가 있으면 이를 추가해서는 안된다.
+            const selected = file.functions.find(e=>e.name===selectedFunction);
             if(selected.edges.find(e=>(e.target == edge.target && e.targetHandle == edge.targetHandle)))
                 return false;
             
@@ -90,66 +112,83 @@ function Editor({ selected, setSelected }) {
                 return true;
             return false;
         },
-        [selected]
+        [file]
     );
 
     // 간선을 연결할 때 쓰이는 함수
     const onConnect = useCallback(
-        (connection) => setSelected((slt) => {
-            const target = selected.nodes.find(e=>e.id === connection.target);
-            const source = selected.nodes.find(e=>e.id === connection.source);
+        (connection) => {
+            const selected = file.functions.find(e=>e.name===selectedFunction);
+            const target = selected.nodes.find(e=>e.id==connection.target);
+            const source = selected.nodes.find(e=>e.id==connection.source);
             const inputType = source.data.output[Number(connection.sourceHandle?.slice(1)??0)];
-            const {input : possibleInputs ,output : possibleOutputs} = defaultFunctions[target.data.name];
             const inputIndex = Number(connection.targetHandle?.slice(1)??0);
             const currentInput = target.data.input;
             const newInput = [...currentInput];
             newInput[inputIndex] = inputType;
+            console.log(target.type,target.type==="assemble");
             if(target.type==="assemble")
-                return {
-                    ...slt,
-                    edges:[
-                        ...slt.edges,
-                        {
-                            ...connection,
-                            id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
-                            data: {type: slt.nodes.find(e=>e.id === connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+                return setFile((pre) => ({
+                    ...pre,
+                    functions: pre.functions.map((func) => {
+                        if(func.name === selectedFunction){
+                            return {
+                                ...func,
+                                edges:[
+                                    ... func.edges,
+                                    {
+                                        ...connection,
+                                        id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
+                                        data: {type: selected.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+                                    }
+                                ],
+                                nodes: func.nodes.map((node) => {
+                                    if(node.id === connection.target){
+                                        return {...node,data:{...node.data,input:newInput}};
+                                    }
+                                    return node;
+                                })
+                            }
                         }
-                    ],
-                    nodes: slt.nodes.map((node) => {
-                        if(node.id === connection.target){
-                            return {...node,data:{...node.data,input:newInput}};
-                        }
-                        return node;
+                        return func;
                     })
-                }
-
-            let newOutput = [...target.data.output];
+                }));
+            const {input : possibleInputs ,output : possibleOutputs} = defaultFunctions[target.data.name];
+            const newOutput = [...target.data.output];
             const outputIndex = possibleInputs.findIndex(e=>e.every((v,i)=>v===newInput[i]));
             if(outputIndex>=0)
-                newOutput = [possibleOutputs[outputIndex]];
-            console.log(newInput,newOutput);
-            return {
-                ...slt,
-                edges:[
-                    ...slt.edges,
-                    {
-                        ...connection,
-                        id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
-                        data: {type: slt.nodes.find(e=>e.id === connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+                newOutput[0] = possibleOutputs[outputIndex];
+            
+            setFile((pre) => ({
+                ...pre,
+                functions: pre.functions.map((func) => {
+                    if(func.name === selectedFunction){
+                        return {
+                            ...func,
+                            edges:[
+                                ... func.edges,
+                                {
+                                    ...connection,
+                                    id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
+                                    data: {type: selected.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+                                }
+                            ],
+                            nodes: func.nodes.map((node) => {
+                                if(node.id === connection.target){
+                                    return {...node,data:{...node.data,input:newInput,output:newOutput}};
+                                }
+                                return node;
+                            })
+                        }
                     }
-                ],
-                nodes: slt.nodes.map((node) => {
-                    if(node.id === connection.target){
-                        return {...node,data:{...node.data,input:newInput,output:newOutput}};
-                    }
-                    return node;
+                    return func;
                 })
-            }
-        }),
-        [selected]
+            }));
+        },
+        [file, setFile]
     );
 
-    if(!selected) return (<div style={{flexGrow:1,padding:"30px"}}>왼쪽에서 편집할 함수나 타입을 선택해주세요</div>);
+    if(!selectedFunction) return (<div style={{flexGrow:1,padding:"30px"}}>왼쪽에서 편집할 함수나 타입을 선택해주세요</div>);
 
     // 우클릭했을 때 component를 보이게 한다.
     const onContextMenu = (e) => {
@@ -159,12 +198,14 @@ function Editor({ selected, setSelected }) {
         contextMenuRef.current.style.top = e.clientY + "px";
     }
 
+    const selected = file.functions.find(e=>e.name===selectedFunction);
     const nodes = selected.nodes.map((node) => ({
         ...node,
         data: {
             ...node.data,
-            setSelected: setSelected,
-            selected: selected,
+            file: file,
+            setFile: setFile,
+            selectedFunction: selectedFunction,
         }
     }));
 
@@ -172,8 +213,9 @@ function Editor({ selected, setSelected }) {
         ...edge,
         data:{
             ...edge.data,
-            setSelected: setSelected,
-            selected: selected,
+            file: file,
+            setFile: setFile,
+            selectedFunction: selectedFunction,
         }
     }));
 
@@ -193,9 +235,11 @@ function Editor({ selected, setSelected }) {
                 }}
                 onContextMenu={onContextMenu}
                 onClick={(e)=>{contextMenuRef.current.style.display = "none";}}
-            />
-            {/* 메뉴 컴포넌트 */}
-            <SelectFunction setSelected={setSelected} contextMenuRef={contextMenuRef}/>
+            >
+                <Panel position="top-left">{selected.name}</Panel>
+            </ReactFlow>
+            {/* 우클릭 메뉴 컴포넌트 */}
+            <SelectFunction selectedFunction={selectedFunction} file={file} setFile={setFile} contextMenuRef={contextMenuRef}/>
         </div>
     );
 }

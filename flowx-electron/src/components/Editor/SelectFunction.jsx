@@ -58,19 +58,27 @@ const SelectFunctionWrapper = styled.div`
 `;
 //changes[0].position = {x:Math.round(x/50)*50,y:Math.round(y/20)*20};
 
-const SelectFunction = ({ setSelected, contextMenuRef }) => {
+const SelectFunction = ({ selectedFunction, file, setFile, contextMenuRef }) => {
     const onClick = (node,type)=>(e) => {
-        setSelected((slt) => ({
-            ...slt,
-            nodes: [
-                ...slt.nodes,
-                {
-                    id: (Number(slt.nodes[slt.nodes.length-1]?.id) + 1 || 0)+"",
-                    type: type,
-                    position: { x:Math.round((contextMenuRef.current.getBoundingClientRect().x-200)/50)*50, y: Math.round((contextMenuRef.current.getBoundingClientRect().y)/20)*20 },
-                    data: { name: node, input: new Array(defaultFunctions[node].input[0].length).fill(null), output: [] },
-                },
-            ],
+        setFile((file) => ({
+            ...file,
+            functions: file.functions.map((func) => {
+                if (func.name === selectedFunction) {
+                    return {
+                        ...func,
+                        nodes: [
+                            ...func.nodes,
+                            {
+                                id: (Number(func.nodes[func.nodes.length-1]?.id) + 1 || 0)+"",
+                                type: type,
+                                position: { x:Math.round((contextMenuRef.current.getBoundingClientRect().x-200)/50)*50, y: Math.round((contextMenuRef.current.getBoundingClientRect().y)/20)*20 },
+                                data: { name: node, input: new Array(defaultFunctions[node].input[0].length).fill(null), output: [] },
+                            },
+                        ],
+                    };
+                }
+                return func;
+            }),
         }));
         contextMenuRef.current.style.display = "none";
     }
@@ -80,6 +88,8 @@ const SelectFunction = ({ setSelected, contextMenuRef }) => {
         acc[defaultFunctions[cur].type].push(cur);
         return acc;
     }, {});
+
+   functionsGroupByType.custom = file.functions.map((func) => func.name).filter((name) => name !== selectedFunction);
 
     return (
         <SelectFunctionWrapper ref={contextMenuRef}>

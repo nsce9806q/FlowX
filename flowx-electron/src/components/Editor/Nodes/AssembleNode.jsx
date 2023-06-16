@@ -4,7 +4,7 @@ import defaultFunctions from '../../../spec/functions';
 
 function AssembleNode({ id, data, isConnectable }) {
     return (
-        <NodeWrapper id={id} setSelected={data.setSelected}>
+        <NodeWrapper id={id} selectedFunction={data.selectedFunction} file={data.file} setFile={data.setFile}>
             <IOWrapper>
                 <IOHandle type="target" position={Position.Top} id="i0" isConnectable={isConnectable}
                     text={""}

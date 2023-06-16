@@ -87,7 +87,7 @@ const StyledTreeItem = styled((props) => (
     },
 }));
 
-const FileSystemNavigator = ({ file, setSelected }) => {
+const FileSystemNavigator = ({ file, setSelectedFunction }) => {
     let nodeId = 1;
     const {fileName,path, ...files }= file;
     return (
@@ -123,10 +123,7 @@ const FileSystemNavigator = ({ file, setSelected }) => {
                                             <div
                                                 key={index}
                                                 onClick={() => 
-                                                    setSelected({
-                                                        type,
-                                                        ...e
-                                                    })
+                                                    setSelectedFunction(e.name)
                                                 }
                                                 style={{cursor:"pointer"}}
                                             >{e.name}</div>
