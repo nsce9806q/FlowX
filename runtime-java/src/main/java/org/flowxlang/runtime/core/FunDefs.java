@@ -35,6 +35,7 @@ public class FunDefs {
         regist("NEqualBool", new NEqualBool());
         regist("NotBool", new NotBool());
         regist("OrBool", new OrBool());
+        regist("XorBool", new XorBool());
 
         // float
         regist("AddFloat", new AddFloat());
@@ -66,6 +67,10 @@ public class FunDefs {
         regist("SubInt", new SubInt());
         regist("MaxInt", new MaxInt());
         regist("MinInt", new MinInt());
+        regist("AndInt", new AndInt());
+        regist("OrInt", new OrInt());
+        regist("XorInt", new XorInt());
+        regist("NotInt", new NotInt());
 
         // string
         regist("ConcatString", new ConcatString());
