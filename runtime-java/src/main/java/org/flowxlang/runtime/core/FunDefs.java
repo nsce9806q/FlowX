@@ -76,6 +76,8 @@ public class FunDefs {
         regist("ConcatString", new ConcatString());
         regist("EqualString", new EqualString());
         regist("NEqualString", new NEqualString());
+        regist("LengthString", new LengthString());
+        regist("IncludesString", new IncludesString());
 
         // select
         regist("SelectBool", new SelectBool());
@@ -110,6 +112,10 @@ public class FunDefs {
         regist("ErrorToFloat", new ErrorToFloat());
         regist("ErrorToString", new ErrorToString());
         regist("ErrorToBool", new ErrorToBool());
+        regist("ErrorToNullInt", new ErrorToNullInt());
+        regist("ErrorToNullFloat", new ErrorToNullFloat());
+        regist("ErrorToNullString", new ErrorToNullString());
+        regist("ErrorToNullBool", new ErrorToNullBool());
 
         // panic
         regist("PanicInt", new PanicInt());

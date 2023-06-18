@@ -10,12 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc432626-75c0-4aad-be05-dd8190e3bd69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/boolfunc/XorBool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/AndInt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/NotInt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/OrInt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/XorInt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/FunNameConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorToNullBool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorToNullFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorToNullInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorToNullString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/IncludesString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/LengthString.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" afterDir="false" />
     </list>
@@ -117,11 +117,11 @@
       <recent name="C:\Users\DELL\Desktop\FlowX\runtime-java\src\main\java" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.flowxlang.runtime.function.defaults.errorable" />
+      <recent name="org.flowxlang.runtime.function.defaults.stringfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.intfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.boolfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.panic" />
-      <recent name="org.flowxlang.runtime.function.defaults.errorable" />
-      <recent name="org.flowxlang.runtime.function.defaults.nullable" />
     </key>
   </component>
   <component name="RunManager" selected="JAR Application.runtime-java-1.0-SNAPSHOT.jar">
