@@ -15,24 +15,32 @@ public class ProgramGenerator {
         this.jsonProgram = jsonProgram;
     }
 
-    public boolean generate() {
-        try {
-            JSONFunction[] functions = jsonProgram.getFunctions();
+    public String[][] generate() throws Exception {
+        String[][] ioType = new String[2][];
+        JSONFunction[] functions = jsonProgram.getFunctions();
 
-            // regist functions
-            for (JSONFunction function : functions) {
-                FunDefs.getInstance().regist(function.getName());
-            }
+        // regist functions
+        for (JSONFunction function : functions) {
+            FunDefs.getInstance().regist(function.getName());
 
-            // generate functions
-            for (JSONFunction function : functions) {
-                generateFunction((function));
+            if (function.getName().compareTo("main") == 0) {
+                for (JSONNode node : function.getNodes()) {
+                    if (node.getId().compareTo("input") == 0) {
+                        ioType[0] = node.getData().getOutput();
+                    }
+                    else if (node.getId().compareTo("output") == 0) {
+                        ioType[1] = node.getData().getInput();
+                    }
+                }
             }
         }
-        catch (Exception e) {
-            return false;
+
+        // generate functions
+        for (JSONFunction function : functions) {
+            generateFunction((function));
         }
-        return true;
+
+        return ioType;
     }
 
     private void generateFunction(JSONFunction function) throws Exception {

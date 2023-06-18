@@ -17,22 +17,25 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args){
-        // load
-        ProgramLoader loader = new ProgramLoader();
-        loader.load("./testfile/program.json");
-        JSONProgram jsonProgram = loader.parse();
+        try {
+            // load
+            ProgramLoader loader = new ProgramLoader();
+            loader.load("./testfile/program.json");
+            JSONProgram jsonProgram = loader.parse();
 
-        // generate
-        ProgramGenerator programGenerator = new ProgramGenerator(jsonProgram);
-        boolean success = programGenerator.generate();
+            // generate
+            ProgramGenerator programGenerator = new ProgramGenerator(jsonProgram);
+            String[][] ioType = programGenerator.generate();
 
-        if (success == false) {
-            System.err.println("program generation failed");
-            return;
+            for (String a : ioType[1])
+                System.out.println(a);
+
+            // execute
+            ProgramExecuter executer = new ProgramExecuter();
+            executer.execute();
         }
-
-        // execute
-        ProgramExecuter executer = new ProgramExecuter();
-        executer.execute();
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

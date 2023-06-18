@@ -74,7 +74,7 @@ public class FunNameConverter {
             "mod", "concat", "length", "includes", "regexTest"
     };
 
-    public static String convertName(String name, String[] input) {
+    public static String convertName(String name, String[] input) throws Exception {
         // typeA : <name><type> with input[0]
         for (String f : typeA) {
             if (name.compareTo(f) == 0) {
