@@ -18,9 +18,14 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args){
         try {
+            if (args.length != 3) {
+                System.out.println("args.length isn't 3");
+                return;
+            }
+
             // load
             ProgramLoader loader = new ProgramLoader();
-            loader.load("./testfile/program.json");
+            loader.load(args[0]);
             JSONProgram jsonProgram = loader.parse();
 
             // generate
@@ -29,8 +34,8 @@ public class Main {
 
             // execute
             ProgramExecuter executer = new ProgramExecuter()
-                    .setInput(ioType[0], "./testfile/input.csv")
-                    .setOutput(ioType[1], "./testfile/output.csv")
+                    .setInput(ioType[0], args[1])
+                    .setOutput(ioType[1], args[2])
                     .execute();
         }
         catch (Exception e) {

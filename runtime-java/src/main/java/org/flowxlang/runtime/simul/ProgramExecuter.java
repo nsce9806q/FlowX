@@ -10,6 +10,7 @@ import org.flowxlang.runtime.type.notation.Nullable;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class ProgramExecuter {
@@ -35,6 +36,7 @@ public class ProgramExecuter {
         Column[] output;
         ArrayList<String> lines = new ArrayList();
 
+        // input
         File file = new File(inputPath);
         BufferedReader inFile = new BufferedReader(new FileReader(file));
         String str;
@@ -115,7 +117,11 @@ public class ProgramExecuter {
             }
         }
 
+        // calc
         output = FunDefs.getInstance().find("main").calc(input);
+
+        // output
+        FileWriter writer = new FileWriter(outputPath);
         for (int i = 0; i < lines.size(); i++) {
             String line = "";
 
@@ -163,9 +169,10 @@ public class ProgramExecuter {
                     line += ",";
             }
 
-            System.out.println(line);
+            writer.write(line + "\n");
         }
 
+        writer.close();
         return this;
     }
 }

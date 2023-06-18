@@ -19,6 +19,7 @@ public class ProgramLoader {
             while ((str = reader.readLine()) != null) {
                 jsonText += str;
             }
+            reader.close();
         }
         catch (Exception e) {
             System.err.printf("program json file exception : %s\n", e.getMessage());
