@@ -33,8 +33,11 @@ export const Runner = ({file}) => {
 
     const run = () => {
         const {path,fileName, ...realfile} = file;
-        realfile.csvPath = fileRef.current.files[0].path;
-        ipcRenderer.send('run', realfile);
+        
+        ipcRenderer.send('run', {
+            csvPath: fileRef.current.files[0].path,
+            programPath: path
+         });
     }
 
     const onChange = () => {
