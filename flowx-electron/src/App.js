@@ -35,7 +35,7 @@ function App() {
         style={{ minHeight: "calc(100% - 5rem)" }}
       >
         <div className="bg-gray-100" style={{ width: "200px" }}>
-            <FileExplorer file={file} setSelectedFunction={setSelectedFunction}/>
+            <FileExplorer file={file} setFile={setFile} selectedFunction={selectedFunction} setSelectedFunction={setSelectedFunction}/>
         </div>
         <Editor file={file} setFile={setFile} selectedFunction={selectedFunction}/>
       </div>

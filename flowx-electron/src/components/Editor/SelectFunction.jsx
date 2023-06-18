@@ -98,8 +98,7 @@ const SelectFunction = ({ selectedFunction, file, setFile, contextMenuRef }) => 
         acc[defaultFunctions[cur].type].push(cur);
         return acc;
     }, {});
-
-   functionsGroupByType.custom = file.functions.map((func) => func.name).filter((name) => name !== selectedFunction);
+   functionsGroupByType.custom = file.functions.map((func) => func.name).filter((name) => name !== selectedFunction&&name!=="main");
 
     return (
         <SelectFunctionWrapper ref={contextMenuRef}>

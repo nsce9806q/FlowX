@@ -16,7 +16,7 @@ export const newFile = () => ({
     ]
 });
 
-export const newFunction = (name,isMain) => ({
+export const newFunction = (name,isMain=false) => ({
     name,
     nodes: [
         {
