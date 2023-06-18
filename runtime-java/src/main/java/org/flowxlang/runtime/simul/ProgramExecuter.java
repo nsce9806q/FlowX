@@ -61,7 +61,9 @@ public class ProgramExecuter {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
             String[] values = line.split(",");
+
             for (int v = 0; v < inputType.length; v++) {
+                values[v] = values[v].trim();
                 if (inputType[v].compareTo("int!") == 0) {
                     if (values.length <= v) {
                         input[v].setValue(i, new Errorable<IntType>());
@@ -147,22 +149,22 @@ public class ProgramExecuter {
                 else if (outputType[v].compareTo("int?") == 0) {
                     Nullable<IntType> y = (Nullable<IntType>)x;
                     if (!y.getIsNull())
-                        line += y.getValue();
+                        line += y.getValue().getValue();
                 }
                 else if (outputType[v].compareTo("float?") == 0) {
                     Nullable<FloatType> y = (Nullable<FloatType>)x;
                     if (!y.getIsNull())
-                        line += y.getValue();
+                        line += y.getValue().getValue();
                 }
                 else if (outputType[v].compareTo("string?") == 0) {
                     Nullable<StringType> y = (Nullable<StringType>)x;
                     if (!y.getIsNull())
-                        line += y.getValue();
+                        line += y.getValue().getValue();
                 }
                 else if (outputType[v].compareTo("bool?") == 0) {
                     Nullable<BoolType> y = (Nullable<BoolType>)x;
                     if (!y.getIsNull())
-                        line += y.getValue();
+                        line += y.getValue().getValue();
                 }
 
                 if (v != outputType.length - 1)
