@@ -1,8 +1,10 @@
 package org.flowxlang.runtime.core;
 
+import org.flowxlang.runtime.function.Function;
 import org.flowxlang.runtime.function.custom.AnnotatedFunction;
 import org.flowxlang.runtime.function.custom.CustomFunction;
 import org.flowxlang.runtime.function.custom.Edge;
+import org.flowxlang.runtime.simul.ProgramLoader;
 import org.flowxlang.runtime.type.*;
 import org.flowxlang.runtime.type.column.Column;
 
@@ -33,30 +35,34 @@ public class Main {
                         new Edge("v2", 0, "o", 1))
         );
 
-        Column<IntType>[] output = FunDefs.getInstance().find("Main").calc(new Column[] {
-                new Column<IntType>(new IntType[] {
-                        new IntType(0),
-                        new IntType(1),
-                        new IntType(2),
-                        new IntType(3),
-                        new IntType(4),
-                        new IntType(5)
-                }),
-                new Column<IntType>(new IntType[] {
-                        new IntType(5),
-                        new IntType(4),
-                        new IntType(3),
-                        new IntType(2),
-                        new IntType(1),
-                        new IntType(0)
-            })
-        });
+        ProgramLoader loader = new ProgramLoader();
+        loader.load("./testfile/program.json");
+        loader.parse();
 
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < output[i].getRow(); j++) {
-                System.out.printf("%d ", output[i].getValue(j).getValue());
-            }
-            System.out.println();
-        }
+//        Column<IntType>[] output = FunDefs.getInstance().find("Main").calc(new Column[] {
+//                new Column<IntType>(new IntType[] {
+//                        new IntType(0),
+//                        new IntType(1),
+//                        new IntType(2),
+//                        new IntType(3),
+//                        new IntType(4),
+//                        new IntType(5)
+//                }),
+//                new Column<IntType>(new IntType[] {
+//                        new IntType(5),
+//                        new IntType(4),
+//                        new IntType(3),
+//                        new IntType(2),
+//                        new IntType(1),
+//                        new IntType(0)
+//            })
+//        });
+//
+//        for (int i = 0; i < 2; i++) {
+//            for (int j = 0; j < output[i].getRow(); j++) {
+//                System.out.printf("%d ", output[i].getValue(j).getValue());
+//            }
+//            System.out.println();
+//        }
     }
 }
