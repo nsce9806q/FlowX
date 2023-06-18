@@ -1,12 +1,13 @@
 package org.flowxlang.runtime.function.defaults;
 
 import org.flowxlang.runtime.function.Function;
+import org.flowxlang.runtime.function.defaults.panic.PanicException;
 import org.flowxlang.runtime.type.FuncType;
 import org.flowxlang.runtime.type.column.Column;
 
 public class Call extends Function {
     @Override
-    public Column[] calc(Column[] inputs) {
+    public Column[] calc(Column[] inputs) throws PanicException {
         Function func = ((FuncType)inputs[0].getValue(0)).getValue();
         Column[] inputs2 = new Column[inputs.length - 1];
 

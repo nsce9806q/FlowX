@@ -1,6 +1,7 @@
 package org.flowxlang.runtime.function.custom;
 
 import org.flowxlang.runtime.function.Function;
+import org.flowxlang.runtime.function.defaults.panic.PanicException;
 import org.flowxlang.runtime.type.column.Column;
 
 public class RuntimeNode {
@@ -11,7 +12,7 @@ public class RuntimeNode {
     private int inputCnt = 0;
     private String key;
 
-    public Column[] calc(Column[] inputs) {
+    public Column[] calc(Column[] inputs) throws PanicException {
         if (data != null)
             return value = function.calc(inputs, data);
         return value = function.calc(inputs);

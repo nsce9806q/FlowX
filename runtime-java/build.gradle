@@ -6,12 +6,6 @@ plugins {
 group 'org.flowxlang'
 version '1.0-SNAPSHOT'
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'org.flowxlang.runtime.core.Main'
-    }
-}
-
 repositories {
     mavenCentral()
 }
@@ -19,10 +13,18 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.flowxlang.runtime.core.Main'
+    }
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 mainClassName = 'org.flowxlang.runtime.core.Main'
