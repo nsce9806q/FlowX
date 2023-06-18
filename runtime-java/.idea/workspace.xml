@@ -11,9 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bc432626-75c0-4aad-be05-dd8190e3bd69" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramExecuter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramExecuter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testfile/input.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testfile/input.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testfile/output.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testfile/output.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testfile/program.json" beforeDir="false" afterPath="$PROJECT_DIR$/testfile/program.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
