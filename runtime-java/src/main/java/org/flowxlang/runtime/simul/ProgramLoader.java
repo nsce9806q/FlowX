@@ -21,16 +21,15 @@ public class ProgramLoader {
             }
         }
         catch (Exception e) {
-            System.out.printf("program json file exception : %s\n", e.getMessage());
+            System.err.printf("program json file exception : %s\n", e.getMessage());
         }
     }
 
-    public void parse() {
+    public JSONProgram parse() {
         if (jsonText.compareTo("") != 0) {
             Gson gson = new GsonBuilder().create();
-            JSONProgram program = gson.fromJson(jsonText, JSONProgram.class);
-            String id = program.getFunctions()[0].getNodes()[0].getId();
-            System.out.println(id);
+            return gson.fromJson(jsonText, JSONProgram.class);
         }
+        return null;
     }
 }

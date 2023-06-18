@@ -10,21 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc432626-75c0-4aad-be05-dd8190e3bd69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/build.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/com.google.code.gson/gson/2.10.1/runtime-java.com.google.code.gson.gson.2.10.1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/com.google.code.gson/gson/runtime-java.com.google.code.gson.gson.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/com.google.code.gson/runtime-java.com.google.code.gson.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/runtime-java.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/runtime-java.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/runtime-java.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/runtime-java.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramExecuter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONEdge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONNodeData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
