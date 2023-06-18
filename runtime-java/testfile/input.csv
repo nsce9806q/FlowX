@@ -1,0 +1,5 @@
+1,1,1.0,"hi",true
+1,2,2.0,"hello",false
+4,7,0.1,,true
+,,0.5,,true
+5,,0.862,,false

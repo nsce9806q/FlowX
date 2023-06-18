@@ -27,14 +27,14 @@ public class Main {
             ProgramGenerator programGenerator = new ProgramGenerator(jsonProgram);
             String[][] ioType = programGenerator.generate();
 
-            for (String a : ioType[1])
-                System.out.println(a);
-
             // execute
-            ProgramExecuter executer = new ProgramExecuter();
-            executer.execute();
+            ProgramExecuter executer = new ProgramExecuter()
+                    .setInput(ioType[0], "./testfile/input.csv")
+                    .setOutput(ioType[1], "./testfile/output.csv")
+                    .execute();
         }
         catch (Exception e) {
+            e.printStackTrace();
             System.err.println(e.getMessage());
         }
     }
