@@ -1,6 +1,7 @@
 package org.flowxlang.runtime.function.custom;
 
 import org.flowxlang.runtime.function.Function;
+import org.flowxlang.runtime.function.defaults.panic.PanicException;
 import org.flowxlang.runtime.type.Type;
 import org.flowxlang.runtime.type.column.Column;
 
@@ -26,7 +27,7 @@ public class CustomFunction extends Function {
     }
 
     @Override
-    public Column[] calc(Column[] inputs) {
+    public Column[] calc(Column[] inputs) throws PanicException {
         Map<String, RuntimeNode> runtimeNodes = new HashMap<>();
         Stack<RuntimeNode> stack = new Stack<>();
         int outputCnt = 0;

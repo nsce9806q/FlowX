@@ -10,15 +10,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc432626-75c0-4aad-be05-dd8190e3bd69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramExecuter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONEdge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONNodeData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorBool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorToBool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorToFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorToInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/errorable/ErrorToString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/MaxFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/MinFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/MaxInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/MinInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/nullable/NullBool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/nullable/NullFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/nullable/NullInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/nullable/NullString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/nullable/NullToBool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/nullable/NullToFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/nullable/NullToInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/nullable/NullToString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/panic/PanicBool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/panic/PanicException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/panic/PanicFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/panic/PanicInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/panic/PanicString.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/jsonobj/JSONNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/CustomFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/CustomFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/RuntimeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/custom/RuntimeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/Call.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/Call.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +140,11 @@
       <recent name="C:\Users\DELL\Desktop\FlowX\runtime-java\src\main\java" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.flowxlang.runtime.function.defaults" />
+      <recent name="org.flowxlang.runtime.function.defaults.panic" />
+      <recent name="org.flowxlang.runtime.function.defaults.errorable" />
+      <recent name="org.flowxlang.runtime.function.defaults.nullable" />
+      <recent name="org.flowxlang.runtime.function.defaults.floatfunc" />
+      <recent name="org.flowxlang.runtime.function.defaults.intfunc" />
     </key>
   </component>
   <component name="RunManager" selected="JAR Application.runtime-java-1.0-SNAPSHOT.jar">

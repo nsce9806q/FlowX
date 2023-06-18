@@ -8,6 +8,9 @@ import org.flowxlang.runtime.function.defaults.*;
 import org.flowxlang.runtime.function.defaults.conversion.*;
 import org.flowxlang.runtime.function.defaults.intfunc.*;
 import org.flowxlang.runtime.function.defaults.floatfunc.*;
+import org.flowxlang.runtime.function.defaults.nullable.*;
+import org.flowxlang.runtime.function.defaults.errorable.*;
+import org.flowxlang.runtime.function.defaults.panic.*;
 import org.flowxlang.runtime.function.defaults.select.*;
 import org.flowxlang.runtime.function.defaults.stringfunc.*;
 import org.flowxlang.runtime.function.defaults.boolfunc.*;
@@ -45,6 +48,8 @@ public class FunDefs {
         regist("NegateFloat", new NegateFloat());
         regist("NEqualFloat", new NEqualFloat());
         regist("SubFloat", new SubFloat());
+        regist("MaxFloat", new MaxFloat());
+        regist("MinFloat", new MinFloat());
 
         // int
         regist("AddInt", new AddInt());
@@ -59,6 +64,8 @@ public class FunDefs {
         regist("NegateInt", new NegateInt());
         regist("NEqualInt", new NEqualInt());
         regist("SubInt", new SubInt());
+        regist("MaxInt", new MaxInt());
+        regist("MinInt", new MinInt());
 
         // string
         regist("ConcatString", new ConcatString());
@@ -78,6 +85,32 @@ public class FunDefs {
         regist("IntToString", new IntToString());
         regist("StringToFloat", new StringToFloat());
         regist("StringToInt", new StringToInt());
+
+        // nullable
+        regist("NullInt", new NullInt());
+        regist("NullFloat", new NullFloat());
+        regist("NullString", new NullString());
+        regist("NullBool", new NullBool());
+        regist("NullToInt", new NullToInt());
+        regist("NullToFloat", new NullToFloat());
+        regist("NullToString", new NullToString());
+        regist("NullToBool", new NullToBool());
+
+        // errorable
+        regist("ErrorInt", new ErrorInt());
+        regist("ErrorFloat", new ErrorFloat());
+        regist("ErrorString", new ErrorString());
+        regist("ErrorBool", new ErrorBool());
+        regist("ErrorToInt", new ErrorToInt());
+        regist("ErrorToFloat", new ErrorToFloat());
+        regist("ErrorToString", new ErrorToString());
+        regist("ErrorToBool", new ErrorToBool());
+
+        // panic
+        regist("PanicInt", new PanicInt());
+        regist("PanicFloat", new PanicFloat());
+        regist("PanicString", new PanicString());
+        regist("PanicBool", new PanicBool());
 
         // etc
         regist("Call", new Call());
