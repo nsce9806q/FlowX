@@ -30,7 +30,7 @@ function Editor({ selectedFunction, file, setFile }) {
         stringOperation: CalculationNode,
         typeConversion: CalculationNode,
         branch: BranchNode,
-        errorHandling: CalculationNode,
+        "null/errorHandling": CalculationNode,
         constant: ConstantNode,
         custom: CustomNode,
         assemble: AssembleNode,
@@ -109,11 +109,6 @@ function Editor({ selectedFunction, file, setFile }) {
             const currentInput = target.data.input;
             const newInput = currentInput
                 .map((e,i)=>i===inputIndex?inputType:e)
-                .map(e=>{
-                    if(target.type==="custom")
-                        return e;
-                    return e?e.replace("?",""):null
-                });
 
             /**
              * newInput = ["int", null, "int"]
@@ -163,18 +158,12 @@ function Editor({ selectedFunction, file, setFile }) {
                 updateNodeInternals(connection.target);
                 return;
             }
-            const newInputWithoutNull = newInput.map(e=>e?e.replace("?",""):null);
             const {input : possibleInputs ,output : possibleOutputs} = getPossibleInputOutput(target.type, target.data.name);
             let newOutput = [...target.data.output];
-            const outputIndexWithoutNull = possibleInputs.findIndex(e=>e.every((v,i)=>v===newInputWithoutNull[i]));
-            if(outputIndexWithoutNull>=0){
-                const isErrorable = possibleOutputs[outputIndexWithoutNull].includes("!");
-                newOutput = [possibleOutputs[outputIndexWithoutNull].replace(/[?!]/g,"")+"?"+(isErrorable?"!":"")];
-            }
             const outputIndex = possibleInputs.findIndex(e=>e.every((v,i)=>v===newInput[i]));
             if(outputIndex>=0)
                 newOutput = [possibleOutputs[outputIndex]];
-            if((outputIndexWithoutNull>=0||outputIndex>=0)&&target.type==="custom")
+            if(outputIndex>=0&&target.type==="custom")
                 newOutput = possibleOutputs;
             
             setSelectedFunction(

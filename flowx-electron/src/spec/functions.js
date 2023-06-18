@@ -48,6 +48,10 @@ const functions = {
       ],
       output: ["int", "float"],
     },
+    negate: {
+      input: [["int"], ["float"]],
+      output: ["int", "float"],
+    }
   },
   compare: {
     equal: {
@@ -192,7 +196,7 @@ const functions = {
       output: ["int!", "float!", "string!", "bool!"],
     },
   },
-  errorHandling: {
+  "null/errorHandling": {
     errorToValue: {
       input: [
         ["int!", "int"],
@@ -205,6 +209,19 @@ const functions = {
     errorToNull: {
       input: [["int!"], ["float!"], ["string!"], ["bool!"]],
       output: ["int?", "float?", "string?", "bool?"],
+    },
+    nullToError: {
+      input: [["int?"], ["float?"], ["string?"], ["bool?"]],
+      output: ["int!", "float!", "string!", "bool!"],
+    },
+    nullToValue: {
+      input: [
+        ["int?", "int"],
+        ["float?", "float"],
+        ["string?", "string"],
+        ["bool?", "bool"],
+      ],
+      output: ["int", "float", "string", "bool"],
     },
     panic: {
       input: [["int!"], ["float!"], ["string!"], ["bool!"]],

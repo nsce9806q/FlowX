@@ -32,7 +32,7 @@ function ConstantNode({ id, data }) {
             <div>
                 {data.name}
             </div>
-            <InputBox type="text" value={data.value} size={1} onChange={(e) => {
+            <InputBox type="text" value={data.value} size={(data.value+"").length+1} onChange={(e) => {
               e.target.size = e.target.value.length + 1;
               setSelectedFunction(
                 data.setFile,
