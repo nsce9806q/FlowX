@@ -15,9 +15,11 @@ public abstract class Function {
 
     protected int getRow(Column[] inputs) {
         int row = 0;
-        for (Column col : inputs)
+        int a = 0;
+        for (Column col : inputs) {
             if (row < col.getRow())
                 row = col.getRow();
+        }
         return row;
     }
 }

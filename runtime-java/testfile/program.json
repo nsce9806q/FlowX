@@ -13,291 +13,58 @@
                     "data": {
                         "name": "split_csv",
                         "output": [
-                            "int!",
-                            "int!",
-                            "float!",
                             "string!",
-                            "bool!"
+                            "int!",
+                            "int!",
+                            "string!"
                         ]
                     },
-                    "width": 249,
+                    "width": 208,
                     "height": 57,
                     "selected": false,
                     "dragging": false,
                     "positionAbsolute": {
-                        "x": 150,
-                        "y": 79
+                        "x": 151,
+                        "y": 80
                     }
                 },
                 {
                     "id": "output",
                     "type": "assemble",
                     "position": {
-                        "x": 250,
-                        "y": 1140
+                        "x": 350,
+                        "y": 840
                     },
                     "data": {
                         "name": "assemble_csv",
                         "input": [
-                            "int",
-                            "int?",
-                            "int?",
-                            "int",
-                            "int",
-                            "int?"
+                            "string",
+                            "int"
                         ],
                         "output": [
                             null
                         ]
                     },
-                    "width": 171,
+                    "width": 104,
                     "height": 52,
                     "selected": false,
                     "positionAbsolute": {
-                        "x": 274,
-                        "y": 1132
+                        "x": 370.72571648865335,
+                        "y": 843.6397467637971
                     },
                     "dragging": false
                 },
                 {
-                    "id": "1",
-                    "type": "calculation",
+                    "id": "0",
+                    "type": "custom",
                     "position": {
                         "x": 150,
-                        "y": 420
+                        "y": 480
                     },
                     "data": {
-                        "name": "add",
+                        "name": "isPhone",
                         "input": [
-                            "int",
-                            "int"
-                        ],
-                        "output": [
-                            "int"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 145.10483916822966,
-                        "y": 420.44805878441
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "2",
-                    "type": "constant",
-                    "position": {
-                        "x": 450,
-                        "y": 60
-                    },
-                    "data": {
-                        "name": "int",
-                        "value": "0",
-                        "output": [
-                            "int"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 78,
-                    "selected": false,
-                    "dragging": false,
-                    "positionAbsolute": {
-                        "x": 430,
-                        "y": 60
-                    }
-                },
-                {
-                    "id": "3",
-                    "type": "errorHandling",
-                    "position": {
-                        "x": 100,
-                        "y": 280
-                    },
-                    "data": {
-                        "name": "errorToValue",
-                        "input": [
-                            "int!",
-                            "int"
-                        ],
-                        "output": [
-                            "int"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 119.2524834402924,
-                        "y": 280.1113298684874
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "4",
-                    "type": "errorHandling",
-                    "position": {
-                        "x": 250,
-                        "y": 280
-                    },
-                    "data": {
-                        "name": "errorToValue",
-                        "input": [
-                            "int!",
-                            "int"
-                        ],
-                        "output": [
-                            "int"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 260.40793941861676,
-                        "y": 281.58508810168223
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "5",
-                    "type": "errorHandling",
-                    "position": {
-                        "x": 400,
-                        "y": 280
-                    },
-                    "data": {
-                        "name": "errorToNull",
-                        "input": [
-                            "float!"
-                        ],
-                        "output": [
-                            "float?"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 404.52219600328965,
-                        "y": 274.6270627609719
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "6",
-                    "type": "errorHandling",
-                    "position": {
-                        "x": 550,
-                        "y": 280
-                    },
-                    "data": {
-                        "name": "panic",
-                        "input": [
-                            "float!"
-                        ],
-                        "output": [
-                            "float"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 548.1585088101682,
-                        "y": 280.66434250676633
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "7",
-                    "type": "typeConversion",
-                    "position": {
-                        "x": 400,
-                        "y": 440
-                    },
-                    "data": {
-                        "name": "toInt",
-                        "input": [
-                            "float?"
-                        ],
-                        "output": [
-                            "int?"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 415.5711431422802,
-                        "y": 442.65737002706544
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "8",
-                    "type": "calculation",
-                    "position": {
-                        "x": 700,
-                        "y": 460
-                    },
-                    "data": {
-                        "name": "add",
-                        "input": [
-                            "float",
-                            "float"
-                        ],
-                        "output": [
-                            "float"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 682.9074870674089,
-                        "y": 455.4875900314272
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "9",
-                    "type": "branch",
-                    "position": {
-                        "x": 400,
-                        "y": 680
-                    },
-                    "data": {
-                        "name": "falseToError",
-                        "input": [
-                            "bool",
-                            "int?"
-                        ],
-                        "output": [
-                            "int?!"
-                        ]
-                    },
-                    "width": 121,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 391,
-                        "y": 689
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "10",
-                    "type": "errorHandling",
-                    "position": {
-                        "x": 700,
-                        "y": 280
-                    },
-                    "data": {
-                        "name": "panic",
-                        "input": [
-                            "bool!"
+                            "string"
                         ],
                         "output": [
                             "bool"
@@ -307,141 +74,261 @@
                     "height": 80,
                     "selected": false,
                     "positionAbsolute": {
-                        "x": 688.1799848516746,
-                        "y": 275.97848131333006
+                        "x": 150,
+                        "y": 476
                     },
                     "dragging": false
                 },
                 {
-                    "id": "11",
-                    "type": "calculation",
+                    "id": "1",
+                    "type": "null/errorHandling",
                     "position": {
-                        "x": 750,
-                        "y": 980
-                    },
-                    "data": {
-                        "name": "add",
-                        "input": [
-                            "int?",
-                            "int?"
-                        ],
-                        "output": [
-                            "int?"
-                        ]
-                    },
-                    "width": 100,
-                    "height": 80,
-                    "selected": false,
-                    "positionAbsolute": {
-                        "x": 744,
-                        "y": 984
-                    },
-                    "dragging": false
-                },
-                {
-                    "id": "12",
-                    "type": "errorHandling",
-                    "position": {
-                        "x": 500,
-                        "y": 820
+                        "x": 150,
+                        "y": 220
                     },
                     "data": {
                         "name": "errorToNull",
                         "input": [
-                            "int?!"
+                            "string!"
                         ],
                         "output": [
-                            "int?"
+                            "string?"
                         ]
                     },
                     "width": 100,
                     "height": 80,
                     "selected": false,
                     "positionAbsolute": {
-                        "x": 478,
-                        "y": 818
+                        "x": 150,
+                        "y": 214
                     },
                     "dragging": false
                 },
                 {
-                    "id": "13",
-                    "type": "branch",
+                    "id": "2",
+                    "type": "calculation",
                     "position": {
                         "x": 300,
-                        "y": 780
+                        "y": 380
                     },
                     "data": {
-                        "name": "select",
+                        "name": "add",
                         "input": [
-                            "bool?",
                             "int",
                             "int"
                         ],
                         "output": [
-                            "int?"
+                            "int"
                         ]
+                    },
+                    "width": 100,
+                    "height": 80,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 298,
+                        "y": 382
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "3",
+                    "type": "null/errorHandling",
+                    "position": {
+                        "x": 300,
+                        "y": 220
+                    },
+                    "data": {
+                        "name": "errorToValue",
+                        "input": [
+                            "int!",
+                            "int"
+                        ],
+                        "output": [
+                            "int"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 80,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 297,
+                        "y": 220
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "4",
+                    "type": "constant",
+                    "position": {
+                        "x": 400,
+                        "y": 80
+                    },
+                    "data": {
+                        "name": "int",
+                        "value": 0,
+                        "output": [
+                            "int"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 78,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 409,
+                        "y": 80
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "5",
+                    "type": "null/errorHandling",
+                    "position": {
+                        "x": 450,
+                        "y": 220
+                    },
+                    "data": {
+                        "name": "errorToValue",
+                        "input": [
+                            "int!",
+                            "int"
+                        ],
+                        "output": [
+                            "int"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 80,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 436,
+                        "y": 228
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "6",
+                    "type": "null/errorHandling",
+                    "position": {
+                        "x": 600,
+                        "y": 220
+                    },
+                    "data": {
+                        "name": "panic",
+                        "input": [
+                            "string!"
+                        ],
+                        "output": [
+                            "string"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 80,
+                    "selected": false,
+                    "positionAbsolute": {
+                        "x": 614,
+                        "y": 218
+                    },
+                    "dragging": false
+                },
+                {
+                    "id": "7",
+                    "type": "branch",
+                    "position": {
+                        "x": 150,
+                        "y": 620
+                    },
+                    "data": {
+                        "name": "select",
+                        "input": [
+                            "bool",
+                            "int",
+                            "int"
+                        ],
+                        "output": [
+                            "int"
+                        ],
+                        "locRight": true
                     },
                     "width": 100,
                     "height": 103,
                     "selected": false,
                     "positionAbsolute": {
-                        "x": 300,
-                        "y": 784.8549766228006
+                        "x": 146.18161519417214,
+                        "y": 617.2757720874173
                     },
                     "dragging": false
                 },
                 {
-                    "id": "14",
-                    "type": "compare",
+                    "id": "8",
+                    "type": "constant",
                     "position": {
-                        "x": 250,
-                        "y": 580
+                        "x": 450,
+                        "y": 380
                     },
                     "data": {
-                        "name": "greaterThan",
+                        "name": "int",
+                        "value": -1,
+                        "output": [
+                            "int"
+                        ]
+                    },
+                    "width": 100,
+                    "height": 78,
+                    "selected": false,
+                    "dragging": false,
+                    "positionAbsolute": {
+                        "x": 443,
+                        "y": 379
+                    }
+                },
+                {
+                    "id": "9",
+                    "type": "null/errorHandling",
+                    "position": {
+                        "x": 150,
+                        "y": 380
+                    },
+                    "data": {
+                        "name": "nullToValue",
                         "input": [
-                            "int",
-                            "int?"
+                            "string?",
+                            "string"
                         ],
                         "output": [
-                            "bool?"
+                            "string"
                         ]
                     },
                     "width": 100,
                     "height": 80,
                     "selected": false,
                     "positionAbsolute": {
-                        "x": 250,
-                        "y": 575.0893787616006
+                        "x": 148,
+                        "y": 370
                     },
                     "dragging": false
                 },
                 {
-                    "id": "15",
-                    "type": "custom",
+                    "id": "10",
+                    "type": "constant",
                     "position": {
                         "x": -50,
-                        "y": 700
+                        "y": 220
                     },
                     "data": {
-                        "name": "addsub",
-                        "input": [
-                            "int",
-                            "int"
-                        ],
+                        "name": "string",
+                        "value": "wrong number",
                         "output": [
-                            "int",
-                            "int"
+                            "string"
                         ]
                     },
-                    "width": 100,
-                    "height": 80,
+                    "width": 141,
+                    "height": 78,
                     "selected": false,
+                    "dragging": false,
                     "positionAbsolute": {
-                        "x": -43.94706918486659,
-                        "y": 700
-                    },
-                    "dragging": false
+                        "x": -42,
+                        "y": 218
+                    }
                 }
             ],
             "edges": [
@@ -449,20 +336,20 @@
                     "type": "custom",
                     "source": "input",
                     "sourceHandle": "o0",
-                    "target": "3",
+                    "target": "1",
                     "targetHandle": "i0",
-                    "id": "edge-inputo0-3i0",
+                    "id": "edge-inputo0-1i0",
                     "data": {
-                        "type": "int!"
+                        "type": "string!"
                     }
                 },
                 {
                     "type": "custom",
-                    "source": "2",
+                    "source": "4",
                     "sourceHandle": null,
                     "target": "3",
                     "targetHandle": "i1",
-                    "id": "edge-2-3i1",
+                    "id": "edge-4-3i1",
                     "data": {
                         "type": "int"
                     }
@@ -471,53 +358,20 @@
                     "type": "custom",
                     "source": "input",
                     "sourceHandle": "o1",
-                    "target": "4",
+                    "target": "3",
                     "targetHandle": "i0",
-                    "id": "edge-inputo1-4i0",
+                    "id": "edge-inputo1-3i0",
                     "data": {
                         "type": "int!"
                     }
                 },
                 {
                     "type": "custom",
-                    "source": "2",
-                    "sourceHandle": null,
-                    "target": "4",
-                    "targetHandle": "i1",
-                    "id": "edge-2-4i1",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "4",
-                    "sourceHandle": null,
-                    "target": "1",
-                    "targetHandle": "i1",
-                    "id": "edge-4-1i1",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
                     "source": "3",
                     "sourceHandle": null,
-                    "target": "1",
+                    "target": "2",
                     "targetHandle": "i0",
-                    "id": "edge-3-1i0",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "1",
-                    "sourceHandle": null,
-                    "target": "output",
-                    "targetHandle": "i0",
-                    "id": "edge-1-outputi0",
+                    "id": "edge-3-2i0",
                     "data": {
                         "type": "int"
                     }
@@ -530,62 +384,73 @@
                     "targetHandle": "i0",
                     "id": "edge-inputo2-5i0",
                     "data": {
-                        "type": "float!"
+                        "type": "int!"
                     }
                 },
                 {
                     "type": "custom",
-                    "source": "input",
-                    "sourceHandle": "o2",
-                    "target": "6",
-                    "targetHandle": "i0",
-                    "id": "edge-inputo2-6i0",
-                    "data": {
-                        "type": "float!"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "6",
+                    "source": "4",
                     "sourceHandle": null,
-                    "target": "8",
+                    "target": "5",
                     "targetHandle": "i1",
-                    "id": "edge-6-8i1",
+                    "id": "edge-4-5i1",
                     "data": {
-                        "type": "float"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "6",
-                    "sourceHandle": null,
-                    "target": "8",
-                    "targetHandle": "i0",
-                    "id": "edge-6-8i0",
-                    "data": {
-                        "type": "float"
+                        "type": "int"
                     }
                 },
                 {
                     "type": "custom",
                     "source": "5",
                     "sourceHandle": null,
-                    "target": "7",
-                    "targetHandle": "i0",
-                    "id": "edge-5-7i0",
+                    "target": "2",
+                    "targetHandle": "i1",
+                    "id": "edge-5-2i1",
                     "data": {
-                        "type": "float?"
+                        "type": "int"
                     }
                 },
                 {
                     "type": "custom",
                     "source": "input",
-                    "sourceHandle": "o4",
-                    "target": "10",
+                    "sourceHandle": "o3",
+                    "target": "6",
                     "targetHandle": "i0",
-                    "id": "edge-inputo4-10i0",
+                    "id": "edge-inputo3-6i0",
                     "data": {
-                        "type": "bool!"
+                        "type": "string!"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "6",
+                    "sourceHandle": null,
+                    "target": "output",
+                    "targetHandle": "i0",
+                    "id": "edge-6-outputi0",
+                    "data": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "2",
+                    "sourceHandle": null,
+                    "target": "7",
+                    "targetHandle": "i1",
+                    "id": "edge-2-7i1",
+                    "data": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "8",
+                    "sourceHandle": null,
+                    "target": "7",
+                    "targetHandle": "i2",
+                    "id": "edge-8-7i2",
+                    "data": {
+                        "type": "int"
                     }
                 },
                 {
@@ -593,8 +458,41 @@
                     "source": "10",
                     "sourceHandle": null,
                     "target": "9",
+                    "targetHandle": "i1",
+                    "id": "edge-10-9i1",
+                    "data": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "1",
+                    "sourceHandle": null,
+                    "target": "9",
                     "targetHandle": "i0",
-                    "id": "edge-10-9i0",
+                    "id": "edge-1-9i0",
+                    "data": {
+                        "type": "string?"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "9",
+                    "sourceHandle": null,
+                    "target": "0",
+                    "targetHandle": "i0",
+                    "id": "edge-9-0i0",
+                    "data": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "custom",
+                    "source": "0",
+                    "sourceHandle": "o0",
+                    "target": "7",
+                    "targetHandle": "i0",
+                    "id": "edge-0o0-7i0",
                     "data": {
                         "type": "bool"
                     }
@@ -603,219 +501,51 @@
                     "type": "custom",
                     "source": "7",
                     "sourceHandle": null,
-                    "target": "9",
-                    "targetHandle": "i1",
-                    "id": "edge-7-9i1",
-                    "data": {
-                        "type": "int?"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "9",
-                    "sourceHandle": null,
-                    "target": "12",
-                    "targetHandle": "i0",
-                    "id": "edge-9-12i0",
-                    "data": {
-                        "type": "int?!"
-                    },
-                    "selected": false
-                },
-                {
-                    "type": "custom",
-                    "source": "12",
-                    "sourceHandle": null,
-                    "target": "11",
-                    "targetHandle": "i0",
-                    "id": "edge-12-11i0",
-                    "data": {
-                        "type": "int?"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "7",
-                    "sourceHandle": null,
-                    "target": "11",
-                    "targetHandle": "i1",
-                    "id": "edge-7-11i1",
-                    "data": {
-                        "type": "int?"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "11",
-                    "sourceHandle": null,
                     "target": "output",
                     "targetHandle": "i1",
-                    "id": "edge-11-outputi1",
-                    "data": {
-                        "type": "int?"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "1",
-                    "sourceHandle": null,
-                    "target": "13",
-                    "targetHandle": "i1",
-                    "id": "edge-1-13i1",
+                    "id": "edge-7-outputi1",
                     "data": {
                         "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "1",
-                    "sourceHandle": null,
-                    "target": "13",
-                    "targetHandle": "i2",
-                    "id": "edge-1-13i2",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "1",
-                    "sourceHandle": null,
-                    "target": "14",
-                    "targetHandle": "i0",
-                    "id": "edge-1-14i0",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "7",
-                    "sourceHandle": null,
-                    "target": "14",
-                    "targetHandle": "i1",
-                    "id": "edge-7-14i1",
-                    "data": {
-                        "type": "int?"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "14",
-                    "sourceHandle": null,
-                    "target": "13",
-                    "targetHandle": "i0",
-                    "id": "edge-14-13i0",
-                    "data": {
-                        "type": "bool?"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "12",
-                    "sourceHandle": null,
-                    "target": "output",
-                    "targetHandle": "i2",
-                    "id": "edge-12-outputi2",
-                    "data": {
-                        "type": "int?"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "1",
-                    "sourceHandle": null,
-                    "target": "15",
-                    "targetHandle": "i0",
-                    "id": "edge-1-15i0",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "1",
-                    "sourceHandle": null,
-                    "target": "15",
-                    "targetHandle": "i1",
-                    "id": "edge-1-15i1",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "15",
-                    "sourceHandle": "o0",
-                    "target": "output",
-                    "targetHandle": "i3",
-                    "id": "edge-15o0-outputi3",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "15",
-                    "sourceHandle": "o1",
-                    "target": "output",
-                    "targetHandle": "i4",
-                    "id": "edge-15o1-outputi4",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "13",
-                    "sourceHandle": null,
-                    "target": "output",
-                    "targetHandle": "i5",
-                    "id": "edge-13-outputi5",
-                    "data": {
-                        "type": "int?"
                     }
                 }
             ]
         },
         {
-            "name": "addsub",
+            "name": "isPhone",
             "nodes": [
                 {
                     "id": "input",
                     "type": "split",
                     "position": {
-                        "x": 250,
-                        "y": 60
+                        "x": 150,
+                        "y": 80
                     },
                     "data": {
                         "name": "input",
                         "output": [
-                            "int",
-                            "int"
+                            "string"
                         ]
                     },
                     "width": 100,
                     "height": 57,
-                    "selected": false,
+                    "selected": true,
                     "dragging": false,
                     "positionAbsolute": {
-                        "x": 262,
-                        "y": 60
+                        "x": 150,
+                        "y": 81
                     }
                 },
                 {
                     "id": "output",
                     "type": "assemble",
                     "position": {
-                        "x": 300,
-                        "y": 520
+                        "x": 150,
+                        "y": 360
                     },
                     "data": {
                         "name": "output",
                         "input": [
-                            "int",
-                            "int"
+                            "bool"
                         ],
                         "output": [
                             null
@@ -825,65 +555,73 @@
                     "height": 52,
                     "selected": false,
                     "positionAbsolute": {
-                        "x": 302,
-                        "y": 515
+                        "x": 150,
+                        "y": 369
                     },
                     "dragging": false
                 },
                 {
                     "id": "0",
-                    "type": "calculation",
+                    "type": "stringOperation",
                     "position": {
-                        "x": 200,
-                        "y": 340
+                        "x": 150,
+                        "y": 220
                     },
                     "data": {
-                        "name": "add",
+                        "name": "regexTest",
                         "input": [
-                            "int",
-                            "int"
+                            "string",
+                            "string"
                         ],
                         "output": [
-                            "int"
+                            "bool"
                         ]
                     },
                     "width": 100,
                     "height": 80,
                     "selected": false,
                     "positionAbsolute": {
-                        "x": 175,
-                        "y": 331
+                        "x": 149,
+                        "y": 216
                     },
                     "dragging": false
                 },
                 {
                     "id": "1",
-                    "type": "calculation",
+                    "type": "constant",
                     "position": {
-                        "x": 400,
-                        "y": 340
+                        "x": 350,
+                        "y": 80
                     },
                     "data": {
-                        "name": "sub",
-                        "input": [
-                            "int",
-                            "int"
-                        ],
+                        "name": "string",
+                        "value": "0\\d{1,2}-\\d{3,4}-\\d{4}",
                         "output": [
-                            "int"
+                            "string"
                         ]
                     },
-                    "width": 100,
-                    "height": 80,
+                    "width": 267,
+                    "height": 78,
                     "selected": false,
+                    "dragging": false,
                     "positionAbsolute": {
-                        "x": 413,
-                        "y": 333
-                    },
-                    "dragging": false
+                        "x": 347,
+                        "y": 86
+                    }
                 }
             ],
             "edges": [
+                {
+                    "type": "custom",
+                    "source": "1",
+                    "sourceHandle": null,
+                    "target": "0",
+                    "targetHandle": "i1",
+                    "id": "edge-1-0i1",
+                    "data": {
+                        "type": "string"
+                    }
+                },
                 {
                     "type": "custom",
                     "source": "0",
@@ -892,18 +630,7 @@
                     "targetHandle": "i0",
                     "id": "edge-0-outputi0",
                     "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "1",
-                    "sourceHandle": null,
-                    "target": "output",
-                    "targetHandle": "i1",
-                    "id": "edge-1-outputi1",
-                    "data": {
-                        "type": "int"
+                        "type": "bool"
                     }
                 },
                 {
@@ -912,46 +639,12 @@
                     "sourceHandle": "o0",
                     "target": "0",
                     "targetHandle": "i0",
-                    "id": "edge-4-0i0",
+                    "id": "edge-inputo0-0i0",
                     "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "input",
-                    "sourceHandle": "o1",
-                    "target": "0",
-                    "targetHandle": "i1",
-                    "id": "edge-3-0i1",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "input",
-                    "sourceHandle": "o0",
-                    "target": "1",
-                    "targetHandle": "i0",
-                    "id": "edge-4-1i0",
-                    "data": {
-                        "type": "int"
-                    }
-                },
-                {
-                    "type": "custom",
-                    "source": "input",
-                    "sourceHandle": "o1",
-                    "target": "1",
-                    "targetHandle": "i1",
-                    "id": "edge-3-1i1",
-                    "data": {
-                        "type": "int"
+                        "type": "string"
                     }
                 }
             ]
         }
-    ],
-    "types": []
+    ]
 }

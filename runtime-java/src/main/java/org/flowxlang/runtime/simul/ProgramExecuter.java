@@ -5,6 +5,7 @@ import org.flowxlang.runtime.type.*;
 import org.flowxlang.runtime.type.StringType;
 import org.flowxlang.runtime.type.column.Column;
 import org.flowxlang.runtime.type.notation.Errorable;
+import org.flowxlang.runtime.type.notation.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,7 +42,7 @@ public class ProgramExecuter {
             lines.add(str);
 
         for (int i = 0; i < inputType.length; i++) {
-            if (inputType[i].compareTo("input!") == 0) {
+            if (inputType[i].compareTo("int!") == 0) {
                 input[i] = new Column<IntType>(lines.size());
             }
             else if (inputType[i].compareTo("float!") == 0) {
@@ -59,7 +60,7 @@ public class ProgramExecuter {
             String line = lines.get(i);
             String[] values = line.split(",");
             for (int v = 0; v < inputType.length; v++) {
-                if (inputType[v].compareTo("input!") == 0) {
+                if (inputType[v].compareTo("int!") == 0) {
                     if (values.length <= v) {
                         input[v].setValue(i, new Errorable<IntType>());
                     }
@@ -90,7 +91,12 @@ public class ProgramExecuter {
                         input[v].setValue(i, new Errorable<StringType>());
                     }
                     else {
-                        input[v].setValue(i, new Errorable<>(new StringType(values[v])));
+                        if (values[v].length() == 0) {
+                            input[v].setValue(i, new Errorable<StringType>());
+                        }
+                        else {
+                            input[v].setValue(i, new Errorable<>(new StringType(values[v])));
+                        }
                     }
                 }
                 else if (inputType[v].compareTo("bool!") == 0) {
@@ -110,6 +116,55 @@ public class ProgramExecuter {
         }
 
         output = FunDefs.getInstance().find("main").calc(input);
+        for (int i = 0; i < lines.size(); i++) {
+            String line = "";
+
+            for (int v = 0; v < outputType.length; v++) {
+                Type x = output[v].getValue(i);
+
+                if (outputType[v].compareTo("int") == 0) {
+                    IntType y = (IntType)x;
+                    line += y.getValue();
+                }
+                else if (outputType[v].compareTo("float") == 0) {
+                    FloatType y = (FloatType)x;
+                    line += y.getValue();
+                }
+                else if (outputType[v].compareTo("string") == 0) {
+                    StringType y = (StringType)x;
+                    line += y.getValue();
+                }
+                else if (outputType[v].compareTo("bool") == 0) {
+                    BoolType y = (BoolType)x;
+                    line += y.getValue();
+                }
+                else if (outputType[v].compareTo("int?") == 0) {
+                    Nullable<IntType> y = (Nullable<IntType>)x;
+                    if (!y.getIsNull())
+                        line += y.getValue();
+                }
+                else if (outputType[v].compareTo("float?") == 0) {
+                    Nullable<FloatType> y = (Nullable<FloatType>)x;
+                    if (!y.getIsNull())
+                        line += y.getValue();
+                }
+                else if (outputType[v].compareTo("string?") == 0) {
+                    Nullable<StringType> y = (Nullable<StringType>)x;
+                    if (!y.getIsNull())
+                        line += y.getValue();
+                }
+                else if (outputType[v].compareTo("bool?") == 0) {
+                    Nullable<BoolType> y = (Nullable<BoolType>)x;
+                    if (!y.getIsNull())
+                        line += y.getValue();
+                }
+
+                if (v != outputType.length - 1)
+                    line += ",";
+            }
+
+            System.out.println(line);
+        }
 
         return this;
     }

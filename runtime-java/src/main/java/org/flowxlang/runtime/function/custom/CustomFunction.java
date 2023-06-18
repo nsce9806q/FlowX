@@ -80,6 +80,7 @@ public class CustomFunction extends Function {
                     }
                 }
             }
+
             rnode.calc(rnodeInput);
         }
 

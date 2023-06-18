@@ -84,6 +84,7 @@ public class FunDefs {
         regist("SelectInt", new SelectInt());
         regist("SelectFloat", new SelectFloat());
         regist("SelectString", new SelectString());
+        regist("RegexTest", new RegexTest());
 
         // conversion
         regist("FloatToInt", new FloatToInt());
