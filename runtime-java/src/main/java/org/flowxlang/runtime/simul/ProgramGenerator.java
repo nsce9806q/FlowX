@@ -65,8 +65,8 @@ public class ProgramGenerator {
                 }
             }
             else {
-                System.out.println(nodeData.getName());
-                nodes.put(id, new AnnotatedFunction(nodeData.getName()));
+                String fname = FunNameConverter.convertName(nodeData.getName(), nodeData.getInput());
+                nodes.put(id, new AnnotatedFunction(fname));
             }
         }
         nodeIDMap.put("input", "i");
