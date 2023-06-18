@@ -1,62 +1,8 @@
+import { newFile } from "../../utils/file";
+
 const NewFile = ({ setFile }) => {
     const initFile = () => {
-        setFile({
-                functions: [
-                    {
-                        name: "main",
-                        nodes: [
-                            {
-                                "id": "input",
-                                "type": "split",
-                                "position": {
-                                    "x": 150,
-                                    "y": 80
-                                },
-                                "data": {
-                                    "name": "split_csv",
-                                    "input": [
-                                        "csv"
-                                    ],
-                                    "output": [
-                                    ]
-                                },
-                                "width": 231,
-                                "height": 58,
-                                "selected": false,
-                                "dragging": false
-                            },
-                            {
-                                "id": "output",
-                                "type": "assemble",
-                                "position": {
-                                    "x": 150,
-                                    "y": 200
-                                },
-                                "data": {
-                                    "name": "assemble_csv",
-                                    "input": [
-                                        "int",
-                                        "float"
-                                    ],
-                                    "output": [
-                                        "csv"
-                                    ]
-                                },
-                                "width": 124,
-                                "height": 34,
-                                "selected": false,
-                                "positionAbsolute": {
-                                    "x": 280,
-                                    "y": 689
-                                },
-                                "dragging": false
-                            }
-                        ],
-                        edges: []
-                    }
-                ],
-                types: []
-            });
+        setFile(newFile());
     }
     return (
         <div className="flex w-full flex-col justify-center">

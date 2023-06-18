@@ -45,10 +45,10 @@ function CloseSquare(props) {
   );
 }
 
-export const NodeWrapper = ({ children, id, file, setFile, selectedFunction }) => {
+export const NodeWrapper = ({ children, id, file, setFile, selectedFunction, pa, isDefaultNode }) => {
     return (
-        <NW>
-            <CloseSquare onClick={(e) => {
+        <NW padding={pa}>
+            {!isDefaultNode&&<CloseSquare onClick={(e) => {
                 e.stopPropagation();
                 const connectedEdges = getConnectedEdges([file.functions.find(e=>e.name===selectedFunction).nodes.find(e=>e.id==id)], file.functions.find(e=>e.name===selectedFunction).edges);
                 setFile((file) => ({
@@ -64,7 +64,7 @@ export const NodeWrapper = ({ children, id, file, setFile, selectedFunction }) =
                         return func;
                     })
                 }))
-            }} />
+            }} />}
             {children}
         </NW>
     );

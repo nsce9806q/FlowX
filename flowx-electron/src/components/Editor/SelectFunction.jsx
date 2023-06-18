@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import defaultFunctions from '../../spec/functions';
+import { setSelectedFunction } from '../../utils/file';
 
 const SelectFunctionWrapper = styled.div`
     display: none;
@@ -60,31 +61,40 @@ const SelectFunctionWrapper = styled.div`
 
 const SelectFunction = ({ selectedFunction, file, setFile, contextMenuRef }) => {
     const onClick = (node,type)=>(e) => {
-        setFile((file) => ({
-            ...file,
-            functions: file.functions.map((func) => {
-                if (func.name === selectedFunction) {
-                    return {
-                        ...func,
-                        nodes: [
-                            ...func.nodes,
-                            {
-                                id: (Number(func.nodes[func.nodes.length-1]?.id) + 1 || 0)+"",
-                                type: type,
-                                position: { x:Math.round((contextMenuRef.current.getBoundingClientRect().x-200)/50)*50, y: Math.round((contextMenuRef.current.getBoundingClientRect().y)/20)*20 },
-                                data: { name: node, input: new Array(defaultFunctions[node].input[0].length).fill(null), output: [] },
-                            },
-                        ],
-                    };
-                }
-                return func;
-            }),
-        }));
+        setSelectedFunction(setFile, selectedFunction, func => {
+            const newNode = {
+                id: (Number(func.nodes[func.nodes.length-1]?.id) + 1 || 0)+"",
+                type: type,
+                position: { x:Math.round((contextMenuRef.current.getBoundingClientRect().x-200)/50)*50, y: Math.round((contextMenuRef.current.getBoundingClientRect().y)/20)*20 },
+                data: { name: node }
+            }
+            switch(type){
+                case "constant":
+                    newNode.data.value = 0;
+                    newNode.data.output = [node];
+                    break;
+                case "custom":
+                    newNode.data.input = new Array(file.functions.find(func=>func.name==node).nodes.find(e=>e.id=="input").data.output.length).fill(null);
+                    newNode.data.output = new Array(file.functions.find(func=>func.name==node).nodes.find(e=>e.id=="output").data.input.length).fill(null);
+                    break;
+                default:
+                    newNode.data.input = new Array(defaultFunctions[node].input[0].length).fill(null);
+                    newNode.data.output = [];
+            }
+            return {
+                ...func,
+                nodes: [
+                    ...func.nodes,
+                    newNode
+                ],
+            };
+        });
         contextMenuRef.current.style.display = "none";
     }
 
     const functionsGroupByType = Object.keys(defaultFunctions).reduce((acc, cur) => {
-        if(!acc[defaultFunctions[cur].type]) acc[defaultFunctions[cur].type] = [];
+        if(!acc[defaultFunctions[cur].type])
+            acc[defaultFunctions[cur].type] = [];
         acc[defaultFunctions[cur].type].push(cur);
         return acc;
     }, {});

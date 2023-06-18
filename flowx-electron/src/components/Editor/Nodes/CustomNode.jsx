@@ -2,7 +2,8 @@ import { Position, useReactFlow, getConnectedEdges  } from 'reactflow';
 import { NodeWrapper, IOWrapper, IOHandle } from './FunctionNode';
 import defaultFunctions from '../../../spec/functions';
 
-function CalculationNode({ id, data }) {
+function CustomNode({ id, data }) {
+    
     return (
         <NodeWrapper id={id} selectedFunction={data.selectedFunction} file={data.file} setFile={data.setFile}>
             <IOWrapper>
@@ -16,10 +17,14 @@ function CalculationNode({ id, data }) {
                 {data.name}
             </div>
             <IOWrapper>
-                <IOHandle type="source" position={Position.Bottom} isConnectable={!!data.output[0]} text={data.output[0]}/>
+                {
+                    data.output.map((e, i) => (
+                        <IOHandle type="source" position={Position.Bottom} id={`o${i}`} isConnectable={!!e} text={e} key={i}/>
+                    ))
+                }
             </IOWrapper>
         </NodeWrapper>
     );
 }
 
-export default CalculationNode;
+export default CustomNode;

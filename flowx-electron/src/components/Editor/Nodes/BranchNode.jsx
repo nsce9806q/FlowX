@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Position, useUpdateNodeInternals } from "reactflow";
+import { setSelectedFunction } from '../../../utils/file';
 import {
   NodeWrapper,
   IOWrapper,
@@ -51,7 +52,7 @@ function TurnSquare({ locRight, ...restProps }) {
 const BranchNode = ({ id, data }) => {
   const updateNodeInternals = useUpdateNodeInternals();
   return (
-    <NodeWrapper id={id} setSelected={data.setSelected} bigBox>
+    <NodeWrapper id={id} selectedFunction={data.selectedFunction} file={data.file} setFile={data.setFile}>
       <IOWrapper>
         <IOHandle
           type="target"
@@ -71,20 +72,18 @@ const BranchNode = ({ id, data }) => {
       >
         {!data?.locRight && (
           <IOWrapper direction="column">
-            <IOHandle
-              type="target"
-              position={Position.Left}
-              id="i1"
-              isConnectable={true}
-              text={data.input[1]}
-            />
-            <IOHandle
-              type="target"
-              position={Position.Left}
-              id="i2"
-              isConnectable={true}
-              text={data.input[2]}
-            />
+            {
+              new Array(data.input.length-1).fill(0).map((_, i) => (
+                <IOHandle
+                  type="target"
+                  position={Position.Left}
+                  id={`i${i+1}`}
+                  isConnectable={true}
+                  text={data.input[i+1]}
+                  key={i+1}
+                />
+              ))
+            }
           </IOWrapper>
         )}
 
@@ -135,7 +134,10 @@ const BranchNode = ({ id, data }) => {
       <TurnSquare
         locRight={!!data?.locRight}
         onClick={(e) =>{
-          data.setSelected((slt) => {
+          setSelectedFunction(
+            data.setFile,
+            data.selectedFunction,
+            (slt) => {
             const connectedNode = slt.nodes.find(
               (e) => e.id === id
             );
