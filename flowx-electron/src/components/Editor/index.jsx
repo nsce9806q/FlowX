@@ -1,14 +1,16 @@
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import ReactFlow, { Panel, applyEdgeChanges, applyNodeChanges } from 'reactflow';
+import ReactFlow, { ReactFlowProvider, Panel, applyEdgeChanges, applyNodeChanges,useUpdateNodeInternals } from 'reactflow';
 import CalculationNode from './Nodes/CalculationNode';
 import SplitNode from './Nodes/SplitNode';
 import AssembleNode from './Nodes/AssembleNode';
 import BranchNode from './Nodes/BranchNode';
 import ConstantNode from './Nodes/ConstantNode'
+import CustomNode from './Nodes/CustomNode';
 import CustomEdge from './CustomEdge';
 import AditionalEdge from './AdditionalEdge'
 import SelectFunction from './SelectFunction';
 import defaultFunctions from '../../spec/functions';
+import { setSelectedFunction } from '../../utils/file';
 import 'reactflow/dist/style.css';
 
 /**
@@ -19,6 +21,7 @@ import 'reactflow/dist/style.css';
  * @param {Function} props.setSelected - Function to set the selected node.
  */
 function Editor({ selectedFunction, file, setFile }) {
+    const updateNodeInternals = useUpdateNodeInternals();
     const nodeTypes = useMemo(() => ({
         split: SplitNode,
         calculation: CalculationNode,
@@ -28,11 +31,12 @@ function Editor({ selectedFunction, file, setFile }) {
         typeConversion: CalculationNode,
         branch: BranchNode,
         errorHandling: CalculationNode,
-        assemble: AssembleNode,
         constant: ConstantNode,
+        custom: CustomNode,
+        assemble: AssembleNode,
     }), []);
 
-    const edgeTypes = { custom: CustomEdge, additional: AditionalEdge };
+    const edgeTypes = useMemo(()=>({ custom: CustomEdge, additional: AditionalEdge }), []);
     const contextMenuRef = useRef(null);
     const onNodesChange = useCallback(
         (changes) => {
@@ -40,37 +44,40 @@ function Editor({ selectedFunction, file, setFile }) {
                 const {x, y} = changes[0].position;
                 changes[0].position = {x:Math.round(x/50)*50,y:Math.round(y/20)*20};
             }
-            setFile((pre) => ({
-                ...pre,
-                functions: pre.functions.map((func) => {
-                    if(func.name === selectedFunction){
-                        return {
-                            ...func,
-                            nodes: applyNodeChanges(changes, func.nodes)
-                        }
-                    }
-                    return func;
+            setSelectedFunction(
+                setFile,
+                selectedFunction,
+                (func) => ({
+                    ...func,
+                    nodes: applyNodeChanges(changes, func.nodes)
                 })
-            }));
+            );
         },
-        [file]
+        [file,setFile,selectedFunction]
     );
 
     const onEdgesChange = useCallback(
-        (changes) => setFile((pre) => ({
-            ...pre,
-            functions: pre.functions.map((func) => {
-                if(func.name === selectedFunction){
-                    return {
-                        ...func,
-                        edges: applyEdgeChanges(changes, func.edges)
-                    }
-                }
-                return func;
+        (changes) => setSelectedFunction(
+            setFile,
+            selectedFunction,
+            func=>({
+                ...func,
+                edges: applyEdgeChanges(changes, func.edges)
             })
-        })),
+        ),
         [file]
     );
+
+    const getPossibleInputOutput = (type,name) => {
+        if(type==="custom"){
+            const func = file.functions.find(e=>e.name===name);
+            return {
+                input:[[...func.nodes.find(e=>e.id=="input").data.output]],
+                output:[...func.nodes.find(e=>e.id=="output").data.input]
+            }
+        }
+        return defaultFunctions[name];
+    }
 
     // valid한 연결인지 확인하는 함수
     /**
@@ -85,23 +92,28 @@ function Editor({ selectedFunction, file, setFile }) {
             
             // 타겟 노드를 찾는다.
             const target = selected.nodes.find(e=>e.id == edge.target);
-            if(target.type==="assemble")
-                return true;
-            
             // 소스 노드를 찾는다.
             const source = selected.nodes.find(e=>e.id==edge.source);
-            
             // 인풋 타입은 source.data.output[]에 edges.sourceHandle("o1") 이런거 있으면 slice로 1만 취해온다. null이면 0
             const inputType = source.data.output[Number(edge.sourceHandle?.slice(1)??0)];
 
+            // 타겟이 assemble이면 inputType에 !가 없어야 한다.
+            if(target.type==="assemble")
+                return !inputType.includes("!");            
+
             // 함수 타입을 가져온다. defaultFunctions["add"].input
-            const possibleInputs = defaultFunctions[target.data.name].input;
+            const possibleInputs = getPossibleInputOutput(target.type, target.data.name).input;
 
             // edge.targetHandle에서 edge.targetHandle을 참조해서 input에서 몇번째인지 가져옴
             const inputIndex = Number(edge.targetHandle?.slice(1)??0);
             const currentInput = target.data.input;
-            const newInput = [...currentInput];
-            newInput[inputIndex] = inputType;
+            const newInput = currentInput
+                .map((e,i)=>i===inputIndex?inputType:e)
+                .map(e=>{
+                    if(target.type==="custom")
+                        return e;
+                    return e?e.replace("?",""):null
+                });
 
             /**
              * newInput = ["int", null, "int"]
@@ -126,64 +138,62 @@ function Editor({ selectedFunction, file, setFile }) {
             const currentInput = target.data.input;
             const newInput = [...currentInput];
             newInput[inputIndex] = inputType;
-            console.log(target.type,target.type==="assemble");
-            if(target.type==="assemble")
-                return setFile((pre) => ({
-                    ...pre,
-                    functions: pre.functions.map((func) => {
-                        if(func.name === selectedFunction){
-                            return {
-                                ...func,
-                                edges:[
-                                    ... func.edges,
-                                    {
-                                        ...connection,
-                                        id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
-                                        data: {type: selected.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
-                                    }
-                                ],
-                                nodes: func.nodes.map((node) => {
-                                    if(node.id === connection.target){
-                                        return {...node,data:{...node.data,input:newInput}};
-                                    }
-                                    return node;
-                                })
+            const newEdge = {
+                ...connection,
+                id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
+                data: {type: selected.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
+            };
+            if(target.type==="assemble"){
+                setSelectedFunction(
+                    setFile,
+                    selectedFunction,
+                    func=>({...func,
+                        edges:[
+                            ... func.edges,
+                            newEdge
+                        ],
+                        nodes: func.nodes.map((node) => {
+                            if(node.id === connection.target){
+                                return {...node,data:{...node.data,input:newInput}};
                             }
-                        }
-                        return func;
+                            return node;
+                        })
                     })
-                }));
-            const {input : possibleInputs ,output : possibleOutputs} = defaultFunctions[target.data.name];
-            const newOutput = [...target.data.output];
+                );
+                updateNodeInternals(connection.target);
+                return;
+            }
+            const newInputWithoutNull = newInput.map(e=>e?e.replace("?",""):null);
+            const {input : possibleInputs ,output : possibleOutputs} = getPossibleInputOutput(target.type, target.data.name);
+            let newOutput = [...target.data.output];
+            const outputIndexWithoutNull = possibleInputs.findIndex(e=>e.every((v,i)=>v===newInputWithoutNull[i]));
+            if(outputIndexWithoutNull>=0){
+                const isErrorable = possibleOutputs[outputIndexWithoutNull].includes("!");
+                newOutput = [possibleOutputs[outputIndexWithoutNull].replace(/[?!]/g,"")+"?"+(isErrorable?"!":"")];
+            }
             const outputIndex = possibleInputs.findIndex(e=>e.every((v,i)=>v===newInput[i]));
             if(outputIndex>=0)
-                newOutput[0] = possibleOutputs[outputIndex];
+                newOutput = [possibleOutputs[outputIndex]];
+            if((outputIndexWithoutNull>=0||outputIndex>=0)&&target.type==="custom")
+                newOutput = possibleOutputs;
             
-            setFile((pre) => ({
-                ...pre,
-                functions: pre.functions.map((func) => {
-                    if(func.name === selectedFunction){
-                        return {
-                            ...func,
-                            edges:[
-                                ... func.edges,
-                                {
-                                    ...connection,
-                                    id: `edge-${connection.source}${connection.sourceHandle??""}-${connection.target}${connection.targetHandle??""}`,
-                                    data: {type: selected.nodes.find(e=>e.id==connection.source).data.output[Number(connection.sourceHandle?.slice(1)??0)]},
-                                }
-                            ],
-                            nodes: func.nodes.map((node) => {
-                                if(node.id === connection.target){
-                                    return {...node,data:{...node.data,input:newInput,output:newOutput}};
-                                }
-                                return node;
-                            })
+            setSelectedFunction(
+                setFile,
+                selectedFunction,
+                func=>({...func,
+                    edges:[
+                        ... func.edges,
+                        newEdge
+                    ],
+                    nodes: func.nodes.map((node) => {
+                        if(node.id === connection.target){
+                            return {...node,data:{...node.data,input:newInput,output:newOutput}};
                         }
-                    }
-                    return func;
+                        return node;
+                    })
                 })
-            }));
+            );
+            updateNodeInternals(connection.target);
         },
         [file, setFile]
     );
@@ -244,4 +254,12 @@ function Editor({ selectedFunction, file, setFile }) {
     );
 }
 
-export default Editor;
+function FlowWithProvider ({ ...props }) {
+    return (
+      <ReactFlowProvider>
+        <Editor {...props} />
+      </ReactFlowProvider>
+    );
+}
+
+export default FlowWithProvider;

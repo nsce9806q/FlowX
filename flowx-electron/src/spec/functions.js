@@ -138,11 +138,16 @@ const functions = {
     },
     includes: {
       input: [
-        ["string", "string"],
-        ["string", "string"],
+        ["string", "string"]
       ],
       output: ["bool"],
     },
+    regexTest: {
+      input: [
+        ["string", "string"],
+      ],
+      output: ["bool"],
+    }
   },
   typeConversion: {
     toInt: {
@@ -207,8 +212,22 @@ const functions = {
     },
   },
   constant: {
-    input: [["int"], ["float"], ["boolean"]],
-    output: [["int"], ["float"], ["boolean"]],
+    int: {
+      input: [],
+      output: ["int"],
+    },
+    float: {
+      input: [],
+      output: ["float"],
+    },
+    string: {
+      input: [],
+      output: ["string"],
+    },
+    bool: {
+      input: [],
+      output: ["bool"],
+    }
   },
 };
 

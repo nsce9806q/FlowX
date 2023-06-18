@@ -1,6 +1,6 @@
 import { Position, useUpdateNodeInternals  } from 'reactflow';
 import { NodeWrapper,IOWrapper, IOHandle } from './FunctionNode';
-import defaultFunctions from '../../../spec/functions';
+import { setSelectedFunction } from '../../../utils/file';
 import styled from 'styled-components';
 import {useRef,useState} from 'react';
 
@@ -14,7 +14,7 @@ const SelectTypes = styled.div`
     border-radius: 5px;
     background-color: white;
     align-items: stretch;
-    z-index: 100;
+    z-index: 10001;
     > div {
         padding: 4px;
         cursor: pointer;
@@ -43,30 +43,32 @@ function PlusSquare(props) {
     );
 }
 
+const selectableTypes = {
+    "split_csv": ["int!","float!","string!","bool!"],
+    "input": ["int","float","string","bool"].flatMap((item) => [item, item+"?"]),
+}
 
 function InputNode({ id, data, isConnectable }) {
     const selectRef = useRef(null);
     const updateNodeInternals = useUpdateNodeInternals();
 
     const changeType = (type) => (e) => {
-        data.setFile((file) => ({
-            ...file,
-            functions: file.functions.map((func) => {
-                if (func.name === data.selectedFunction) {
-                    const newSelected = {...func};
-                    newSelected.edges = newSelected.edges.map((item) =>{
-                        if(item.source === id && item.sourceHandle === "o"+selectRef.current.value) {
-                            return {...item, data:{...item.data, type}};
-                        }
-                        return item;
-                    });
-                    newSelected.nodes.find((item) => item.id === id).data.output[selectRef.current.value] = type;
+        setSelectedFunction(
+            data.setFile,
+            data.selectedFunction,
+            func => {
+                const newSelected = {...func};
+                newSelected.edges = newSelected.edges.map((item) =>{
+                    if(item.source === id && item.sourceHandle === "o"+selectRef.current.value) {
+                        return {...item, data:{...item.data, type}};
+                    }
+                    return item;
+                });
+                newSelected.nodes.find((item) => item.id === id).data.output[selectRef.current.value] = type;
 
-                    return newSelected;
-                }
-                return func;
-            })
-        }));
+                return newSelected;
+            }
+        )
         updateNodeInternals(id);
         selectRef.current.style.display = "none";
     }
@@ -75,21 +77,16 @@ function InputNode({ id, data, isConnectable }) {
         const newSelected = {...data.file.functions.find((item) => item.name === data.selectedFunction)};
         newSelected.edges = newSelected.edges.filter((item) => item.source !== id || item.sourceHandle !== "o"+selectRef.current.value);
         newSelected.nodes.find((item) => item.id === id).data.output.splice(selectRef.current.value,1);
-        data.setFile((prev) => {
-            const newFile = {...prev};
-            newFile.functions = newFile.functions.map((item) => {
-                if(item.name === data.selectedFunction) {
-                    return newSelected;
-                }
-                return item;
-            });
-            return newFile;
-        });
+        setSelectedFunction(
+            data.setFile,
+            data.selectedFunction,
+            func => newSelected
+        )
         selectRef.current.style.display = "none";
     }
 
     return (
-        <NodeWrapper id={id} selectedFunction={data.selectedFunction} file={data.file} setFile={data.setFile}>
+        <NodeWrapper id={id} selectedFunction={data.selectedFunction} file={data.file} setFile={data.setFile} pa isDefaultNode>
             <div>
                 {data.name}
             </div>
@@ -126,8 +123,9 @@ function InputNode({ id, data, isConnectable }) {
                     }}
                 />
                 <SelectTypes ref={selectRef}>
-                    {["int","float","str","bool"].map((item, index) =><div onClick={changeType(item)} key={index}>{item}</div>)}
-                    <div onClick={deleteType()} style={{color:"#da0000", fontWeight:"600"}}>Delete</div>
+                    {selectableTypes[data.name].map((item, index) =><div onClick={changeType(item)} key={index}>{item}</div>)}
+                    <div onClick={deleteType()} style={{color:"#da0000", fontWeight:"600", backgroundColor:"#eababa"}}>Delete</div>
+                    <div onClick={(e) => selectRef.current.style.display = "none"} style={{color:"#da0000", fontWeight:"600"}}>Cancel</div>
                 </SelectTypes>
             </IOWrapper>
         </NodeWrapper>
