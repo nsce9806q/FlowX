@@ -65,7 +65,7 @@ export const SaveButton = ({setFile,file}) => {
                 tostMessage.style.display = "none";
             }, 2000);
         });
-        setFile({...file, path: path.filePath, fileName: path.filePath.split('\\').pop()});
+        setFile({...file, path: path.filePath, fileName: path.filePath.split(/\/|\\/).pop()});
     });
 
     const saveFile = () => {
