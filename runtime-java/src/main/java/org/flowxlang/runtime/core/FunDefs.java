@@ -51,6 +51,7 @@ public class FunDefs {
         regist("SubFloat", new SubFloat());
         regist("MaxFloat", new MaxFloat());
         regist("MinFloat", new MinFloat());
+        regist("PowFloat", new PowFloat());
 
         // int
         regist("AddInt", new AddInt());
@@ -71,6 +72,7 @@ public class FunDefs {
         regist("OrInt", new OrInt());
         regist("XorInt", new XorInt());
         regist("NotInt", new NotInt());
+        regist("PowInt", new PowInt());
 
         // string
         regist("ConcatString", new ConcatString());
