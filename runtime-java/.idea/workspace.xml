@@ -10,9 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc432626-75c0-4aad-be05-dd8190e3bd69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/PowFloat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/PowInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/AvgFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/AvgNullFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/AvgInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/AvgNullInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/stringfunc/Label.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/FunNameConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/FunNameConverter.java" afterDir="false" />
@@ -115,14 +117,14 @@
       <recent name="C:\Users\DELL\Desktop\FlowX\runtime-java\src\main\java" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.flowxlang.runtime.function.defaults.stringfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.floatfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.intfunc" />
-      <recent name="org.flowxlang.runtime.function.defaults.stringfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.errorable" />
       <recent name="org.flowxlang.runtime.function.defaults.boolfunc" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.runtime-java-1.0-SNAPSHOT.jar">
+  <component name="RunManager" selected="Gradle.runtime-java [build]">
     <configuration name="runtime-java [build]" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
