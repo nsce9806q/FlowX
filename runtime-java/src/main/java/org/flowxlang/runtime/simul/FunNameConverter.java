@@ -37,7 +37,10 @@ public class FunNameConverter {
             new AbstractMap.SimpleEntry<>("length", "LengthString"),
             new AbstractMap.SimpleEntry<>("includes", "IncludesString"),
             new AbstractMap.SimpleEntry<>("regexTest", "RegexTest"),
-            new AbstractMap.SimpleEntry<>("pow", "Pow")
+            new AbstractMap.SimpleEntry<>("pow", "Pow"),
+            new AbstractMap.SimpleEntry<>("avg", "Avg"),
+            new AbstractMap.SimpleEntry<>("avgNull", "AvgNull"),
+            new AbstractMap.SimpleEntry<>("label", "Label")
     );
 
     private final static Map<String, String> typeConverter = Map.ofEntries(
@@ -60,7 +63,8 @@ public class FunNameConverter {
             "equal", "notEqual",
             "greaterThan", "greaterThanOrEqual", "lessThan", "lessThanOrEqual",
             "and", "or", "xor", "not",
-            "errorToValue", "errorToNull", "nullToValue", "panic", "negate", "pow"
+            "errorToValue", "errorToNull", "nullToValue", "panic", "negate", "pow",
+            "avg", "avgNull"
     };
 
     private final static String[] typeB = new String[] {
@@ -72,7 +76,7 @@ public class FunNameConverter {
     };
 
     private final static String[] typeD = new String[] {
-            "mod", "concat", "length", "includes", "regexTest"
+            "mod", "concat", "length", "includes", "regexTest", "label"
     };
 
     public static String convertName(String name, String[] input) throws Exception {

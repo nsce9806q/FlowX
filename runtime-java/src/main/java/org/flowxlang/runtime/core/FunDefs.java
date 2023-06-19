@@ -52,6 +52,8 @@ public class FunDefs {
         regist("MaxFloat", new MaxFloat());
         regist("MinFloat", new MinFloat());
         regist("PowFloat", new PowFloat());
+        regist("AvgFloat", new AvgFloat());
+        regist("AvgNullFloat", new AvgNullFloat());
 
         // int
         regist("AddInt", new AddInt());
@@ -73,6 +75,8 @@ public class FunDefs {
         regist("XorInt", new XorInt());
         regist("NotInt", new NotInt());
         regist("PowInt", new PowInt());
+        regist("AvgInt", new AvgInt());
+        regist("AvgNullInt", new AvgNullInt());
 
         // string
         regist("ConcatString", new ConcatString());
@@ -80,6 +84,7 @@ public class FunDefs {
         regist("NEqualString", new NEqualString());
         regist("LengthString", new LengthString());
         regist("IncludesString", new IncludesString());
+        regist("Label", new Label());
 
         // select
         regist("SelectBool", new SelectBool());
