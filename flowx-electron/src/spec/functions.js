@@ -130,6 +130,13 @@ const functions = {
       ],
       output: ["int", "bool"],
     },
+    pow:{
+      input: [
+        ["int", "int"],
+        ["float", "float"],
+      ],
+      output: ["int", "float"],
+    }
   },
   stringOperation: {
     concat: {
