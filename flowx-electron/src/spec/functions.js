@@ -135,7 +135,7 @@ const functions = {
         ["int", "int"],
         ["float", "float"],
       ],
-      output: ["int", "float"],
+      output: ["int!", "float!"],
     }
   },
   stringOperation: {
