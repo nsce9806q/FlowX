@@ -51,6 +51,18 @@ const functions = {
     negate: {
       input: [["int"], ["float"]],
       output: ["int", "float"],
+    },
+    avg: {
+      input: [["int"],["float"]],
+      output:["float","float"]
+    },
+    avgNull:{
+      input: [["int?"],["float?"]],
+      output: ["float!","float!"]
+    },
+    pow:{
+      input:[["int","int"],["float","float"]],
+      output:["int!","float!"]
     }
   },
   compare: {
@@ -158,6 +170,10 @@ const functions = {
         ["string", "string"],
       ],
       output: ["bool"],
+    },
+    label: {
+      input:[["string"]],
+      output:["int"]
     }
   },
   typeConversion: {
