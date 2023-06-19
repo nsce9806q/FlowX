@@ -10,11 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc432626-75c0-4aad-be05-dd8190e3bd69" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/floatfunc/PowFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/function/defaults/intfunc/PowInt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramExecuter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/ProgramExecuter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testfile/input.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testfile/input.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testfile/output.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testfile/output.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testfile/program.json" beforeDir="false" afterPath="$PROJECT_DIR$/testfile/program.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/core/FunDefs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/FunNameConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/flowxlang/runtime/simul/FunNameConverter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,11 +115,11 @@
       <recent name="C:\Users\DELL\Desktop\FlowX\runtime-java\src\main\java" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.flowxlang.runtime.function.defaults.floatfunc" />
+      <recent name="org.flowxlang.runtime.function.defaults.intfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.stringfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.errorable" />
-      <recent name="org.flowxlang.runtime.function.defaults.intfunc" />
       <recent name="org.flowxlang.runtime.function.defaults.boolfunc" />
-      <recent name="org.flowxlang.runtime.function.defaults.panic" />
     </key>
   </component>
   <component name="RunManager" selected="JAR Application.runtime-java-1.0-SNAPSHOT.jar">

@@ -36,7 +36,8 @@ public class FunNameConverter {
             new AbstractMap.SimpleEntry<>("concat", "ConcatString"),
             new AbstractMap.SimpleEntry<>("length", "LengthString"),
             new AbstractMap.SimpleEntry<>("includes", "IncludesString"),
-            new AbstractMap.SimpleEntry<>("regexTest", "RegexTest")
+            new AbstractMap.SimpleEntry<>("regexTest", "RegexTest"),
+            new AbstractMap.SimpleEntry<>("pow", "Pow")
     );
 
     private final static Map<String, String> typeConverter = Map.ofEntries(
@@ -59,7 +60,7 @@ public class FunNameConverter {
             "equal", "notEqual",
             "greaterThan", "greaterThanOrEqual", "lessThan", "lessThanOrEqual",
             "and", "or", "xor", "not",
-            "errorToValue", "errorToNull", "nullToValue", "panic", "negate"
+            "errorToValue", "errorToNull", "nullToValue", "panic", "negate", "pow"
     };
 
     private final static String[] typeB = new String[] {
